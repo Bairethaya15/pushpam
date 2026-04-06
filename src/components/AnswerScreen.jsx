@@ -72,7 +72,7 @@ export default function AnswerScreen({ answer, onAskAgain }) {
           {remaining > 0 ? (
             <>
               <button onClick={onAskAgain}
-                className="px-16 py-4 rounded-full text-base tracking-widest"
+                className="px-14 py-4 rounded-full text-base tracking-wider"
                 style={{ background: 'rgba(255,248,237,0.06)', border: `1px solid ${accent}25`, color: accent, fontFamily: 'Georgia, serif' }}>
                 Ask again
               </button>
@@ -93,7 +93,7 @@ export default function AnswerScreen({ answer, onAskAgain }) {
               <p className="text-base font-medium" style={{ color: '#D4A843', fontFamily: 'Georgia, serif' }}>
                 One offering, forever.</p>
               <button
-                className="mt-3 px-10 py-3.5 rounded-full text-base tracking-widest"
+                className="mt-3 px-12 py-4 rounded-full text-base tracking-wider"
                 style={{ background: 'linear-gradient(135deg, #E8801A, #C4600C)', border: '1px solid rgba(212,168,67,0.5)', color: '#FFF8ED', fontFamily: 'Georgia, serif', boxShadow: '0 4px 20px rgba(232,128,26,0.25)' }}>
                 Seek lifetime guidance 🪷
               </button>

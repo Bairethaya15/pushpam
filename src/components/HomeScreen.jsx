@@ -96,11 +96,11 @@ export default function HomeScreen({ onPray }) {
         <button
           onClick={handleSubmit}
           disabled={!question.trim()}
-          className="w-full rounded-full text-base tracking-widest transition-all duration-300 disabled:opacity-30"
+          className="w-full rounded-full text-base tracking-wider transition-all duration-300 disabled:opacity-30"
           style={{
             background: question.trim() ? 'linear-gradient(135deg, #E8801A, #C4600C)' : 'rgba(232,128,26,0.2)',
             border: question.trim() ? '1px solid rgba(212,168,67,0.5)' : '1px solid transparent',
-            color: '#FFF8ED', fontFamily: 'Georgia, serif', padding: '12px 0',
+            color: '#FFF8ED', fontFamily: 'Georgia, serif', padding: '14px 24px',
             boxShadow: question.trim() ? '0 4px 24px rgba(232,128,26,0.3)' : 'none',
           }}>
           🙏 प्रार्थना करें
