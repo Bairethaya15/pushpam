@@ -19,8 +19,8 @@ export default function App() {
       setScreen('daily-complete')
       return
     }
-    // Prashna Shastra — the celestial position at this exact moment decides
-    const prashna = askPrashna(new Date())
+    // Prashna Shastra — cosmos + moment + question vibration
+    const prashna = askPrashna(new Date(), q)
     const side = prashna.answer === 'yes' ? 'right' : 'left'
     setQuestion(q)
     setFlowerSide(side)

@@ -101,9 +101,6 @@ const ROOT_PLANET_NAMES = {
 
 /**
  * Get the numerological score for a given moment
- *
- * @param {Date} date
- * @returns {{ root: number, planet: string, score: number, dateRoot: number, timeRoot: number }}
  */
 export function getNumerologyScore(date) {
   const { dateRoot, timeRoot, root } = getMomentRoot(date)
@@ -112,6 +109,84 @@ export function getNumerologyScore(date) {
     root,
     dateRoot,
     timeRoot,
+    planet: ROOT_PLANET_NAMES[root],
+    score: ROOT_SCORE[root] ?? 0,
+  }
+}
+
+/**
+ * Chaldean numerology letter values
+ * This is the traditional Indian/Chaldean system (NOT Pythagorean)
+ *
+ * 1: A I J Q Y
+ * 2: B K R
+ * 3: C G L S
+ * 4: D M T
+ * 5: E H N X
+ * 6: U V W
+ * 7: O Z
+ * 8: F P
+ */
+const CHALDEAN = {
+  a:1, i:1, j:1, q:1, y:1,
+  b:2, k:2, r:2,
+  c:3, g:3, l:3, s:3,
+  d:4, m:4, t:4,
+  e:5, h:5, n:5, x:5,
+  u:6, v:6, w:6,
+  o:7, z:7,
+  f:8, p:8,
+}
+
+/**
+ * Devanagari numerology — each akshar mapped to a value
+ * Based on Katapayadi sankhya system used in Indian tradition
+ *
+ * The consonants carry values 1-9, vowels are 0
+ */
+const DEVANAGARI = {}
+// ka-group: 1
+'कखगघङ'.split('').forEach((c, i) => DEVANAGARI[c] = (i % 9) + 1)
+// cha-group
+'चछजझञ'.split('').forEach((c, i) => DEVANAGARI[c] = ((i + 5) % 9) + 1)
+// ta-group
+'टठडढण'.split('').forEach((c, i) => DEVANAGARI[c] = ((i + 1) % 9) + 1)
+// tha-group
+'तथदधन'.split('').forEach((c, i) => DEVANAGARI[c] = ((i + 6) % 9) + 1)
+// pa-group
+'पफबभम'.split('').forEach((c, i) => DEVANAGARI[c] = ((i + 2) % 9) + 1)
+// ya-group
+'यरलव'.split('').forEach((c, i) => DEVANAGARI[c] = ((i + 7) % 9) + 1)
+// sha-group
+'शषसह'.split('').forEach((c, i) => DEVANAGARI[c] = ((i + 3) % 9) + 1)
+// vowels — carry value based on position
+'अआइईउऊएऐओऔ'.split('').forEach((c, i) => DEVANAGARI[c] = (i % 9) + 1)
+// matras
+'ािीुूेैोौं'.split('').forEach((c, i) => DEVANAGARI[c] = ((i + 4) % 9) + 1)
+
+/**
+ * Get numerological root of a question's text
+ *
+ * Works with English (Chaldean) and Hindi (Devanagari)
+ * Ignores spaces, punctuation, numbers
+ *
+ * "Will I get the job?" → sum letter values → reduce to 1-9
+ */
+export function getQuestionRoot(text) {
+  if (!text || !text.trim()) return { root: 5, score: ROOT_SCORE[5] ?? 0, planet: ROOT_PLANET_NAMES[5] }
+
+  let sum = 0
+  for (const char of text.toLowerCase()) {
+    if (CHALDEAN[char]) {
+      sum += CHALDEAN[char]
+    } else if (DEVANAGARI[char]) {
+      sum += DEVANAGARI[char]
+    }
+  }
+
+  const root = sum === 0 ? 5 : reduceToRoot(sum) // default to Mercury if no letters
+  return {
+    root,
     planet: ROOT_PLANET_NAMES[root],
     score: ROOT_SCORE[root] ?? 0,
   }

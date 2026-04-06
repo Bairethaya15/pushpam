@@ -24,7 +24,7 @@ import {
   moonLongitude, getNakshatra, getTithi, getPaksha,
   getVara, getHora
 } from './astronomy'
-import { getNumerologyScore } from './numerology'
+import { getNumerologyScore, getQuestionRoot } from './numerology'
 
 /**
  * Nakshatra classification for Prashna
@@ -208,7 +208,7 @@ function specialCombinations(nakshatra, tithi, vara) {
  * @param {Date} date — the exact moment of the question
  * @returns {{ answer: 'yes'|'no', score: number, factors: object }}
  */
-export function askPrashna(date = new Date()) {
+export function askPrashna(date = new Date(), questionText = '') {
   const moonLong = moonLongitude(date)
   const nakshatra = getNakshatra(moonLong)
   const tithi = getTithi(date)
@@ -219,6 +219,9 @@ export function askPrashna(date = new Date()) {
   // Numerology — root number of the exact moment
   const numerology = getNumerologyScore(date)
 
+  // Question numerology — the vibration of the words themselves
+  const questionNum = getQuestionRoot(questionText)
+
   // Calculate individual scores
   const scores = {
     nakshatra: NAKSHATRA_SCORE[nakshatra] ?? 0,
@@ -228,6 +231,7 @@ export function askPrashna(date = new Date()) {
     hora: HORA_SCORE[hora] ?? 0,
     special: specialCombinations(nakshatra, tithi, vara),
     numerology: numerology.score,
+    question: questionNum.score,
   }
 
   // ── Scoring philosophy ──
@@ -254,10 +258,13 @@ export function askPrashna(date = new Date()) {
   // Cap astrology influence — tendency, not destiny
   const astroScore = Math.max(-4, Math.min(4, rawAstro))
 
-  // Numerology — the moment's own energy (uncapped)
+  // Numerology — the moment's energy (uncapped)
   const numScore = scores.numerology * 3
 
-  const finalScore = astroScore + numScore
+  // Question — the vibration of the words (uncapped)
+  const questionScore = scores.question * 2
+
+  const finalScore = astroScore + numScore + questionScore
 
   // Positive = yes, negative = no
   // When exactly zero, the querent's faith tips the scale — yes
@@ -273,6 +280,7 @@ export function askPrashna(date = new Date()) {
       vara,
       hora,
       numerology,
+      questionNumerology: questionNum,
       scores,
     }
   }
