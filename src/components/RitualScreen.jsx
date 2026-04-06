@@ -4,11 +4,10 @@ import { playBell, startAmbient, stopAmbient } from '../utils/audio'
 import bellIcon from '../assets/bell.svg'
 import flowerIcon from '../assets/flower.svg'
 
-const mantras = ['ॐ गं गणपतये नमः', 'ॐ नमः शिवाय', 'ॐ श्री लक्ष्म्यै नमः']
+const MANTRA = 'ॐ इष्टदेवताय नमः'
 
 export default function RitualScreen({ flowerSide, onComplete }) {
   const [step, setStep] = useState('bell')
-  const [mantra] = useState(() => mantras[Math.floor(Math.random() * mantras.length)])
 
   // Start ambient when ritual begins, stop when it unmounts
   useEffect(() => {
@@ -119,7 +118,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
               <div className="text-3xl" style={{
                 color: '#D4A843', fontFamily: "'Tiro Devanagari Hindi', serif",
                 textShadow: '0 0 20px rgba(212,168,67,0.5), 0 0 40px rgba(212,168,67,0.2)',
-              }}>{mantra}</div>
+              }}>{MANTRA}</div>
             </motion.div>
           )}
         </AnimatePresence>
