@@ -187,38 +187,20 @@ export default function RitualScreen({ flowerSide, onComplete }) {
         </AnimatePresence>
       </div>
 
-      {/* Flower fall — starts from deity frame, lands within screen */}
-      <AnimatePresence>
-        {(step === 'flower' || step === 'done') && flowerSide && (
-          <motion.div
-            key="flower"
-            className="absolute z-10 text-4xl select-none"
-            style={{
-              top: '10%',
-              left: '50%',
-              marginLeft: '-18px',
-              filter: 'drop-shadow(0 0 12px rgba(212,168,67,0.7))',
-            }}
-            initial={{ y: 0, x: 0, rotate: 0, opacity: 1 }}
-            animate={{
-              y: ['0px', '80px', '180px', '260px', '340px'],
-              x: flowerSide === 'left'
-                ? ['0px', '-20px', '-50px', '-80px', '-120px']
-                : ['0px', '20px', '50px', '80px', '120px'],
-              rotate: flowerSide === 'left'
-                ? [0, -15, -40, -25, -45]
-                : [0, 15, 40, 25, 45],
-              opacity: [0, 1, 1, 1, 1],
-            }}
-            transition={{
-              duration: 3.2,
-              ease: [0.25, 0.1, 0.25, 1],
-              times: [0, 0.2, 0.5, 0.75, 1],
-            }}>
-            🌸
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Flower fall — CSS keyframe animation matching prototype's natural sway */}
+      {(step === 'flower' || step === 'done') && flowerSide && (
+        <div
+          className="absolute z-10 text-4xl select-none"
+          style={{
+            top: 'calc(10% + 100px)',
+            left: '50%',
+            marginLeft: '-18px',
+            filter: 'drop-shadow(0 0 12px rgba(212,168,67,0.7))',
+            animation: `flower-fall-${flowerSide} 3s ease-in forwards`,
+          }}>
+          🌸
+        </div>
+      )}
     </div>
   )
 }
