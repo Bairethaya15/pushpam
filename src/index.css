@@ -67,7 +67,8 @@ body {
 /* Responsive deity wrapper — aspect-ratio locked so arch never distorts */
 .deity-wrapper {
   width: min(52vw, 210px);
-  aspect-ratio: 5 / 6; /* always taller than wide, like a temple arch */
+  aspect-ratio: 5 / 6;
+  max-height: 38svh;
 }
 
 .deity-om {
