@@ -54,7 +54,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
       {/* Ambient glow */}
       <div
         className="absolute left-1/2 -translate-x-1/2 w-80 h-80 rounded-full pointer-events-none"
-        style={{ top: 80, background: 'radial-gradient(circle, rgba(212,168,67,0.12) 0%, transparent 70%)' }} />
+        style={{ top: '10%', background: 'radial-gradient(circle, rgba(212,168,67,0.12) 0%, transparent 70%)' }} />
 
       {/* Floating sparks */}
       {[0, 1, 2, 3, 4, 5].map(i => (
@@ -70,15 +70,17 @@ export default function RitualScreen({ flowerSide, onComplete }) {
         />
       ))}
 
-      {/* ── Deity Frame — same content-top as HomeScreen ── */}
-      <div className="relative z-10 content-top shrink-0 flex flex-col items-center">
-        <div className="relative" style={{ width: 200, height: 240 }}>
+      {/* Header clearance */}
+      <div className="content-top shrink-0" />
+
+      {/* ── Deity Frame — same as HomeScreen ── */}
+      <div className="relative z-10 shrink-0 flex flex-col items-center">
+        <div className="deity-wrapper relative">
           <motion.div
             animate={{ opacity: [0.7, 1, 0.7] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
             className="deity-frame deity-frame-glow w-full h-full flex items-center justify-center">
-            <div
-              className="text-8xl select-none"
+            <div className="deity-om select-none"
               style={{
                 color: '#D4A843',
                 textShadow: '0 0 40px rgba(212,168,67,0.4), 0 0 80px rgba(212,168,67,0.15)',
@@ -87,7 +89,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
               }}>
               ॐ
             </div>
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 pointer-events-none">
+            <div className="absolute bottom-[8%] left-1/2 -translate-x-1/2 pointer-events-none">
               <div className="smoke-particle" />
               <div className="smoke-particle" />
               <div className="smoke-particle" />
@@ -95,11 +97,11 @@ export default function RitualScreen({ flowerSide, onComplete }) {
           </motion.div>
 
           {/* Diyas */}
-          <div className="absolute -left-6 bottom-0 diya-container">
+          <div className="absolute -left-5 bottom-0 diya-container">
             <div className="diya-flame" />
             <div className="diya-base" />
           </div>
-          <div className="absolute -right-6 bottom-0 diya-container">
+          <div className="absolute -right-5 bottom-0 diya-container">
             <div className="diya-flame diya-flame-delayed" />
             <div className="diya-base" />
           </div>
@@ -112,9 +114,9 @@ export default function RitualScreen({ flowerSide, onComplete }) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
-                className="absolute -bottom-7 left-0 right-0 flex justify-between px-1">
-                <span className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(232,141,141,0.45)' }}>✕ नहीं</span>
-                <span className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(126,202,156,0.45)' }}>हाँ ✓</span>
+                className="deity-wrapper absolute -bottom-6 left-0 right-0 flex justify-between px-1">
+                <span className="text-[10px] tracking-[0.15em] uppercase" style={{ color: 'rgba(232,141,141,0.45)' }}>✕ नहीं</span>
+                <span className="text-[10px] tracking-[0.15em] uppercase" style={{ color: 'rgba(126,202,156,0.45)' }}>हाँ ✓</span>
               </motion.div>
             )}
           </AnimatePresence>
@@ -122,7 +124,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
       </div>
 
       {/* ── Ritual text below deity ── */}
-      <div className="relative flex-1 w-full flex items-start justify-center pt-14">
+      <div className="relative flex-1 w-full flex items-start justify-center pt-10">
 
         <AnimatePresence>
           {step === 'bell' && (
@@ -132,14 +134,14 @@ export default function RitualScreen({ flowerSide, onComplete }) {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="absolute flex flex-col items-center gap-5">
+              className="absolute flex flex-col items-center gap-4">
               <motion.div
                 animate={{ rotate: [-12, 12, -12] }}
                 transition={{ duration: 0.5, repeat: 3, ease: 'easeInOut' }}
-                className="text-6xl select-none">
+                className="text-5xl select-none">
                 🔔
               </motion.div>
-              <p className="text-[11px] tracking-[0.3em] uppercase"
+              <p className="text-[10px] tracking-[0.3em] uppercase"
                 style={{ color: 'rgba(212,168,67,0.35)' }}>
                 The divine is called
               </p>
@@ -156,7 +158,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.6 }}
               className="absolute flex flex-col items-center px-8 text-center">
-              <div className="text-2xl" style={{
+              <div className="text-xl" style={{
                 color: '#D4A843',
                 fontFamily: 'serif',
                 textShadow: '0 0 20px rgba(212,168,67,0.5), 0 0 40px rgba(212,168,67,0.2)',
@@ -176,7 +178,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.8 }}
               className="absolute">
-              <p className="text-[11px] tracking-[0.3em] uppercase"
+              <p className="text-[10px] tracking-[0.3em] uppercase"
                 style={{ color: 'rgba(212,168,67,0.3)' }}>
                 The divine listens...
               </p>
@@ -185,12 +187,11 @@ export default function RitualScreen({ flowerSide, onComplete }) {
         </AnimatePresence>
       </div>
 
-      {/* ── Flower ── */}
+      {/* ── Flower — starts from center of deity, uses CSS keyframes ── */}
       {(step === 'flower' || step === 'done') && flowerSide && (
         <div
-          className="absolute z-10 text-4xl select-none"
+          className="absolute z-10 text-4xl select-none flower-start"
           style={{
-            top: 220,
             left: '50%',
             marginLeft: '-18px',
             filter: 'drop-shadow(0 0 12px rgba(212,168,67,0.7))',

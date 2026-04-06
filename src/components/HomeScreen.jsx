@@ -17,8 +17,8 @@ export default function HomeScreen({ onPray }) {
 
       {/* Ambient top glow */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[120%] h-72 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse, rgba(232,128,26,0.1) 0%, transparent 70%)' }} />
+        className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none"
+        style={{ width: '120%', height: '35vh', background: 'radial-gradient(ellipse, rgba(232,128,26,0.1) 0%, transparent 70%)' }} />
 
       {/* Floating sparks */}
       {[0, 1, 2, 3, 4].map(i => (
@@ -34,20 +34,22 @@ export default function HomeScreen({ onPray }) {
         />
       ))}
 
+      {/* ── Top section: header clearance ── */}
+      <div className="content-top shrink-0" />
+
       {/* ── Deity Frame ── */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 2, ease: 'easeOut' }}
-        className="relative z-10 content-top shrink-0 flex flex-col items-center">
+        className="relative z-10 shrink-0 flex flex-col items-center">
 
-        <div className="relative" style={{ width: 200, height: 240 }}>
+        <div className="deity-wrapper relative">
           <motion.div
             animate={{ opacity: [0.7, 1, 0.7] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
             className="deity-frame deity-frame-glow w-full h-full flex items-center justify-center">
-            <div
-              className="text-8xl select-none"
+            <div className="deity-om select-none"
               style={{
                 color: '#D4A843',
                 textShadow: '0 0 40px rgba(212,168,67,0.4), 0 0 80px rgba(212,168,67,0.15)',
@@ -56,7 +58,7 @@ export default function HomeScreen({ onPray }) {
               }}>
               ॐ
             </div>
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 pointer-events-none">
+            <div className="absolute bottom-[8%] left-1/2 -translate-x-1/2 pointer-events-none">
               <div className="smoke-particle" />
               <div className="smoke-particle" />
               <div className="smoke-particle" />
@@ -64,35 +66,35 @@ export default function HomeScreen({ onPray }) {
           </motion.div>
 
           {/* Diyas */}
-          <div className="absolute -left-6 bottom-0 diya-container">
+          <div className="absolute -left-5 bottom-0 diya-container">
             <div className="diya-flame" />
             <div className="diya-base" />
           </div>
-          <div className="absolute -right-6 bottom-0 diya-container">
+          <div className="absolute -right-5 bottom-0 diya-container">
             <div className="diya-flame diya-flame-delayed" />
             <div className="diya-base" />
           </div>
         </div>
 
         {/* नहीं / हाँ */}
-        <div className="flex justify-between mt-6" style={{ width: 200 }}>
-          <span className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(232,141,141,0.35)' }}>✕ नहीं</span>
-          <span className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(126,202,156,0.35)' }}>हाँ ✓</span>
+        <div className="deity-wrapper flex justify-between mt-3">
+          <span className="text-[10px] tracking-[0.15em] uppercase" style={{ color: 'rgba(232,141,141,0.35)' }}>✕ नहीं</span>
+          <span className="text-[10px] tracking-[0.15em] uppercase" style={{ color: 'rgba(126,202,156,0.35)' }}>हाँ ✓</span>
         </div>
       </motion.div>
 
       {/* Spacer */}
-      <div className="flex-1 min-h-6" />
+      <div className="flex-1 min-h-4" />
 
       {/* ── Question Input ── */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 0.8 }}
-        className="relative z-10 w-full px-8 pb-2 safe-bottom flex flex-col gap-4 shrink-0">
+        className="relative z-10 w-full px-6 pb-2 safe-bottom flex flex-col gap-3 shrink-0">
 
         <label
-          className="text-[11px] tracking-[0.2em] uppercase text-center"
+          className="text-[10px] tracking-[0.2em] uppercase text-center"
           style={{ color: 'rgba(212,168,67,0.3)' }}>
           Hold your question in your heart
         </label>
@@ -110,8 +112,8 @@ export default function HomeScreen({ onPray }) {
             color: '#FFF8ED',
             fontFamily: 'Georgia, serif',
             caretColor: '#D4A843',
-            fontSize: '15px',
-            padding: '14px 16px',
+            fontSize: '14px',
+            padding: '12px 14px',
           }}
         />
 
@@ -126,7 +128,7 @@ export default function HomeScreen({ onPray }) {
             border: question.trim() ? '1px solid rgba(212,168,67,0.5)' : '1px solid transparent',
             color: '#FFF8ED',
             fontFamily: 'Georgia, serif',
-            padding: '14px 0',
+            padding: '12px 0',
             boxShadow: question.trim() ? '0 4px 24px rgba(232,128,26,0.3)' : 'none',
           }}>
           🙏 प्रार्थना करें

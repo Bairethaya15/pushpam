@@ -17,25 +17,25 @@ export default function AnswerScreen({ answer, onAskAgain }) {
 
       {/* Glow */}
       <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full pointer-events-none"
-        style={{ top: '40%', background: `radial-gradient(circle, ${glowColor}, transparent 70%)` }} />
+        style={{ top: '42%', background: `radial-gradient(circle, ${glowColor}, transparent 70%)` }} />
 
       {/* Burst */}
       <div
         className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full answer-burst"
-        style={{ top: '40%', background: `radial-gradient(circle, ${isYes ? 'rgba(126,202,156,0.25)' : 'rgba(232,141,141,0.25)'}, transparent 70%)` }} />
+        style={{ top: '42%', background: `radial-gradient(circle, ${isYes ? 'rgba(126,202,156,0.25)' : 'rgba(232,141,141,0.25)'}, transparent 70%)` }} />
 
-      {/* Top spacer — pushes content to vertical center */}
+      {/* Header clearance */}
       <div className="content-top shrink-0" />
 
-      {/* Centered answer content */}
-      <div className="relative z-10 flex flex-col items-center flex-1 justify-center px-8 text-center" style={{ marginTop: -40 }}>
+      {/* ── Centered answer content ── */}
+      <div className="relative z-10 flex flex-col items-center flex-1 justify-center px-8 text-center">
 
-        {/* Flower icon */}
+        {/* Flower */}
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}>
-          <div className="text-5xl select-none" style={{ filter: `drop-shadow(0 0 14px ${accentColor})` }}>
+          <div className="text-4xl select-none" style={{ filter: `drop-shadow(0 0 14px ${accentColor})` }}>
             🌸
           </div>
         </motion.div>
@@ -45,7 +45,7 @@ export default function AnswerScreen({ answer, onAskAgain }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex items-center gap-3 text-xs tracking-widest mt-6"
+          className="flex items-center gap-2 text-[10px] tracking-[0.2em] mt-5"
           style={{ color: `${accentColor}70` }}>
           {isYes ? (
             <>
@@ -67,7 +67,7 @@ export default function AnswerScreen({ answer, onAskAgain }) {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-3xl font-light mt-8"
+          className="text-2xl font-light mt-6"
           style={{ color: accentColor, fontFamily: 'Georgia, serif', textShadow: `0 0 20px ${accentColor}40` }}>
           {phrase.main}
         </motion.div>
@@ -77,23 +77,23 @@ export default function AnswerScreen({ answer, onAskAgain }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.9 }}
-          className="text-sm tracking-wide mt-4"
-          style={{ color: 'rgba(255,248,237,0.35)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>
+          className="text-sm tracking-wide mt-3"
+          style={{ color: 'rgba(255,248,237,0.3)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>
           {phrase.sub}
         </motion.div>
       </div>
 
-      {/* Buttons at bottom */}
+      {/* ── Buttons at bottom ── */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 1.4 }}
-        className="relative z-10 flex flex-col items-center gap-3 w-full px-8 safe-bottom pb-2 shrink-0">
+        className="relative z-10 flex flex-col items-center gap-2.5 w-full px-6 safe-bottom pb-2 shrink-0">
 
         {remaining > 0 ? (
           <button
             onClick={onAskAgain}
-            className="w-full py-3.5 rounded-full text-sm tracking-widest transition-all duration-300"
+            className="w-full py-3 rounded-full text-sm tracking-widest transition-all duration-300"
             style={{
               background: 'rgba(255,248,237,0.04)',
               border: `1px solid ${accentColor}25`,
@@ -103,7 +103,7 @@ export default function AnswerScreen({ answer, onAskAgain }) {
             Ask again
           </button>
         ) : (
-          <div className="flex flex-col items-center gap-1 py-3">
+          <div className="flex flex-col items-center gap-1 py-2">
             <p className="text-sm" style={{ color: 'rgba(255,248,237,0.4)', fontFamily: 'Georgia, serif' }}>
               The divine has spoken today.
             </p>
@@ -114,11 +114,11 @@ export default function AnswerScreen({ answer, onAskAgain }) {
         )}
 
         <button
-          className="w-full py-3.5 rounded-full text-sm tracking-widest"
+          className="w-full py-3 rounded-full text-xs tracking-widest"
           style={{
             background: 'transparent',
             border: '1px solid rgba(255,248,237,0.06)',
-            color: 'rgba(255,248,237,0.25)',
+            color: 'rgba(255,248,237,0.2)',
             fontFamily: 'Georgia, serif',
           }}
           onClick={() => {
