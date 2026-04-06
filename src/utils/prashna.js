@@ -261,8 +261,10 @@ export function askPrashna(date = new Date()) {
     scores.hora * 0.5 +
     scores.special * 1.5
 
-  // Cap astrology influence — tendency, not destiny
-  const astroScore = Math.max(-4, Math.min(4, rawAstro))
+  // Cap astrology influence — a gentle lean, not a verdict
+  // ±2 max means even on the worst day, universe (±5) can easily tip it
+  // Worst day: 30% yes. Best day: 70% yes. Neutral: 50%.
+  const astroScore = Math.max(-2, Math.min(2, rawAstro))
 
   // True randomness — the universe's unknowable will
   // Hardware entropy from the device, range ±5
