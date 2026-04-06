@@ -99,23 +99,40 @@ export default function HomeScreen({ onPray }) {
         className="relative z-10 w-full px-6 safe-bottom flex flex-col gap-3 shrink-0">
 
         <label className="text-xs tracking-[0.2em] uppercase text-center"
-          style={{ color: 'rgba(212,168,67,0.25)' }}>
-          Hold your question in your heart
+          style={{ color: 'rgba(212,168,67,0.3)' }}>
+          Place your question before the divine
         </label>
 
-        <textarea
-          value={question}
-          onChange={e => setQuestion(e.target.value)}
-          onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSubmit() } }}
-          placeholder="What weighs on your heart?"
-          rows={1}
-          className="w-full resize-none rounded-lg outline-none text-center"
-          style={{
-            background: 'rgba(255,248,237,0.05)', border: '1px solid rgba(212,168,67,0.15)',
-            color: '#FFF8ED', caretColor: '#D4A843',
-            fontSize: '16px', padding: '12px 14px',
-          }}
-        />
+        <div className="relative">
+          <textarea
+            value={question}
+            onChange={e => setQuestion(e.target.value)}
+            onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSubmit(e) } }}
+            placeholder="Speak your heart, or hold it within..."
+            rows={1}
+            className="w-full resize-none rounded-lg outline-none text-center pr-12"
+            style={{
+              background: 'rgba(255,248,237,0.05)', border: '1px solid rgba(212,168,67,0.15)',
+              color: '#FFF8ED', caretColor: '#D4A843',
+              fontSize: '16px', padding: '12px 14px',
+            }}
+          />
+          {/* Silent prayer button — fills 🙏 so user doesn't have to type */}
+          {!question.trim() && (
+            <button
+              onClick={() => setQuestion('🙏')}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-lg"
+              style={{ color: 'rgba(212,168,67,0.4)' }}
+              title="Pray in silence">
+              🙏
+            </button>
+          )}
+        </div>
+
+        <p className="text-[10px] tracking-wider text-center"
+          style={{ color: 'rgba(212,168,67,0.2)', fontStyle: 'italic' }}>
+          The divine hears what words cannot say
+        </p>
 
         <button
           onClick={handleSubmit}
