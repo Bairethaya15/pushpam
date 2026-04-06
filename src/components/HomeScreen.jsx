@@ -107,7 +107,7 @@ export default function HomeScreen({ onPray }) {
           value={question}
           onChange={e => setQuestion(e.target.value)}
           onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSubmit(e) } }}
-          placeholder="Speak your heart, or hold it within..."
+          placeholder="Type your yes/no question..."
           rows={1}
           className="w-full resize-none rounded-lg outline-none text-center"
           style={{
@@ -117,35 +117,31 @@ export default function HomeScreen({ onPray }) {
           }}
         />
 
-        {/* Silent prayer — OR divider + clear button */}
-        {!question.trim() && (
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-xs" style={{ color: 'rgba(255,248,237,0.2)' }}>or</span>
-            <button
-              onClick={(e) => { setQuestion('🙏'); setTimeout(() => handleSubmit(e), 100) }}
-              className="w-full rounded-full py-3 text-sm tracking-wider"
-              style={{
-                background: 'transparent',
-                border: '1px solid rgba(212,168,67,0.15)',
-                color: 'rgba(212,168,67,0.5)',
-              }}>
-              Pray in silence 🙏
-            </button>
-          </div>
+        {question.trim() ? (
+          <button
+            onClick={handleSubmit}
+            className="btn-primary w-full rounded-full text-base tracking-wider"
+            style={{
+              background: 'linear-gradient(135deg, #E8801A, #C4600C)',
+              border: '1px solid rgba(212,168,67,0.5)',
+              color: '#FFF8ED', padding: '14px 24px',
+              boxShadow: '0 4px 24px rgba(232,128,26,0.3)',
+            }}>
+            Seek your answer
+          </button>
+        ) : (
+          <button
+            onClick={(e) => { setQuestion('🙏'); setTimeout(() => handleSubmit(e), 100) }}
+            className="btn-primary w-full rounded-full text-base tracking-wider"
+            style={{
+              background: 'linear-gradient(135deg, #E8801A, #C4600C)',
+              border: '1px solid rgba(212,168,67,0.5)',
+              color: '#FFF8ED', padding: '14px 24px',
+              boxShadow: '0 4px 24px rgba(232,128,26,0.3)',
+            }}>
+            Pray in silence 🙏
+          </button>
         )}
-
-        <button
-          onClick={handleSubmit}
-          disabled={!question.trim()}
-          className="btn-primary w-full rounded-full text-base tracking-wider disabled:opacity-30"
-          style={{
-            background: question.trim() ? 'linear-gradient(135deg, #E8801A, #C4600C)' : 'rgba(232,128,26,0.2)',
-            border: question.trim() ? '1px solid rgba(212,168,67,0.5)' : '1px solid transparent',
-            color: '#FFF8ED', padding: '14px 24px',
-            boxShadow: question.trim() ? '0 4px 24px rgba(232,128,26,0.3)' : 'none',
-          }}>
-          Seek your answer
-        </button>
       </motion.div>
     </div>
   )
