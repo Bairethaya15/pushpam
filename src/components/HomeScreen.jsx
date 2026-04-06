@@ -19,11 +19,14 @@ export default function HomeScreen({ onPray }) {
     return () => vv.removeEventListener('resize', onResize)
   }, [])
 
-  function handleSubmit() {
+  function handleSubmit(e) {
     const q = question.trim()
     if (!q) return
+    // Capture the exact moment the finger touched the button
+    // e.timeStamp is set by the browser at the instant of the touch
+    const tapMs = Math.round(e.timeStamp + performance.timeOrigin)
     haptic('medium')
-    onPray(q)
+    onPray(q, tapMs)
   }
 
   return (

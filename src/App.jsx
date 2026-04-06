@@ -13,13 +13,14 @@ export default function App() {
   const [answer, setAnswer] = useState(null)
   const [flowerSide, setFlowerSide] = useState(null)
 
-  function handlePray(q) {
+  function handlePray(q, tapMs) {
     if (!canAsk()) {
       setScreen('daily-complete')
       return
     }
-    // The exact millisecond your finger touched pray — odd = yes, even = no
-    const side = Date.now() % 2 === 1 ? 'left' : 'right'
+    // The exact millisecond your finger touched the screen
+    // Odd = yes (deity's right), even = no (deity's left)
+    const side = tapMs % 2 === 1 ? 'left' : 'right'
     setQuestion(q)
     setFlowerSide(side)
     setScreen('ritual')
