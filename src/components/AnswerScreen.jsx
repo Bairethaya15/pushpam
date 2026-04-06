@@ -23,7 +23,7 @@ export default function AnswerScreen({ answer, onAskAgain }) {
         <div className="screen-header-sub">Ask the Divine</div>
       </div>
 
-      {/* ── Answer content — intentional spacing hierarchy ── */}
+      {/* ── Centered answer — same generous spacing as DailyComplete ── */}
       <div className="relative z-10 flex flex-col items-center flex-1 justify-center px-8 text-center">
 
         {/* Flower */}
@@ -32,17 +32,17 @@ export default function AnswerScreen({ answer, onAskAgain }) {
           <div className="text-5xl select-none" style={{ filter: `drop-shadow(0 0 14px ${accent})` }}>🌸</div>
         </motion.div>
 
-        {/* Direction — close to flower, they're a pair */}
+        {/* Direction — paired with flower */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex items-center gap-2 text-sm tracking-[0.15em] mt-3"
+          className="flex items-center gap-2 text-sm tracking-[0.15em] mt-4"
           style={{ color: `${accent}70` }}>
           {isYes
             ? <><span>—</span><span className="uppercase">The flower fell right</span><span>→</span></>
             : <><span>←</span><span className="uppercase">The flower fell left</span><span>—</span></>}
         </motion.div>
 
-        {/* Main answer — big gap, this is the reveal */}
+        {/* Main answer — big gap, the reveal */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-3xl font-light mt-8"
@@ -50,48 +50,58 @@ export default function AnswerScreen({ answer, onAskAgain }) {
           {phrase.main}
         </motion.div>
 
-        {/* Sub message — close to answer, they're a pair */}
+        {/* Sub message */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.9 }}
           className="text-base tracking-wide mt-3"
           style={{ color: 'rgba(255,248,237,0.35)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>
           {phrase.sub}
         </motion.div>
+
+        {/* Divider — visual breath like DailyComplete */}
+        <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }}
+          transition={{ duration: 0.8, delay: 1.1 }}
+          className="w-12 h-px mt-10"
+          style={{ background: `${accent}30` }} />
+
+        {/* Upsell or ask again — below divider, same pattern as DailyComplete */}
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.3 }}
+          className="flex flex-col items-center gap-2 mt-10">
+
+          {remaining > 0 ? (
+            <button onClick={onAskAgain}
+              className="px-10 py-3.5 rounded-full text-base tracking-widest"
+              style={{ background: 'rgba(255,248,237,0.04)', border: `1px solid ${accent}30`, color: accent, fontFamily: 'Georgia, serif' }}>
+              Ask again
+            </button>
+          ) : (
+            <>
+              <p className="text-base" style={{ color: 'rgba(212,168,67,0.5)', fontFamily: 'Georgia, serif' }}>
+                Seek guidance whenever your heart calls.</p>
+              <p className="text-base font-medium" style={{ color: '#D4A843', fontFamily: 'Georgia, serif' }}>
+                One offering, forever.</p>
+              <button
+                className="mt-3 px-10 py-3.5 rounded-full text-base tracking-widest"
+                style={{ background: 'linear-gradient(135deg, #E8801A, #C4600C)', border: '1px solid rgba(212,168,67,0.5)', color: '#FFF8ED', fontFamily: 'Georgia, serif', boxShadow: '0 4px 20px rgba(232,128,26,0.25)' }}>
+                Seek lifetime guidance 🪷
+              </button>
+            </>
+          )}
+        </motion.div>
       </div>
 
-      {/* ── Buttons ── */}
-      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 1.4 }}
-        className="relative z-10 flex flex-col items-center gap-2.5 w-full px-6 safe-bottom shrink-0">
-
-        {remaining > 0 ? (
-          <button onClick={onAskAgain}
-            className="w-full py-3.5 rounded-full text-base tracking-widest"
-            style={{ background: 'rgba(255,248,237,0.04)', border: `1px solid ${accent}25`, color: accent, fontFamily: 'Georgia, serif' }}>
-            Ask again
-          </button>
-        ) : (
-          <>
-            <button
-              className="w-full py-3.5 rounded-full text-base tracking-widest"
-              style={{ background: 'linear-gradient(135deg, #E8801A, #C4600C)', border: '1px solid rgba(212,168,67,0.5)', color: '#FFF8ED', fontFamily: 'Georgia, serif', boxShadow: '0 4px 20px rgba(232,128,26,0.25)' }}>
-              Seek lifetime guidance 🪷
-            </button>
-            <p className="text-xs mt-1" style={{ color: 'rgba(255,248,237,0.2)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>
-              One offering, forever. No daily limits.
-            </p>
-          </>
-        )}
-
-        <button className="w-full py-3 rounded-full text-sm tracking-widest"
-          style={{ background: 'transparent', border: '1px solid rgba(255,248,237,0.08)', color: 'rgba(255,248,237,0.25)', fontFamily: 'Georgia, serif' }}
-          onClick={() => {
-            const text = `🌺 पुष्पम् — Ask the Divine\n"Seek your answer from the divine. One question. One flower. One truth."\npushpam.in`
-            if (navigator.share) { navigator.share({ text }) } else { window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank') }
-          }}>
-          Help someone seek their answer too 🌺
-        </button>
-      </motion.div>
+      {/* ── Share at bottom ── */}
+      <motion.button initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 1.6 }}
+        className="relative z-10 text-sm tracking-widest safe-bottom pb-2 shrink-0"
+        style={{ color: 'rgba(255,248,237,0.2)', fontFamily: 'Georgia, serif' }}
+        onClick={() => {
+          const text = `🌺 पुष्पम् — Ask the Divine\n"Seek your answer from the divine. One question. One flower. One truth."\npushpam.in`
+          if (navigator.share) { navigator.share({ text }) } else { window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank') }
+        }}>
+        Help someone seek their answer too 🌺
+      </motion.button>
     </div>
   )
 }
