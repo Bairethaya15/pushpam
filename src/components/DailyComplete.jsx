@@ -29,9 +29,9 @@ export default function DailyComplete({ onGoHome }) {
       {/* ── Upsell (pinned lower) ── */}
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.9 }}
-        className="relative z-10 flex flex-col items-center gap-2 px-8 text-center shrink-0">
+        className="relative z-10 flex flex-col items-center gap-2 px-8 text-center safe-bottom shrink-0">
 
-        <div className="w-12 h-px mb-6" style={{ background: 'rgba(212,168,67,0.2)' }} />
+        <div className="w-12 h-px mb-4" style={{ background: 'rgba(212,168,67,0.2)' }} />
 
         <p className="text-base" style={{ color: 'rgba(212,168,67,0.5)' }}>
           Seek guidance whenever your heart calls.</p>
@@ -41,13 +41,14 @@ export default function DailyComplete({ onGoHome }) {
           style={{ background: 'linear-gradient(135deg, #E8801A, #C4600C)', color: '#FFF8ED', boxShadow: '0 4px 20px rgba(232,128,26,0.25)' }}>
           Unlock lifetime guidance
         </button>
-      </motion.div>
 
-      <motion.button initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 1.2 }}
-        onClick={onGoHome} className="relative z-10 text-sm tracking-wider uppercase py-4 shrink-0 safe-bottom"
-        style={{ color: 'rgba(255,248,237,0.2)' }}>
-        Return home
-      </motion.button>
+        <button
+          onClick={onGoHome}
+          className="text-sm tracking-wider uppercase mt-4 mb-2"
+          style={{ color: 'rgba(255,248,237,0.2)' }}>
+          Return home
+        </button>
+      </motion.div>
     </div>
   )
 }
