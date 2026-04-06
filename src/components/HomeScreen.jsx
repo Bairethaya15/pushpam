@@ -107,7 +107,7 @@ export default function HomeScreen({ onPray }) {
           value={question}
           onChange={e => setQuestion(e.target.value)}
           onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSubmit(e) } }}
-          placeholder="Type your yes/no question..."
+          placeholder="What does your heart seek?"
           rows={1}
           className="w-full resize-none rounded-lg outline-none text-center"
           style={{
