@@ -54,15 +54,15 @@ export default function HomeScreen({ onPray }) {
         </motion.div>
       </div>
 
-      {/* Deity area — flex-1 to fill space */}
+      {/* Deity frame — fixed position, same as RitualScreen */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 2, ease: 'easeOut' }}
-        className="relative z-10 flex flex-col items-center justify-center flex-1 min-h-0">
+        className="absolute z-10 left-1/2 -translate-x-1/2 flex flex-col items-center"
+        style={{ top: 110 }}>
 
-        {/* Deity container with frame, diyas, smoke */}
-        <div className="relative" style={{ width: 240, height: 280 }}>
+        <div className="relative" style={{ width: 220, height: 260 }}>
 
           {/* The sacred frame */}
           <motion.div
@@ -104,18 +104,18 @@ export default function HomeScreen({ onPray }) {
         </div>
 
         {/* नहीं / हाँ labels */}
-        <div className="flex justify-between mt-5" style={{ width: 240 }}>
+        <div className="flex justify-between mt-5" style={{ width: 220 }}>
           <span className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(232,141,141,0.45)' }}>✕ नहीं</span>
           <span className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(126,202,156,0.45)' }}>हाँ ✓</span>
         </div>
       </motion.div>
 
-      {/* Question input + button */}
+      {/* Question input + button — pinned at bottom */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 0.8 }}
-        className="relative z-10 w-full px-6 safe-bottom pt-4 flex flex-col gap-3 shrink-0"
+        className="relative z-10 w-full px-6 safe-bottom pt-4 flex flex-col gap-3 mt-auto shrink-0"
         style={{ borderTop: '1px solid rgba(212,168,67,0.08)' }}>
 
         <label
