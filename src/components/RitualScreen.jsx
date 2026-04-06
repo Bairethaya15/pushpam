@@ -54,7 +54,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
       {/* Ambient glow */}
       <div
         className="absolute left-1/2 -translate-x-1/2 w-80 h-80 rounded-full pointer-events-none"
-        style={{ top: 80, background: 'radial-gradient(circle, rgba(212,168,67,0.12) 0%, transparent 70%)' }} />
+        style={{ top: 60, background: 'radial-gradient(circle, rgba(212,168,67,0.12) 0%, transparent 70%)' }} />
 
       {/* Floating sparks */}
       {[0, 1, 2, 3, 4, 5].map(i => (
@@ -70,17 +70,27 @@ export default function RitualScreen({ flowerSide, onComplete }) {
         />
       ))}
 
-      {/* Deity frame — SAME fixed position as HomeScreen (top: 110px) */}
-      <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center" style={{ top: 90 }}>
+      {/* Spacer matching HomeScreen header height */}
+      <div className="safe-top pb-2 shrink-0" style={{ minHeight: 80 }} />
+
+      {/* Deity frame — SAME layout as HomeScreen: in flow, same size, same glow */}
+      <div className="relative z-10 flex flex-col items-center shrink-0 pt-2">
         <div className="relative" style={{ width: 200, height: 240 }}>
-          <div className="deity-frame deity-frame-glow w-full h-full flex items-center justify-center"
-            style={{ opacity: step === 'flower' || step === 'done' ? 0.8 : 0.35, transition: 'opacity 0.8s ease' }}>
-            <div className="text-7xl select-none" style={{
-              color: '#D4A843',
-              textShadow: '0 0 40px rgba(212,168,67,0.3), 0 0 80px rgba(212,168,67,0.1)',
-              fontFamily: 'serif',
-              opacity: 0.6,
-            }}>
+
+          <motion.div
+            animate={{ opacity: [0.7, 1, 0.7] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            className="deity-frame deity-frame-glow w-full h-full flex items-center justify-center">
+
+            {/* OM — same size as HomeScreen */}
+            <div
+              className="text-8xl select-none"
+              style={{
+                color: '#D4A843',
+                textShadow: '0 0 40px rgba(212,168,67,0.4), 0 0 80px rgba(212,168,67,0.15)',
+                fontFamily: 'serif',
+                lineHeight: 1,
+              }}>
               ॐ
             </div>
 
@@ -90,14 +100,14 @@ export default function RitualScreen({ flowerSide, onComplete }) {
               <div className="smoke-particle" />
               <div className="smoke-particle" />
             </div>
-          </div>
+          </motion.div>
 
           {/* Diyas */}
-          <div className="absolute -left-5 bottom-0 diya-container">
+          <div className="absolute -left-6 bottom-0 diya-container">
             <div className="diya-flame" />
             <div className="diya-base" />
           </div>
-          <div className="absolute -right-5 bottom-0 diya-container">
+          <div className="absolute -right-6 bottom-0 diya-container">
             <div className="diya-flame diya-flame-delayed" />
             <div className="diya-base" />
           </div>
@@ -119,8 +129,8 @@ export default function RitualScreen({ flowerSide, onComplete }) {
         </div>
       </div>
 
-      {/* Text steps — positioned below the deity frame */}
-      <div className="absolute left-0 right-0 flex items-start justify-center" style={{ top: 380 }}>
+      {/* Text steps — below the deity frame */}
+      <div className="relative flex-1 w-full flex items-start justify-center pt-12">
 
         {/* Bell step */}
         <AnimatePresence>
@@ -189,7 +199,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
         </AnimatePresence>
       </div>
 
-      {/* Flower fall — starts from center of deity frame (top:110 + half of 260 = 240px) */}
+      {/* Flower fall — starts from center of deity frame */}
       {(step === 'flower' || step === 'done') && flowerSide && (
         <div
           className="absolute z-10 text-4xl select-none"
