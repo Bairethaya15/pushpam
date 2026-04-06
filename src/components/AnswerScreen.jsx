@@ -37,8 +37,8 @@ export default function AnswerScreen({ answer, onAskAgain }) {
           className="flex items-center gap-2 text-sm tracking-[0.15em] mt-4"
           style={{ color: `${accent}70` }}>
           {isYes
-            ? <><span>←</span><span className="uppercase">The flower blessed the right</span><span>—</span></>
-            : <><span>—</span><span className="uppercase">The flower fell to the left</span><span>→</span></>}
+            ? <span className="uppercase">The flower blesses the divine's right</span>
+            : <span className="uppercase">The flower fell to the divine's left</span>}
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
