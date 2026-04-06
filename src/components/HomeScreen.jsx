@@ -91,7 +91,7 @@ export default function HomeScreen({ onPray }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 0.8 }}
-        className="relative z-10 w-full px-6 pb-2 safe-bottom flex flex-col gap-3 shrink-0">
+        className="relative z-10 w-full px-6 safe-bottom flex flex-col gap-2.5 shrink-0">
 
         <label
           className="text-[10px] tracking-[0.2em] uppercase text-center"
@@ -104,8 +104,8 @@ export default function HomeScreen({ onPray }) {
           onChange={e => setQuestion(e.target.value)}
           onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSubmit() } }}
           placeholder="What weighs on your heart?"
-          rows={2}
-          className="w-full resize-none rounded-lg outline-none leading-relaxed text-center"
+          rows={1}
+          className="w-full resize-none rounded-lg outline-none text-center"
           style={{
             background: 'rgba(255,248,237,0.05)',
             border: '1px solid rgba(212,168,67,0.15)',
@@ -113,7 +113,7 @@ export default function HomeScreen({ onPray }) {
             fontFamily: 'Georgia, serif',
             caretColor: '#D4A843',
             fontSize: '14px',
-            padding: '12px 14px',
+            padding: '10px 14px',
           }}
         />
 

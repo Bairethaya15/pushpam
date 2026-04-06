@@ -61,7 +61,7 @@ body {
 }
 
 .safe-bottom {
-  padding-bottom: max(32px, env(safe-area-inset-bottom, 0px) + 16px);
+  padding-bottom: max(12px, env(safe-area-inset-bottom, 0px) + 4px);
 }
 
 /* Persistent header */
@@ -87,31 +87,32 @@ body {
 }
 
 .app-header-sub {
-  font-size: 10px;
-  letter-spacing: 0.3em;
+  font-size: 9px;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: rgba(212,168,67,0.35);
-  margin-top: 2px;
+  color: rgba(212,168,67,0.3);
+  margin-top: 1px;
 }
+
 
 /* Content top clearance — clears persistent header */
 .content-top {
-  padding-top: max(14vh, env(safe-area-inset-top, 0px) + 76px);
+  padding-top: max(12vh, env(safe-area-inset-top, 0px) + 70px);
 }
 
-/* Responsive deity wrapper */
+/* Responsive deity wrapper — scales with screen height */
 .deity-wrapper {
-  width: min(52vw, 200px);
-  height: min(62vw, 240px);
+  width: min(50vw, 190px);
+  height: min(34vh, 230px);
 }
 
 .deity-om {
-  font-size: min(20vw, 5rem);
+  font-size: min(18vw, 4.5rem);
 }
 
-/* Flower start position — vertically centered in deity */
+/* Flower start position */
 .flower-start {
-  top: calc(max(14vh, env(safe-area-inset-top, 0px) + 76px) + min(31vw, 120px));
+  top: calc(max(12vh, env(safe-area-inset-top, 0px) + 70px) + min(17vh, 115px));
 }
 
 /* ── Deity Frame ── */
