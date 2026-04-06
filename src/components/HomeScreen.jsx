@@ -47,7 +47,7 @@ export default function HomeScreen({ onPray }) {
             <div className="deity-om select-none" style={{
               color: '#D4A843',
               textShadow: '0 0 40px rgba(212,168,67,0.4), 0 0 80px rgba(212,168,67,0.15)',
-              fontFamily: 'serif', lineHeight: 1,
+              fontFamily: "'Tiro Devanagari Hindi', serif", lineHeight: 1,
             }}>ॐ</div>
             <div className="absolute bottom-[8%] left-1/2 -translate-x-1/2 pointer-events-none">
               <div className="smoke-particle" /><div className="smoke-particle" /><div className="smoke-particle" />
@@ -88,7 +88,7 @@ export default function HomeScreen({ onPray }) {
           className="w-full resize-none rounded-lg outline-none text-center"
           style={{
             background: 'rgba(255,248,237,0.05)', border: '1px solid rgba(212,168,67,0.15)',
-            color: '#FFF8ED', fontFamily: 'Georgia, serif', caretColor: '#D4A843',
+            color: '#FFF8ED', caretColor: '#D4A843',
             fontSize: '16px', padding: '12px 14px',
           }}
         />
@@ -100,7 +100,7 @@ export default function HomeScreen({ onPray }) {
           style={{
             background: question.trim() ? 'linear-gradient(135deg, #E8801A, #C4600C)' : 'rgba(232,128,26,0.2)',
             border: question.trim() ? '1px solid rgba(212,168,67,0.5)' : '1px solid transparent',
-            color: '#FFF8ED', fontFamily: 'Georgia, serif', padding: '14px 24px',
+            color: '#FFF8ED', padding: '14px 24px',
             boxShadow: question.trim() ? '0 4px 24px rgba(232,128,26,0.3)' : 'none',
           }}>
           🙏 प्रार्थना करें

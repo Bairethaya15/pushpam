@@ -59,7 +59,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
             <div className="deity-om select-none" style={{
               color: '#D4A843',
               textShadow: '0 0 40px rgba(212,168,67,0.4), 0 0 80px rgba(212,168,67,0.15)',
-              fontFamily: 'serif', lineHeight: 1,
+              fontFamily: "'Tiro Devanagari Hindi', serif", lineHeight: 1,
             }}>ॐ</div>
             <div className="absolute bottom-[8%] left-1/2 -translate-x-1/2 pointer-events-none">
               <div className="smoke-particle" /><div className="smoke-particle" /><div className="smoke-particle" />
@@ -102,7 +102,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
               exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.6 }}
               className="absolute px-8 text-center">
               <div className="text-3xl" style={{
-                color: '#D4A843', fontFamily: 'serif',
+                color: '#D4A843', fontFamily: "'Tiro Devanagari Hindi', serif",
                 textShadow: '0 0 20px rgba(212,168,67,0.5), 0 0 40px rgba(212,168,67,0.2)',
               }}>{mantra}</div>
             </motion.div>
@@ -112,7 +112,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
           {step === 'stillness' && (
             <motion.div key="stillness" initial={{ opacity: 0 }} animate={{ opacity: 1 }}
               exit={{ opacity: 0 }} transition={{ duration: 0.8 }} className="absolute">
-              <p className="text-lg tracking-wide" style={{ color: 'rgba(212,168,67,0.4)', fontFamily: 'Georgia, serif' }}>
+              <p className="text-lg tracking-wide" style={{ color: 'rgba(212,168,67,0.4)' }}>
                 The divine listens...</p>
             </motion.div>
           )}

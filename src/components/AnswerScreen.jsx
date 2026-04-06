@@ -41,14 +41,14 @@ export default function AnswerScreen({ answer, onAskAgain }) {
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-3xl font-light mt-8"
-          style={{ color: accent, fontFamily: 'Georgia, serif', textShadow: `0 0 20px ${accent}40` }}>
+          style={{ color: accent, textShadow: `0 0 20px ${accent}40` }}>
           {phrase.main}
         </motion.div>
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.9 }}
           className="text-base tracking-wide mt-3"
-          style={{ color: 'rgba(255,248,237,0.35)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>
+          style={{ color: 'rgba(255,248,237,0.35)', fontStyle: 'italic' }}>
           {phrase.sub}
         </motion.div>
       </div>
@@ -60,13 +60,13 @@ export default function AnswerScreen({ answer, onAskAgain }) {
 
         <button onClick={onAskAgain}
           className="w-64 py-4 rounded-full text-base tracking-wider"
-          style={{ background: 'rgba(255,248,237,0.06)', border: `1px solid ${accent}25`, color: accent, fontFamily: 'Georgia, serif' }}>
+          style={{ background: 'rgba(255,248,237,0.06)', border: `1px solid ${accent}25`, color: accent }}>
           Ask again
         </button>
 
         <button
           className="text-sm tracking-wider"
-          style={{ color: 'rgba(255,248,237,0.2)', fontFamily: 'Georgia, serif' }}
+          style={{ color: 'rgba(255,248,237,0.2)' }}
           onClick={() => {
             const text = `🌺 पुष्पम् — Ask the Divine\n"Seek your answer from the divine. One question. One flower. One truth."\npushpam.in`
             if (navigator.share) { navigator.share({ text }) } else { window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank') }

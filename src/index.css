@@ -30,6 +30,7 @@ html, body, #root {
 body {
   background-color: #1a0a0e;
   color: #FFF8ED;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
   overflow: hidden;
@@ -83,14 +84,15 @@ body {
 }
 
 .screen-header-title {
-  font-family: Georgia, serif;
+  font-family: 'Tiro Devanagari Hindi', Georgia, serif;
   font-size: 1.75rem;
-  font-weight: 300;
-  letter-spacing: 0.1em;
+  font-weight: 400;
+  letter-spacing: 0.05em;
   color: #D4A843;
 }
 
 .screen-header-sub {
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 11px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
