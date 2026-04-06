@@ -51,7 +51,7 @@ export default function AnswerScreen({ answer, onAskAgain }) {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.9 }}
           className="text-base tracking-wide mt-3"
-          style={{ color: 'rgba(255,248,237,0.35)', fontStyle: 'italic' }}>
+          style={{ color: 'rgba(255,248,237,0.5)', fontStyle: 'italic' }}>
           {phrase.sub}
         </motion.div>
       </div>

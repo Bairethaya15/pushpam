@@ -80,8 +80,8 @@ export default function HomeScreen({ onPray }) {
 
           {/* Labels below diyas */}
           <div className="absolute -bottom-5 left-0 right-0 flex justify-between px-1">
-            <span className="text-sm tracking-[0.15em] uppercase" style={{ color: 'rgba(126,202,156,0.3)' }}>✓ आम्</span>
-            <span className="text-sm tracking-[0.15em] uppercase" style={{ color: 'rgba(232,141,141,0.3)' }}>नैव ✕</span>
+            <span className="text-sm tracking-[0.15em] uppercase" style={{ color: 'rgba(126,202,156,0.5)' }}>आम् / Yes</span>
+            <span className="text-sm tracking-[0.15em] uppercase" style={{ color: 'rgba(232,141,141,0.5)' }}>No / नैव</span>
           </div>
         </div>
       </motion.div>
@@ -99,7 +99,7 @@ export default function HomeScreen({ onPray }) {
         className="relative z-10 w-full px-6 safe-bottom flex flex-col gap-3 shrink-0">
 
         <label className="text-xs tracking-[0.2em] uppercase text-center"
-          style={{ color: 'rgba(212,168,67,0.5)' }}>
+          style={{ color: 'rgba(212,168,67,0.7)' }}>
           Place your question before the divine
         </label>
 
@@ -111,7 +111,7 @@ export default function HomeScreen({ onPray }) {
           rows={1}
           className="w-full resize-none rounded-lg outline-none text-center"
           style={{
-            background: 'rgba(255,248,237,0.05)', border: '1px solid rgba(212,168,67,0.15)',
+            background: 'rgba(255,248,237,0.07)', border: '1px solid rgba(212,168,67,0.25)',
             color: '#FFF8ED', caretColor: '#D4A843',
             fontSize: '16px', padding: '12px 14px',
           }}

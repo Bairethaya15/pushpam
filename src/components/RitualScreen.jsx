@@ -86,8 +86,8 @@ export default function RitualScreen({ flowerSide, onComplete }) {
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
                 className="absolute -bottom-7 left-0 right-0 flex justify-between px-1">
-                <span className="text-sm tracking-[0.15em] uppercase" style={{ color: 'rgba(126,202,156,0.4)' }}>✓ आम्</span>
-                <span className="text-sm tracking-[0.15em] uppercase" style={{ color: 'rgba(232,141,141,0.4)' }}>नैव ✕</span>
+                <span className="text-sm tracking-[0.15em] uppercase" style={{ color: 'rgba(126,202,156,0.6)' }}>आम् / Yes</span>
+                <span className="text-sm tracking-[0.15em] uppercase" style={{ color: 'rgba(232,141,141,0.6)' }}>No / नैव</span>
               </motion.div>
             )}
           </AnimatePresence>
@@ -105,7 +105,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
                 transition={{ duration: 0.5, repeat: 3, ease: 'easeInOut' }}
                 className="select-none">
                 <img src={bellIcon} alt="" className="w-16 h-20" draggable={false} /></motion.div>
-              <p className="text-sm tracking-[0.2em] uppercase" style={{ color: 'rgba(212,168,67,0.4)' }}>
+              <p className="text-sm tracking-[0.2em] uppercase" style={{ color: 'rgba(212,168,67,0.6)' }}>
                 The divine is called</p>
             </motion.div>
           )}
@@ -126,7 +126,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
           {step === 'stillness' && (
             <motion.div key="stillness" initial={{ opacity: 0 }} animate={{ opacity: 1 }}
               exit={{ opacity: 0 }} transition={{ duration: 0.8 }} className="absolute">
-              <p className="text-lg tracking-wide" style={{ color: 'rgba(212,168,67,0.4)' }}>
+              <p className="text-lg tracking-wide" style={{ color: 'rgba(212,168,67,0.6)' }}>
                 The divine listens...</p>
             </motion.div>
           )}
