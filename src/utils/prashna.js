@@ -230,15 +230,19 @@ export function askPrashna(date = new Date()) {
     numerology: numerology.score,
   }
 
-  // Weighted total — astrology + numerology combined
+  // Weighted total — astrology sets tendency, numerology decides
+  //
+  // Astrology (changes hourly/daily) creates a lean: -8 to +10
+  // Numerology (changes per second) creates variance: -9 to +9
+  // Neither can fully override the other — both matter
   const finalScore =
-    scores.nakshatra * 3 +     // Moon's nakshatra — paramount
-    scores.tithi * 2 +         // lunar day
-    scores.paksha * 1.5 +      // waxing/waning
-    scores.vara * 1 +          // weekday lord
-    scores.hora * 1 +          // planetary hour
-    scores.special * 2 +       // special yogas
-    scores.numerology * 1.5    // numerological root of the moment
+    scores.nakshatra * 1.5 +   // daily lean from Moon's position
+    scores.tithi * 1 +         // lunar day influence
+    scores.paksha * 0.5 +      // waxing/waning — subtle
+    scores.vara * 0.5 +        // weekday lord — subtle
+    scores.hora * 0.5 +        // planetary hour
+    scores.special * 1.5 +     // special yogas still significant
+    scores.numerology * 3      // moment numerology — high weight, per-second variation
 
   // Positive = yes, negative = no
   // When exactly zero, the querent's faith tips the scale — yes
