@@ -270,10 +270,9 @@ export function askPrashna(date = new Date()) {
     scores.hora * 0.5 +
     scores.special * 1.5
 
-  // Cap astrology influence — a gentle lean, not a verdict
-  // ±2 max means even on the worst day, universe (±5) can easily tip it
-  // Worst day: 30% yes. Best day: 70% yes. Neutral: 50%.
-  const astroScore = Math.max(-2, Math.min(2, rawAstro))
+  // Cap astrology — gentle lean, never dominates
+  // ±0.8 gives: best day 58% yes, worst day 42% yes
+  const astroScore = Math.max(-0.8, Math.min(0.8, rawAstro))
 
   // The moment — your exact millisecond of prayer
   // Deterministic: same ms = same answer. But you can never
