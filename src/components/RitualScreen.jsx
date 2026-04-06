@@ -73,8 +73,8 @@ export default function RitualScreen({ flowerSide, onComplete }) {
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
                 className="absolute -bottom-6 left-0 right-0 flex justify-between px-1">
-                <span className="text-[11px] tracking-[0.15em] uppercase" style={{ color: 'rgba(232,141,141,0.4)' }}>✕ नहीं</span>
-                <span className="text-[11px] tracking-[0.15em] uppercase" style={{ color: 'rgba(126,202,156,0.4)' }}>हाँ ✓</span>
+                <span className="text-sm tracking-[0.15em] uppercase" style={{ color: 'rgba(232,141,141,0.4)' }}>✕ नहीं</span>
+                <span className="text-sm tracking-[0.15em] uppercase" style={{ color: 'rgba(126,202,156,0.4)' }}>हाँ ✓</span>
               </motion.div>
             )}
           </AnimatePresence>
