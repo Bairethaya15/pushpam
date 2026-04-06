@@ -58,6 +58,41 @@ body {
   padding-bottom: max(32px, env(safe-area-inset-bottom, 0px) + 16px);
 }
 
+/* Persistent header */
+.app-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: max(44px, env(safe-area-inset-top, 0px) + 20px);
+  pointer-events: none;
+}
+
+.app-header-title {
+  font-family: Georgia, serif;
+  font-size: 1.75rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: #D4A843;
+}
+
+.app-header-sub {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(212,168,67,0.35);
+  margin-top: 2px;
+}
+
+/* Content top clearance — use on first child of each screen */
+.content-top {
+  padding-top: max(100px, env(safe-area-inset-top, 0px) + 76px);
+}
+
 /* ── Deity Frame ── */
 .deity-frame {
   border: 2px solid #D4A843;
