@@ -230,19 +230,34 @@ export function askPrashna(date = new Date()) {
     numerology: numerology.score,
   }
 
-  // Weighted total — astrology sets tendency, numerology decides
+  // ── Scoring philosophy ──
   //
-  // Astrology (changes hourly/daily) creates a lean: -8 to +10
-  // Numerology (changes per second) creates variance: -9 to +9
-  // Neither can fully override the other — both matter
-  const finalScore =
-    scores.nakshatra * 1.5 +   // daily lean from Moon's position
-    scores.tithi * 1 +         // lunar day influence
-    scores.paksha * 0.5 +      // waxing/waning — subtle
-    scores.vara * 0.5 +        // weekday lord — subtle
-    scores.hora * 0.5 +        // planetary hour
-    scores.special * 1.5 +     // special yogas still significant
-    scores.numerology * 3      // moment numerology — high weight, per-second variation
+  // Astrology = the cosmic weather today (lean toward yes or no)
+  // Numerology = the exact moment of your prayer (your unique instant)
+  //
+  // Even on the most malefic day, a prayer at the right second
+  // can find a window of grace. Even on the most blessed day,
+  // a poorly timed moment carries weight.
+  //
+  // Astrology is CAPPED at ±4 so it creates tendency, not destiny.
+  // Numerology at ×3 (range ±9) always has power to tip the scale.
+
+  // Raw astrology score
+  const rawAstro =
+    scores.nakshatra * 1.5 +
+    scores.tithi * 1 +
+    scores.paksha * 0.5 +
+    scores.vara * 0.5 +
+    scores.hora * 0.5 +
+    scores.special * 1.5
+
+  // Cap astrology influence — tendency, not destiny
+  const astroScore = Math.max(-4, Math.min(4, rawAstro))
+
+  // Numerology — the moment's own energy (uncapped)
+  const numScore = scores.numerology * 3
+
+  const finalScore = astroScore + numScore
 
   // Positive = yes, negative = no
   // When exactly zero, the querent's faith tips the scale — yes
