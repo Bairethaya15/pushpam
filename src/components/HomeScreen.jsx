@@ -34,32 +34,15 @@ export default function HomeScreen({ onPray }) {
         />
       ))}
 
-      {/* Header */}
-      <div className="relative z-10 flex flex-col items-center safe-top pb-2 shrink-0">
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: 'easeOut' }}
-          className="text-4xl font-light tracking-widest"
-          style={{ color: '#D4A843', fontFamily: 'Georgia, serif' }}>
-          पुष्पम्
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5, delay: 0.5 }}
-          className="text-xs tracking-[0.3em] uppercase mt-1"
-          style={{ color: '#D4A84399' }}>
-          Ask the Divine
-        </motion.div>
-      </div>
+      {/* Top spacing — clears the persistent header */}
+      <div className="safe-top shrink-0" style={{ paddingBottom: 32 }} />
 
-      {/* Deity frame — in flow, takes its natural space */}
+      {/* Deity frame */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
+        initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 2, ease: 'easeOut' }}
-        className="relative z-10 flex flex-col items-center shrink-0 pt-2">
+        className="relative z-10 flex flex-col items-center shrink-0">
 
         <div className="relative" style={{ width: 200, height: 240 }}>
 
@@ -96,26 +79,26 @@ export default function HomeScreen({ onPray }) {
           </div>
         </div>
 
-        <div className="flex justify-between mt-4" style={{ width: 200 }}>
-          <span className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(232,141,141,0.45)' }}>✕ नहीं</span>
-          <span className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(126,202,156,0.45)' }}>हाँ ✓</span>
+        {/* नहीं / हाँ labels */}
+        <div className="flex justify-between mt-6" style={{ width: 200 }}>
+          <span className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(232,141,141,0.4)' }}>✕ नहीं</span>
+          <span className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(126,202,156,0.4)' }}>हाँ ✓</span>
         </div>
       </motion.div>
 
-      {/* Spacer — pushes input to bottom */}
+      {/* Spacer */}
       <div className="flex-1" />
 
-      {/* Question input + button — at bottom */}
+      {/* Question input + button */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 0.8 }}
-        className="relative z-10 w-full px-6 safe-bottom pt-4 flex flex-col gap-3 shrink-0"
-        style={{ borderTop: '1px solid rgba(212,168,67,0.08)' }}>
+        className="relative z-10 w-full px-8 safe-bottom pt-6 pb-2 flex flex-col gap-4 shrink-0">
 
         <label
-          className="text-xs tracking-[0.2em] uppercase text-center"
-          style={{ color: '#D4A84360' }}>
+          className="text-[11px] tracking-[0.2em] uppercase text-center"
+          style={{ color: '#D4A84350' }}>
           Hold your question in your heart
         </label>
 
@@ -127,29 +110,29 @@ export default function HomeScreen({ onPray }) {
           rows={2}
           className="w-full resize-none rounded-lg outline-none leading-relaxed text-center"
           style={{
-            background: 'rgba(255,248,237,0.06)',
-            border: '1px solid rgba(212,168,67,0.2)',
+            background: 'rgba(255,248,237,0.05)',
+            border: '1px solid rgba(212,168,67,0.15)',
             color: '#FFF8ED',
             fontFamily: 'Georgia, serif',
             caretColor: '#D4A843',
             fontSize: '15px',
-            padding: '12px 16px',
+            padding: '14px 16px',
           }}
         />
 
         <button
           onClick={handleSubmit}
           disabled={!question.trim()}
-          className="w-full rounded-full text-lg tracking-widest transition-all duration-300 disabled:opacity-40 flex items-center justify-center gap-2"
+          className="w-full rounded-full text-base tracking-widest transition-all duration-300 disabled:opacity-30 flex items-center justify-center gap-2"
           style={{
             background: question.trim()
               ? 'linear-gradient(135deg, #E8801A, #C4600C)'
-              : 'rgba(232,128,26,0.3)',
-            border: question.trim() ? '1px solid #D4A843' : '1px solid transparent',
+              : 'rgba(232,128,26,0.2)',
+            border: question.trim() ? '1px solid rgba(212,168,67,0.5)' : '1px solid transparent',
             color: '#FFF8ED',
             fontFamily: 'Georgia, serif',
             padding: '14px 0',
-            boxShadow: question.trim() ? '0 4px 20px rgba(232,128,26,0.35)' : 'none',
+            boxShadow: question.trim() ? '0 4px 24px rgba(232,128,26,0.3)' : 'none',
           }}>
           🙏 प्रार्थना करें
         </button>

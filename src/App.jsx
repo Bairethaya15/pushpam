@@ -8,15 +8,14 @@ import { canAsk, recordAsk } from './utils/askLimit'
 export default function App() {
   const [screen, setScreen] = useState('home')
   const [_question, setQuestion] = useState('')
-  const [answer, setAnswer] = useState(null) // 'yes' | 'no'
-  const [flowerSide, setFlowerSide] = useState(null) // 'left' | 'right'
+  const [answer, setAnswer] = useState(null)
+  const [flowerSide, setFlowerSide] = useState(null)
 
   function handlePray(q) {
     if (!canAsk()) {
       setScreen('daily-complete')
       return
     }
-    // Decide the outcome here — once, before the ritual starts
     const side = Math.random() < 0.5 ? 'left' : 'right'
     setQuestion(q)
     setFlowerSide(side)
@@ -50,6 +49,20 @@ export default function App() {
 
   return (
     <div className="app-shell">
+      {/* Persistent header — always visible */}
+      <div className="absolute top-0 left-0 right-0 z-30 flex flex-col items-center safe-top pointer-events-none">
+        <div
+          className="text-3xl font-light tracking-widest"
+          style={{ color: '#D4A843', fontFamily: 'Georgia, serif' }}>
+          पुष्पम्
+        </div>
+        <div
+          className="text-[10px] tracking-[0.3em] uppercase mt-1"
+          style={{ color: '#D4A84366' }}>
+          Ask the Divine
+        </div>
+      </div>
+
       {screen === 'home' && (
         <HomeScreen onPray={handlePray} />
       )}
