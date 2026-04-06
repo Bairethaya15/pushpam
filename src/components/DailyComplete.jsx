@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import lotusIcon from '../assets/lotus.svg'
 
 export default function DailyComplete({ onGoHome }) {
   return (
@@ -15,7 +16,8 @@ export default function DailyComplete({ onGoHome }) {
       <div className="relative z-10 flex flex-col items-center flex-1 justify-center px-8 text-center">
 
         <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }} className="text-6xl select-none">🪷</motion.div>
+          transition={{ duration: 0.8 }}>
+          <img src={lotusIcon} alt="" className="w-20 h-20 select-none" draggable={false} /></motion.div>
 
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }} className="flex flex-col items-center gap-2 mt-8">

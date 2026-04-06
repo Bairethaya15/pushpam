@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { playBell, startAmbient, stopAmbient } from '../utils/audio'
+import bellIcon from '../assets/bell.svg'
+import flowerIcon from '../assets/flower.svg'
 
 const mantras = ['ॐ गं गणपतये नमः', 'ॐ नमः शिवाय', 'ॐ श्री लक्ष्म्यै नमः']
 
@@ -102,7 +104,8 @@ export default function RitualScreen({ flowerSide, onComplete }) {
               className="absolute flex flex-col items-center gap-4">
               <motion.div animate={{ rotate: [-12, 12, -12] }}
                 transition={{ duration: 0.5, repeat: 3, ease: 'easeInOut' }}
-                className="text-6xl select-none">🔔</motion.div>
+                className="select-none">
+                <img src={bellIcon} alt="" className="w-16 h-20" draggable={false} /></motion.div>
               <p className="text-sm tracking-[0.2em] uppercase" style={{ color: 'rgba(212,168,67,0.4)' }}>
                 The divine is called</p>
             </motion.div>
@@ -138,7 +141,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
             top: '42%', left: '50%', marginLeft: '-18px',
             filter: 'drop-shadow(0 0 12px rgba(212,168,67,0.7))',
             animation: `flower-fall-${flowerSide} 3s ease-in forwards`,
-          }}>🌸</div>
+          }}><img src={flowerIcon} alt="" className="w-12 h-12" draggable={false} /></div>
       )}
     </div>
   )

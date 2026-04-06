@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { getAnswerPhrase } from '../utils/answerPhrases'
 import { haptic } from '../utils/haptic'
+import flowerIcon from '../assets/flower.svg'
 
 export default function AnswerScreen({ answer, onAskAgain }) {
   const phrase = useMemo(() => getAnswerPhrase(answer), [answer])
@@ -27,7 +28,8 @@ export default function AnswerScreen({ answer, onAskAgain }) {
 
         <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}>
-          <div className="text-5xl select-none" style={{ filter: `drop-shadow(0 0 14px ${accent})` }}>🌸</div>
+          <img src={flowerIcon} alt="" className="w-16 h-16 select-none" draggable={false}
+            style={{ filter: `drop-shadow(0 0 14px ${accent})` }} />
         </motion.div>
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}

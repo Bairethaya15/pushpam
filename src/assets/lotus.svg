@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 100" fill="none">
+  <!-- Sacred lotus — layered petals, pink to gold -->
+  <defs>
+    <linearGradient id="lotusOuter" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#F4C2C2"/>
+      <stop offset="100%" stop-color="#D4A843"/>
+    </linearGradient>
+    <linearGradient id="lotusMid" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#F0D68A"/>
+      <stop offset="100%" stop-color="#E8A0A0"/>
+    </linearGradient>
+    <linearGradient id="lotusInner" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#FFF8ED"/>
+      <stop offset="100%" stop-color="#F0D68A"/>
+    </linearGradient>
+    <filter id="lotusGlow">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g filter="url(#lotusGlow)" transform="translate(60,65)">
+    <!-- Outer petals — wide, spreading -->
+    <g fill="url(#lotusOuter)" opacity="0.7">
+      <ellipse cx="-32" cy="-10" rx="12" ry="28" transform="rotate(-30)"/>
+      <ellipse cx="32" cy="-10" rx="12" ry="28" transform="rotate(30)"/>
+      <ellipse cx="-20" cy="-15" rx="11" ry="26" transform="rotate(-15)"/>
+      <ellipse cx="20" cy="-15" rx="11" ry="26" transform="rotate(15)"/>
+    </g>
+    <!-- Middle petals -->
+    <g fill="url(#lotusMid)" opacity="0.85">
+      <ellipse cx="-12" cy="-20" rx="10" ry="24" transform="rotate(-8)"/>
+      <ellipse cx="12" cy="-20" rx="10" ry="24" transform="rotate(8)"/>
+      <ellipse cx="0" cy="-22" rx="9" ry="24"/>
+    </g>
+    <!-- Inner petals — upright, bright -->
+    <g fill="url(#lotusInner)" opacity="0.9">
+      <ellipse cx="-6" cy="-18" rx="7" ry="20" transform="rotate(-4)"/>
+      <ellipse cx="6" cy="-18" rx="7" ry="20" transform="rotate(4)"/>
+      <ellipse cx="0" cy="-20" rx="6" ry="20"/>
+    </g>
+    <!-- Center dot -->
+    <circle cx="0" cy="-4" r="4" fill="#D4A843" opacity="0.6"/>
+    <!-- Base pad hint -->
+    <ellipse cx="0" cy="8" rx="28" ry="6" fill="#4A7C4A" opacity="0.3"/>
+  </g>
+</svg>
