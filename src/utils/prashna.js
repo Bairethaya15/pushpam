@@ -226,20 +226,29 @@ export function askPrashna(date = new Date()) {
   }
 
   // Weighted total
-  // Nakshatra and Tithi are the strongest indicators in Prashna
   const total =
-    scores.nakshatra * 3 +   // highest weight — Moon's position is paramount
-    scores.tithi * 2 +       // high weight — lunar day matters greatly
-    scores.paksha * 1.5 +    // medium weight
-    scores.vara * 1 +        // medium weight
-    scores.hora * 1 +        // medium weight
-    scores.special * 2       // special yogas are significant
+    scores.nakshatra * 3 +
+    scores.tithi * 2 +
+    scores.paksha * 1.5 +
+    scores.vara * 1 +
+    scores.hora * 1 +
+    scores.special * 2
 
-  // Determine answer
-  // Positive total = yes, negative = no, zero = slight lean toward yes
-  // (in Prashna, when factors are perfectly balanced, the querent's
-  // intention/faith tips the scale — we give benefit of the doubt)
-  const answer = total >= 0 ? 'yes' : 'no'
+  // Tiebreaker — the exact second of prayer
+  // Only affects ambiguous readings (score between -2 and +2)
+  // Strong cosmic readings are untouched
+  let finalScore = total
+  if (Math.abs(total) < 2) {
+    const seconds = date.getSeconds()
+    const milliseconds = date.getMilliseconds()
+    // Map the precise moment to a value between -1 and +1
+    const momentSeed = Math.sin(seconds * 127 + milliseconds * 0.31)
+    finalScore = total + momentSeed
+  }
+
+  // Positive = yes, negative = no
+  // When exactly zero, the querent's faith tips the scale — yes
+  const answer = finalScore >= 0 ? 'yes' : 'no'
 
   return {
     answer,
