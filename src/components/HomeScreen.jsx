@@ -15,13 +15,27 @@ export default function HomeScreen({ onPray }) {
       className="relative h-full w-full flex flex-col overflow-hidden"
       style={{ background: 'radial-gradient(ellipse at 50% 30%, #6B1D2A 0%, #3D0F18 50%, #1a0a0e 100%)' }}>
 
-      {/* Top glow */}
+      {/* Ambient top glow */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full opacity-20 pointer-events-none"
-        style={{ background: 'radial-gradient(circle, #D4A843, transparent 70%)' }} />
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[120%] h-72 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse, rgba(232,128,26,0.1) 0%, transparent 70%)' }} />
+
+      {/* Floating sparks */}
+      {[0, 1, 2, 3, 4].map(i => (
+        <div
+          key={i}
+          className="spark"
+          style={{
+            left: `${20 + i * 15}%`,
+            top: `${30 + (i % 3) * 10}%`,
+            animationDelay: `${i * 1.1}s`,
+            animationDuration: `${4 + i * 0.5}s`,
+          }}
+        />
+      ))}
 
       {/* Header */}
-      <div className="relative z-10 flex flex-col items-center safe-top pb-4 shrink-0">
+      <div className="relative z-10 flex flex-col items-center safe-top pb-2 shrink-0">
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -40,35 +54,63 @@ export default function HomeScreen({ onPray }) {
         </motion.div>
       </div>
 
-      {/* Sacred symbol — flex-1 so it fills available space */}
+      {/* Deity area — flex-1 to fill space */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 2, ease: 'easeOut' }}
         className="relative z-10 flex flex-col items-center justify-center flex-1 min-h-0">
 
-        <motion.div
-          animate={{ opacity: [0.7, 1, 0.7] }}
-          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          className="relative flex items-center justify-center">
-          <div
-            className="absolute w-56 h-56 rounded-full"
-            style={{ background: 'radial-gradient(circle, #D4A84330 0%, transparent 70%)' }} />
-          <div
-            className="text-9xl select-none"
-            style={{ color: '#D4A843', textShadow: '0 0 40px #D4A84360', fontFamily: 'serif' }}>
-            ॐ
+        {/* Deity container with frame, diyas, smoke */}
+        <div className="relative" style={{ width: 240, height: 280 }}>
+
+          {/* The sacred frame */}
+          <motion.div
+            animate={{ opacity: [0.7, 1, 0.7] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            className="deity-frame deity-frame-glow w-full h-full flex items-center justify-center">
+
+            {/* OM symbol */}
+            <div
+              className="text-8xl select-none"
+              style={{
+                color: '#D4A843',
+                textShadow: '0 0 40px rgba(212,168,67,0.4), 0 0 80px rgba(212,168,67,0.15)',
+                fontFamily: 'serif',
+                lineHeight: 1,
+              }}>
+              ॐ
+            </div>
+
+            {/* Incense smoke */}
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2" style={{ pointerEvents: 'none' }}>
+              <div className="smoke-particle" />
+              <div className="smoke-particle" />
+              <div className="smoke-particle" />
+            </div>
+          </motion.div>
+
+          {/* Left diya */}
+          <div className="absolute -left-6 bottom-0 diya-container">
+            <div className="diya-flame" />
+            <div className="diya-base" />
           </div>
-        </motion.div>
+
+          {/* Right diya */}
+          <div className="absolute -right-6 bottom-0 diya-container">
+            <div className="diya-flame diya-flame-delayed" />
+            <div className="diya-base" />
+          </div>
+        </div>
 
         {/* नहीं / हाँ labels */}
-        <div className="flex justify-between w-56 mt-6">
-          <span className="text-sm tracking-widest" style={{ color: '#E88D8D99' }}>नहीं</span>
-          <span className="text-sm tracking-widest" style={{ color: '#7ECA9C99' }}>हाँ</span>
+        <div className="flex justify-between mt-5" style={{ width: 240 }}>
+          <span className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(232,141,141,0.45)' }}>✕ नहीं</span>
+          <span className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(126,202,156,0.45)' }}>हाँ ✓</span>
         </div>
       </motion.div>
 
-      {/* Question input + button — fixed at bottom */}
+      {/* Question input + button */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -87,11 +129,11 @@ export default function HomeScreen({ onPray }) {
           onChange={e => setQuestion(e.target.value)}
           onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSubmit() } }}
           placeholder="What weighs on your heart?"
-          rows={3}
-          className="w-full resize-none rounded-lg outline-none leading-relaxed"
+          rows={2}
+          className="w-full resize-none rounded-lg outline-none leading-relaxed text-center"
           style={{
             background: 'rgba(255,248,237,0.06)',
-            border: '1px solid rgba(212,168,67,0.25)',
+            border: '1px solid rgba(212,168,67,0.2)',
             color: '#FFF8ED',
             fontFamily: 'Georgia, serif',
             caretColor: '#D4A843',
@@ -103,17 +145,18 @@ export default function HomeScreen({ onPray }) {
         <button
           onClick={handleSubmit}
           disabled={!question.trim()}
-          className="w-full rounded-lg text-lg tracking-widest transition-all duration-300 disabled:opacity-40"
+          className="w-full rounded-full text-lg tracking-widest transition-all duration-300 disabled:opacity-40 flex items-center justify-center gap-2"
           style={{
             background: question.trim()
               ? 'linear-gradient(135deg, #E8801A, #C4600C)'
               : 'rgba(232,128,26,0.3)',
+            border: question.trim() ? '1px solid #D4A843' : '1px solid transparent',
             color: '#FFF8ED',
             fontFamily: 'Georgia, serif',
             padding: '14px 0',
             boxShadow: question.trim() ? '0 4px 20px rgba(232,128,26,0.35)' : 'none',
           }}>
-          प्रार्थना करें
+          🙏 प्रार्थना करें
         </button>
       </motion.div>
     </div>

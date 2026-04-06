@@ -57,3 +57,131 @@ body {
 .safe-bottom {
   padding-bottom: max(32px, env(safe-area-inset-bottom, 0px) + 16px);
 }
+
+/* ── Deity Frame ── */
+.deity-frame {
+  border: 2px solid #D4A843;
+  border-radius: 50% 50% 6px 6px;
+  background: linear-gradient(180deg, #1a0a0e 0%, #2a1118 40%, #1a0a0e 100%);
+  position: relative;
+  box-shadow:
+    0 0 40px rgba(212,168,67,0.15),
+    0 0 80px rgba(212,168,67,0.06),
+    inset 0 0 30px rgba(0,0,0,0.5);
+}
+
+.deity-frame::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: 14px;
+  background: #D4A843;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(212,168,67,0.4);
+}
+
+/* ── Diya Lamps ── */
+.diya-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.diya-flame {
+  width: 10px;
+  height: 18px;
+  background: radial-gradient(ellipse at bottom, #FFB347 0%, #FF6B1A 50%, transparent 100%);
+  border-radius: 50% 50% 20% 20%;
+  margin-bottom: 2px;
+  animation: diya-flicker 1.5s ease-in-out infinite alternate;
+  box-shadow: 0 0 8px rgba(255,179,71,0.6), 0 0 20px rgba(255,107,26,0.3);
+}
+
+.diya-flame-delayed {
+  animation-delay: 0.7s;
+}
+
+.diya-base {
+  width: 32px;
+  height: 10px;
+  background: linear-gradient(180deg, #D4A843 0%, #C4600C 100%);
+  border-radius: 0 0 50% 50%;
+}
+
+@keyframes diya-flicker {
+  0%, 100% { opacity: 1; transform: scaleY(1) scaleX(1); }
+  25% { opacity: 0.85; transform: scaleY(1.1) scaleX(0.9); }
+  50% { opacity: 0.95; transform: scaleY(0.92) scaleX(1.06); }
+  75% { opacity: 0.8; transform: scaleY(1.06) scaleX(0.94); }
+}
+
+/* ── Incense Smoke ── */
+.smoke-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255,248,237,0.07);
+  border-radius: 50%;
+  animation: smoke-rise 4s ease-out infinite;
+}
+
+.smoke-particle:nth-child(2) {
+  animation-delay: 1.3s;
+  left: 8px;
+}
+
+.smoke-particle:nth-child(3) {
+  animation-delay: 2.6s;
+  left: -6px;
+}
+
+@keyframes smoke-rise {
+  0% { opacity: 0; transform: translateY(0) scale(1); }
+  20% { opacity: 0.4; }
+  60% { opacity: 0.15; transform: translateY(-60px) translateX(10px) scale(2.5); }
+  100% { opacity: 0; transform: translateY(-120px) translateX(-5px) scale(3.5); }
+}
+
+/* ── Sacred Glow Pulse ── */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 40px rgba(212,168,67,0.15), 0 0 80px rgba(212,168,67,0.06); }
+  50% { box-shadow: 0 0 60px rgba(212,168,67,0.25), 0 0 100px rgba(212,168,67,0.1); }
+}
+
+.deity-frame-glow {
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+/* ── Answer Reveal Burst ── */
+@keyframes answer-burst {
+  0% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 0.6; transform: scale(1.2); }
+  100% { opacity: 0; transform: scale(2); }
+}
+
+.answer-burst {
+  animation: answer-burst 1.5s ease-out forwards;
+  pointer-events: none;
+}
+
+/* ── Floating Sparks (ambient temple particles) ── */
+@keyframes spark-float {
+  0% { opacity: 0; transform: translateY(0) translateX(0); }
+  20% { opacity: 0.6; }
+  80% { opacity: 0.2; }
+  100% { opacity: 0; transform: translateY(-80px) translateX(20px); }
+}
+
+.spark {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #D4A843;
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(212,168,67,0.6);
+  animation: spark-float 5s ease-out infinite;
+  pointer-events: none;
+}

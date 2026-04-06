@@ -19,6 +19,11 @@ export default function AnswerScreen({ answer, onAskAgain }) {
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full pointer-events-none"
         style={{ background: `radial-gradient(circle, ${glowColor}, transparent 70%)` }} />
 
+      {/* Answer reveal burst */}
+      <div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full answer-burst"
+        style={{ background: `radial-gradient(circle, ${isYes ? 'rgba(126,202,156,0.35)' : 'rgba(232,141,141,0.35)'}, transparent 70%)` }} />
+
       <div className="relative z-10 flex flex-col items-center gap-8 px-8 text-center safe-top safe-bottom">
 
         {/* Flower landed indicator */}

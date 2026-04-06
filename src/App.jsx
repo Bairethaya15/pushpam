@@ -7,7 +7,7 @@ import { canAsk, recordAsk } from './utils/askLimit'
 
 export default function App() {
   const [screen, setScreen] = useState('home')
-  const [question, setQuestion] = useState('')
+  const [_question, setQuestion] = useState('')
   const [answer, setAnswer] = useState(null) // 'yes' | 'no'
   const [flowerSide, setFlowerSide] = useState(null) // 'left' | 'right'
 
