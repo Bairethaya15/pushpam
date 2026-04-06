@@ -70,11 +70,14 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         <motion.div
           key={screen}
-          className="absolute inset-0"
-          {...screenTransition}
+          className="absolute inset-0 z-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6, ease: 'easeInOut' }}
         >
           {renderScreen()}
         </motion.div>
