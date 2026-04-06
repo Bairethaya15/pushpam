@@ -60,9 +60,9 @@ export default function HomeScreen({ onPray }) {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 2, ease: 'easeOut' }}
         className="absolute z-10 left-1/2 -translate-x-1/2 flex flex-col items-center"
-        style={{ top: 110 }}>
+        style={{ top: 90 }}>
 
-        <div className="relative" style={{ width: 220, height: 260 }}>
+        <div className="relative" style={{ width: 200, height: 240 }}>
 
           {/* The sacred frame */}
           <motion.div
@@ -104,7 +104,7 @@ export default function HomeScreen({ onPray }) {
         </div>
 
         {/* नहीं / हाँ labels */}
-        <div className="flex justify-between mt-5" style={{ width: 220 }}>
+        <div className="flex justify-between mt-5" style={{ width: 200 }}>
           <span className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(232,141,141,0.45)' }}>✕ नहीं</span>
           <span className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(126,202,156,0.45)' }}>हाँ ✓</span>
         </div>
@@ -115,8 +115,11 @@ export default function HomeScreen({ onPray }) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 0.8 }}
-        className="relative z-10 w-full px-6 safe-bottom pt-4 flex flex-col gap-3 mt-auto shrink-0"
-        style={{ borderTop: '1px solid rgba(212,168,67,0.08)' }}>
+        className="relative z-20 w-full px-6 safe-bottom pt-4 flex flex-col gap-3 mt-auto shrink-0"
+        style={{
+          borderTop: '1px solid rgba(212,168,67,0.08)',
+          background: 'linear-gradient(to top, #1a0a0e 60%, transparent 100%)',
+        }}>
 
         <label
           className="text-xs tracking-[0.2em] uppercase text-center"

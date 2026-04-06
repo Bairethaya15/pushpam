@@ -71,8 +71,8 @@ export default function RitualScreen({ flowerSide, onComplete }) {
       ))}
 
       {/* Deity frame — SAME fixed position as HomeScreen (top: 110px) */}
-      <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center" style={{ top: 110 }}>
-        <div className="relative" style={{ width: 220, height: 260 }}>
+      <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center" style={{ top: 90 }}>
+        <div className="relative" style={{ width: 200, height: 240 }}>
           <div className="deity-frame deity-frame-glow w-full h-full flex items-center justify-center"
             style={{ opacity: step === 'flower' || step === 'done' ? 0.8 : 0.35, transition: 'opacity 0.8s ease' }}>
             <div className="text-7xl select-none" style={{
@@ -120,7 +120,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
       </div>
 
       {/* Text steps — positioned below the deity frame */}
-      <div className="absolute left-0 right-0 flex items-start justify-center" style={{ top: 410 }}>
+      <div className="absolute left-0 right-0 flex items-start justify-center" style={{ top: 380 }}>
 
         {/* Bell step */}
         <AnimatePresence>
@@ -194,7 +194,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
         <div
           className="absolute z-10 text-4xl select-none"
           style={{
-            top: 240,
+            top: 210,
             left: '50%',
             marginLeft: '-18px',
             filter: 'drop-shadow(0 0 12px rgba(212,168,67,0.7))',
