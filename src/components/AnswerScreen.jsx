@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { getAnswerPhrase } from '../utils/answerPhrases'
 import { getRemainingAsks } from '../utils/askLimit'
 
-export default function AnswerScreen({ answer, onAskAgain, onDailyComplete }) {
+export default function AnswerScreen({ answer, onAskAgain }) {
   const phrase = useMemo(() => getAnswerPhrase(answer), [answer])
   const remaining = getRemainingAsks()
   const isYes = answer === 'yes'
@@ -73,15 +73,14 @@ export default function AnswerScreen({ answer, onAskAgain, onDailyComplete }) {
           </button>
         ) : (
           <>
-            <div className="flex flex-col items-center gap-1 py-1">
-              <p className="text-base" style={{ color: 'rgba(255,248,237,0.4)', fontFamily: 'Georgia, serif' }}>The divine has spoken today.</p>
-              <p className="text-sm" style={{ color: 'rgba(255,248,237,0.25)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>Return tomorrow with a still mind 🙏</p>
-            </div>
-            <button onClick={onDailyComplete}
-              className="w-full py-3.5 rounded-full text-sm tracking-widest"
+            <button
+              className="w-full py-3.5 rounded-full text-base tracking-widest"
               style={{ background: 'linear-gradient(135deg, #E8801A, #C4600C)', border: '1px solid rgba(212,168,67,0.5)', color: '#FFF8ED', fontFamily: 'Georgia, serif', boxShadow: '0 4px 20px rgba(232,128,26,0.25)' }}>
               Seek lifetime guidance 🪷
             </button>
+            <p className="text-xs mt-1" style={{ color: 'rgba(255,248,237,0.2)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>
+              One offering, forever. No daily limits.
+            </p>
           </>
         )}
 
