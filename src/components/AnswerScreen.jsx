@@ -61,13 +61,13 @@ export default function AnswerScreen({ answer, onAskAgain }) {
         {/* Divider */}
         <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }}
           transition={{ duration: 0.8, delay: 1.1 }}
-          className="w-12 h-px mt-10"
-          style={{ background: 'rgba(212,168,67,0.2)' }} />
+          className="w-16 mt-10"
+          style={{ height: '1px', background: 'rgba(212,168,67,0.3)' }} />
 
         {/* Action section */}
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.3 }}
-          className="flex flex-col items-center gap-3 mt-10">
+          className="flex flex-col items-center gap-4 mt-8">
 
           {remaining > 0 ? (
             <>
