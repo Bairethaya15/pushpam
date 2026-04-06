@@ -54,23 +54,20 @@ export default function HomeScreen({ onPray }) {
         </motion.div>
       </div>
 
-      {/* Deity frame — fixed position, same as RitualScreen */}
+      {/* Deity frame — in flow, takes its natural space */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 2, ease: 'easeOut' }}
-        className="absolute z-10 left-1/2 -translate-x-1/2 flex flex-col items-center"
-        style={{ top: 90 }}>
+        className="relative z-10 flex flex-col items-center shrink-0 pt-2">
 
         <div className="relative" style={{ width: 200, height: 240 }}>
 
-          {/* The sacred frame */}
           <motion.div
             animate={{ opacity: [0.7, 1, 0.7] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
             className="deity-frame deity-frame-glow w-full h-full flex items-center justify-center">
 
-            {/* OM symbol */}
             <div
               className="text-8xl select-none"
               style={{
@@ -82,7 +79,6 @@ export default function HomeScreen({ onPray }) {
               ॐ
             </div>
 
-            {/* Incense smoke */}
             <div className="absolute bottom-3 left-1/2 -translate-x-1/2" style={{ pointerEvents: 'none' }}>
               <div className="smoke-particle" />
               <div className="smoke-particle" />
@@ -90,36 +86,32 @@ export default function HomeScreen({ onPray }) {
             </div>
           </motion.div>
 
-          {/* Left diya */}
           <div className="absolute -left-6 bottom-0 diya-container">
             <div className="diya-flame" />
             <div className="diya-base" />
           </div>
-
-          {/* Right diya */}
           <div className="absolute -right-6 bottom-0 diya-container">
             <div className="diya-flame diya-flame-delayed" />
             <div className="diya-base" />
           </div>
         </div>
 
-        {/* नहीं / हाँ labels */}
-        <div className="flex justify-between mt-5" style={{ width: 200 }}>
+        <div className="flex justify-between mt-4" style={{ width: 200 }}>
           <span className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(232,141,141,0.45)' }}>✕ नहीं</span>
           <span className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(126,202,156,0.45)' }}>हाँ ✓</span>
         </div>
       </motion.div>
 
-      {/* Question input + button — pinned at bottom */}
+      {/* Spacer — pushes input to bottom */}
+      <div className="flex-1" />
+
+      {/* Question input + button — at bottom */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 0.8 }}
-        className="relative z-20 w-full px-6 safe-bottom pt-4 flex flex-col gap-3 mt-auto shrink-0"
-        style={{
-          borderTop: '1px solid rgba(212,168,67,0.08)',
-          background: 'linear-gradient(to top, #1a0a0e 60%, transparent 100%)',
-        }}>
+        className="relative z-10 w-full px-6 safe-bottom pt-4 flex flex-col gap-3 shrink-0"
+        style={{ borderTop: '1px solid rgba(212,168,67,0.08)' }}>
 
         <label
           className="text-xs tracking-[0.2em] uppercase text-center"
