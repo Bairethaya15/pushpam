@@ -19,7 +19,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
       bell: 1800,
       mantra: 2000,
       stillness: 1500,
-      flower: 2800,
+      flower: 3600,
     }
 
     let current = 'bell'
@@ -48,15 +48,15 @@ export default function RitualScreen({ flowerSide, onComplete }) {
   }, [flowerSide, onComplete])
 
   return (
-    <div className="relative h-full w-full flex flex-col items-center justify-center overflow-hidden"
+    <div className="relative h-full w-full flex flex-col items-center overflow-hidden"
       style={{ background: 'radial-gradient(ellipse at 50% 40%, #4A2C1A 0%, #3D0F18 50%, #1a0a0e 100%)' }}>
 
       {/* Ambient glow */}
       <div
-        className="absolute top-[15%] left-1/2 -translate-x-1/2 w-80 h-80 rounded-full pointer-events-none"
+        className="absolute top-[10%] left-1/2 -translate-x-1/2 w-80 h-80 rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(circle, rgba(212,168,67,0.12) 0%, transparent 70%)' }} />
 
-      {/* Floating sparks during ritual */}
+      {/* Floating sparks */}
       {[0, 1, 2, 3, 4, 5].map(i => (
         <div
           key={i}
@@ -70,10 +70,10 @@ export default function RitualScreen({ flowerSide, onComplete }) {
         />
       ))}
 
-      {/* Deity frame (always visible in background during ritual) */}
-      <div className="absolute top-[15%] left-1/2 -translate-x-1/2" style={{ width: 220, height: 260 }}>
+      {/* Deity frame — positioned in upper area */}
+      <div className="relative mt-[10%]" style={{ width: 220, height: 260, flexShrink: 0 }}>
         <div className="deity-frame deity-frame-glow w-full h-full flex items-center justify-center"
-          style={{ opacity: step === 'flower' || step === 'done' ? 0.7 : 0.3, transition: 'opacity 0.8s ease' }}>
+          style={{ opacity: step === 'flower' || step === 'done' ? 0.8 : 0.35, transition: 'opacity 0.8s ease' }}>
           <div className="text-7xl select-none" style={{
             color: '#D4A843',
             textShadow: '0 0 40px rgba(212,168,67,0.3), 0 0 80px rgba(212,168,67,0.1)',
@@ -100,108 +100,121 @@ export default function RitualScreen({ flowerSide, onComplete }) {
           <div className="diya-flame diya-flame-delayed" />
           <div className="diya-base" />
         </div>
-      </div>
 
-      {/* Side labels (visible during flower step) */}
-      <AnimatePresence>
-        {(step === 'flower' || step === 'done') && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="absolute flex justify-between px-4"
-            style={{ width: 220, top: 'calc(15% + 270px)' }}>
-            <span className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(232,141,141,0.5)' }}>✕ नहीं</span>
-            <span className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(126,202,156,0.5)' }}>हाँ ✓</span>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Bell step */}
-      <AnimatePresence>
-        {step === 'bell' && (
-          <motion.div
-            key="bell"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="absolute flex flex-col items-center gap-4"
-            style={{ top: '55%' }}>
+        {/* Side labels (visible during flower step) */}
+        <AnimatePresence>
+          {(step === 'flower' || step === 'done') && (
             <motion.div
-              animate={{ rotate: [-12, 12, -12] }}
-              transition={{ duration: 0.5, repeat: 3, ease: 'easeInOut' }}
-              className="text-7xl select-none">
-              🔔
-            </motion.div>
-            <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="text-xs tracking-[0.3em] uppercase"
-              style={{ color: '#D4A84380' }}>
-              The divine is called
-            </motion.p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="absolute -bottom-8 left-0 right-0 flex justify-between px-2">
+              <span className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(232,141,141,0.5)' }}>✕ नहीं</span>
+              <span className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(126,202,156,0.5)' }}>हाँ ✓</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
 
-      {/* Mantra step */}
-      <AnimatePresence>
-        {step === 'mantra' && (
-          <motion.div
-            key="mantra"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.6 }}
-            className="absolute flex flex-col items-center gap-4 px-8 text-center"
-            style={{ top: '55%' }}>
-            <div className="text-3xl" style={{
-              color: '#D4A843',
-              fontFamily: 'serif',
-              textShadow: '0 0 20px rgba(212,168,67,0.5), 0 0 40px rgba(212,168,67,0.2)',
-            }}>
-              {mantra}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Text steps — positioned BELOW the deity frame */}
+      <div className="relative flex-1 w-full flex items-start justify-center pt-12">
 
-      {/* Stillness step */}
-      <AnimatePresence>
-        {step === 'stillness' && (
-          <motion.div
-            key="stillness"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
-            className="absolute flex flex-col items-center gap-6"
-            style={{ top: '55%' }}>
-            <p className="text-xs tracking-[0.3em] uppercase" style={{ color: '#D4A84360' }}>
-              The divine listens...
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        {/* Bell step */}
+        <AnimatePresence>
+          {step === 'bell' && (
+            <motion.div
+              key="bell"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="absolute flex flex-col items-center gap-4">
+              <motion.div
+                animate={{ rotate: [-12, 12, -12] }}
+                transition={{ duration: 0.5, repeat: 3, ease: 'easeInOut' }}
+                className="text-7xl select-none">
+                🔔
+              </motion.div>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="text-xs tracking-[0.3em] uppercase"
+                style={{ color: '#D4A84380' }}>
+                The divine is called
+              </motion.p>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-      {/* Flower fall step */}
+        {/* Mantra step */}
+        <AnimatePresence>
+          {step === 'mantra' && (
+            <motion.div
+              key="mantra"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.6 }}
+              className="absolute flex flex-col items-center gap-4 px-8 text-center">
+              <div className="text-3xl" style={{
+                color: '#D4A843',
+                fontFamily: 'serif',
+                textShadow: '0 0 20px rgba(212,168,67,0.5), 0 0 40px rgba(212,168,67,0.2)',
+              }}>
+                {mantra}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Stillness step */}
+        <AnimatePresence>
+          {step === 'stillness' && (
+            <motion.div
+              key="stillness"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8 }}
+              className="absolute flex flex-col items-center gap-6">
+              <p className="text-xs tracking-[0.3em] uppercase" style={{ color: '#D4A84360' }}>
+                The divine listens...
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Flower fall — starts from deity frame, lands within screen */}
       <AnimatePresence>
         {(step === 'flower' || step === 'done') && flowerSide && (
           <motion.div
             key="flower"
-            initial={{ y: '15vh', x: 0, rotate: 0, opacity: 1 }}
-            animate={{
-              y: '80vh',
-              x: flowerSide === 'left' ? '-90px' : '90px',
-              rotate: flowerSide === 'left' ? -180 : 180,
-              opacity: [1, 1, 1, 0.85],
-            }}
-            transition={{ duration: 2.8, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="absolute z-10 text-4xl select-none"
-            style={{ filter: 'drop-shadow(0 0 12px rgba(212,168,67,0.7))' }}>
+            style={{
+              top: '10%',
+              left: '50%',
+              marginLeft: '-18px',
+              filter: 'drop-shadow(0 0 12px rgba(212,168,67,0.7))',
+            }}
+            initial={{ y: 0, x: 0, rotate: 0, opacity: 1 }}
+            animate={{
+              y: ['0px', '80px', '180px', '260px', '340px'],
+              x: flowerSide === 'left'
+                ? ['0px', '-20px', '-50px', '-80px', '-120px']
+                : ['0px', '20px', '50px', '80px', '120px'],
+              rotate: flowerSide === 'left'
+                ? [0, -15, -40, -25, -45]
+                : [0, 15, 40, 25, 45],
+              opacity: [0, 1, 1, 1, 1],
+            }}
+            transition={{
+              duration: 3.2,
+              ease: [0.25, 0.1, 0.25, 1],
+              times: [0, 0.2, 0.5, 0.75, 1],
+            }}>
             🌸
           </motion.div>
         )}
