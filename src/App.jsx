@@ -5,7 +5,6 @@ import RitualScreen from './components/RitualScreen'
 import AnswerScreen from './components/AnswerScreen'
 import DailyComplete from './components/DailyComplete'
 import { canAsk, recordAsk } from './utils/askLimit'
-import { askPrashna } from './utils/prashna'
 
 
 export default function App() {
@@ -19,10 +18,8 @@ export default function App() {
       setScreen('daily-complete')
       return
     }
-    // Vedic astrology (order) + true randomness (mystery)
-    const prashna = askPrashna(new Date())
-    // Deity's right (screen left) = yes, Deity's left (screen right) = no
-    const side = prashna.answer === 'yes' ? 'left' : 'right'
+    // The exact millisecond your finger touched pray — odd = yes, even = no
+    const side = Date.now() % 2 === 1 ? 'left' : 'right'
     setQuestion(q)
     setFlowerSide(side)
     setScreen('ritual')
