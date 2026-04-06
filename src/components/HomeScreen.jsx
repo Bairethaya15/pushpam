@@ -80,8 +80,8 @@ export default function HomeScreen({ onPray }) {
 
           {/* Labels below diyas */}
           <div className="absolute -bottom-5 left-0 right-0 flex justify-between px-1">
-            <span className="text-sm tracking-[0.15em] uppercase" style={{ color: 'rgba(126,202,156,0.3)' }}>✓ हाँ</span>
-            <span className="text-sm tracking-[0.15em] uppercase" style={{ color: 'rgba(232,141,141,0.3)' }}>नहीं ✕</span>
+            <span className="text-sm tracking-[0.15em] uppercase" style={{ color: 'rgba(126,202,156,0.3)' }}>✓ आम्</span>
+            <span className="text-sm tracking-[0.15em] uppercase" style={{ color: 'rgba(232,141,141,0.3)' }}>नैव ✕</span>
           </div>
         </div>
       </motion.div>
