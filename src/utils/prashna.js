@@ -26,18 +26,27 @@ import {
 } from './astronomy'
 
 /**
- * True randomness from hardware entropy
- * Uses crypto.getRandomValues() — electrical noise, timing jitter,
- * thermal fluctuations from the device's physical circuits.
- * The universe's unknowable will, not a predictable algorithm.
+ * The moment's will — derived from the exact millisecond of prayer
+ *
+ * Not random. Not predictable. The precise instant your finger
+ * touched the screen — that millisecond will never occur again
+ * in the history of the universe.
+ *
+ * Uses a hash of the full timestamp (milliseconds since epoch)
+ * to produce a deterministic score. Same millisecond = same answer.
+ * One millisecond later = potentially different answer.
  *
  * Returns a value between -5 and +5
  */
-function universeWill() {
-  const arr = new Uint32Array(1)
-  crypto.getRandomValues(arr)
-  // Map 0..4294967295 to -5..+5
-  return (arr[0] / 4294967295) * 10 - 5
+function momentWill(date) {
+  const ts = date.getTime()
+
+  // Golden ratio hash — distributes any integer evenly across 0-1
+  // This is the same technique used in Fibonacci hashing
+  const hash = ((ts * 2654435761) >>> 0) / 4294967295
+
+  // Map 0..1 to -5..+5
+  return hash * 10 - 5
 }
 
 /**
@@ -266,11 +275,12 @@ export function askPrashna(date = new Date()) {
   // Worst day: 30% yes. Best day: 70% yes. Neutral: 50%.
   const astroScore = Math.max(-2, Math.min(2, rawAstro))
 
-  // True randomness — the universe's unknowable will
-  // Hardware entropy from the device, range ±5
-  const chaos = universeWill()
+  // The moment — your exact millisecond of prayer
+  // Deterministic: same ms = same answer. But you can never
+  // tap the same millisecond twice in your life.
+  const moment = momentWill(date)
 
-  const finalScore = astroScore + chaos
+  const finalScore = astroScore + moment
 
   // Positive = yes, negative = no
   // When exactly zero, the querent's faith tips the scale — yes
@@ -285,7 +295,8 @@ export function askPrashna(date = new Date()) {
       paksha,
       vara,
       hora,
-      chaos: Math.round(chaos * 100) / 100,
+      moment: Math.round(moment * 100) / 100,
+      timestamp: date.getTime(),
       scores,
     }
   }
