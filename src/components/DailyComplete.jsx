@@ -43,7 +43,7 @@ export default function DailyComplete({ onGoHome }) {
       </div>
 
       <motion.button initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 1.2 }}
-        onClick={onGoHome} className="relative z-10 text-sm tracking-widest uppercase safe-bottom shrink-0"
+        onClick={onGoHome} className="relative z-10 text-sm tracking-widest uppercase safe-bottom pb-2 shrink-0"
         style={{ color: 'rgba(255,248,237,0.2)' }}>
         Return home
       </motion.button>

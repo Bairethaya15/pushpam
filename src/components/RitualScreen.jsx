@@ -101,7 +101,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
             <motion.div key="mantra" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.6 }}
               className="absolute px-8 text-center">
-              <div className="text-2xl" style={{
+              <div className="text-3xl" style={{
                 color: '#D4A843', fontFamily: 'serif',
                 textShadow: '0 0 20px rgba(212,168,67,0.5), 0 0 40px rgba(212,168,67,0.2)',
               }}>{mantra}</div>

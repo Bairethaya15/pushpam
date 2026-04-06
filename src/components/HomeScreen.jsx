@@ -64,15 +64,15 @@ export default function HomeScreen({ onPray }) {
         </div>
       </motion.div>
 
-      {/* Spacer */}
-      <div className="flex-1" />
+      {/* Spacer — moderate, not excessive */}
+      <div className="shrink-0" style={{ height: '4svh' }} />
 
       {/* ── Input ── */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 0.8 }}
-        className="relative z-10 w-full px-6 safe-bottom flex flex-col gap-2 shrink-0">
+        className="relative z-10 w-full px-6 safe-bottom flex flex-col gap-3 shrink-0">
 
         <label className="text-xs tracking-[0.2em] uppercase text-center"
           style={{ color: 'rgba(212,168,67,0.25)' }}>

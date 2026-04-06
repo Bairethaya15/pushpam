@@ -23,9 +23,8 @@ export default function AnswerScreen({ answer, onAskAgain }) {
         <div className="screen-header-sub">Ask the Divine</div>
       </div>
 
-      {/* ── Answer content — spaced out vertically ── */}
-      <div className="relative z-10 flex flex-col items-center flex-1 justify-center px-8 text-center"
-        style={{ gap: '3svh' }}>
+      {/* ── Answer content — intentional spacing hierarchy ── */}
+      <div className="relative z-10 flex flex-col items-center flex-1 justify-center px-8 text-center">
 
         {/* Flower */}
         <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }}
@@ -33,28 +32,28 @@ export default function AnswerScreen({ answer, onAskAgain }) {
           <div className="text-5xl select-none" style={{ filter: `drop-shadow(0 0 14px ${accent})` }}>🌸</div>
         </motion.div>
 
-        {/* Direction */}
+        {/* Direction — close to flower, they're a pair */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex items-center gap-2 text-sm tracking-[0.15em]"
+          className="flex items-center gap-2 text-sm tracking-[0.15em] mt-3"
           style={{ color: `${accent}70` }}>
           {isYes
             ? <><span>—</span><span className="uppercase">The flower fell right</span><span>→</span></>
             : <><span>←</span><span className="uppercase">The flower fell left</span><span>—</span></>}
         </motion.div>
 
-        {/* Main answer */}
+        {/* Main answer — big gap, this is the reveal */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-3xl font-light"
+          className="text-3xl font-light mt-8"
           style={{ color: accent, fontFamily: 'Georgia, serif', textShadow: `0 0 20px ${accent}40` }}>
           {phrase.main}
         </motion.div>
 
-        {/* Sub message */}
+        {/* Sub message — close to answer, they're a pair */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.9 }}
-          className="text-base tracking-wide"
+          className="text-base tracking-wide mt-3"
           style={{ color: 'rgba(255,248,237,0.35)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>
           {phrase.sub}
         </motion.div>
