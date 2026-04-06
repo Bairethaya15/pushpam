@@ -26,27 +26,73 @@ import {
 } from './astronomy'
 
 /**
- * The moment's will — derived from the exact millisecond of prayer
+ * Three forces determine the answer:
  *
- * Not random. Not predictable. The precise instant your finger
- * touched the screen — that millisecond will never occur again
- * in the history of the universe.
+ * 1. Vedic Astrology (order) — the sky's disposition
+ *    Nakshatra, Tithi, Paksha, Vara, Hora
+ *    Capped at ±0.8. Changes hourly/daily.
  *
- * Uses a hash of the full timestamp (milliseconds since epoch)
- * to produce a deterministic score. Same millisecond = same answer.
- * One millisecond later = potentially different answer.
+ * 2. Timestamp Numerology (meaning) — your millisecond's root
+ *    Digits of Date.getTime() reduced to 1-9, planetary ruler scored
+ *    Range ±1.5. Changes every millisecond.
  *
- * Returns a value between -5 and +5
+ * 3. True Randomness (mystery) — the unknowable
+ *    crypto.getRandomValues() — hardware entropy
+ *    Range ±3. Different every tap, even at same millisecond.
+ *
+ * The cosmos. Your moment. The unknowable. All three vote.
  */
-function momentWill(date) {
+
+/**
+ * Reduce a number to a single digit (1-9)
+ */
+function reduceToRoot(num) {
+  let n = Math.abs(Math.floor(num))
+  while (n > 9) {
+    let sum = 0
+    while (n > 0) {
+      sum += n % 10
+      n = Math.floor(n / 10)
+    }
+    n = sum
+  }
+  return n || 9
+}
+
+/**
+ * Timestamp numerology — reduce the full millisecond timestamp
+ * to a root (1-9), map to planetary ruler, return score
+ *
+ * 1=Sun(0), 2=Moon(+1.5), 3=Jupiter(+1.5), 4=Rahu(-1),
+ * 5=Mercury(+0.5), 6=Venus(+1.5), 7=Ketu(-1),
+ * 8=Saturn(-1.5), 9=Mars(-0.5)
+ */
+const ROOT_SCORE = {
+  1: 0,      // Sun — neutral
+  2: +1.5,   // Moon — benefic
+  3: +1.5,   // Jupiter — most benefic
+  4: -1.0,   // Rahu — malefic
+  5: +0.5,   // Mercury — mildly benefic
+  6: +1.5,   // Venus — benefic
+  7: -1.0,   // Ketu — malefic
+  8: -1.5,   // Saturn — most malefic
+  9: -0.5,   // Mars — mildly malefic
+}
+
+function timestampNumerology(date) {
   const ts = date.getTime()
+  const root = reduceToRoot(ts)
+  return ROOT_SCORE[root] ?? 0
+}
 
-  // Golden ratio hash — distributes any integer evenly across 0-1
-  // This is the same technique used in Fibonacci hashing
-  const hash = ((ts * 2654435761) >>> 0) / 4294967295
-
-  // Map 0..1 to -5..+5
-  return hash * 10 - 5
+/**
+ * True randomness — hardware entropy from the device
+ * Returns -3 to +3
+ */
+function universeWill() {
+  const arr = new Uint32Array(1)
+  crypto.getRandomValues(arr)
+  return (arr[0] / 4294967295) * 6 - 3
 }
 
 /**
@@ -274,12 +320,14 @@ export function askPrashna(date = new Date()) {
   // ±0.8 gives: best day 58% yes, worst day 42% yes
   const astroScore = Math.max(-0.8, Math.min(0.8, rawAstro))
 
-  // The moment — your exact millisecond of prayer
-  // Deterministic: same ms = same answer. But you can never
-  // tap the same millisecond twice in your life.
-  const moment = momentWill(date)
+  // Timestamp numerology — your millisecond's planetary root
+  const numScore = timestampNumerology(date)
 
-  const finalScore = astroScore + moment
+  // True randomness — the universe's unknowable will
+  const randomScore = universeWill()
+
+  // Three forces combined
+  const finalScore = astroScore + numScore + randomScore
 
   // Positive = yes, negative = no
   // When exactly zero, the querent's faith tips the scale — yes
@@ -294,7 +342,9 @@ export function askPrashna(date = new Date()) {
       paksha,
       vara,
       hora,
-      moment: Math.round(moment * 100) / 100,
+      numerologyRoot: reduceToRoot(date.getTime()),
+      numerologyScore: Math.round(numScore * 100) / 100,
+      randomScore: Math.round(randomScore * 100) / 100,
       timestamp: date.getTime(),
       scores,
     }
