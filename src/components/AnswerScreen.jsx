@@ -58,23 +58,34 @@ export default function AnswerScreen({ answer, onAskAgain }) {
           {phrase.sub}
         </motion.div>
 
-        {/* Divider — visual breath like DailyComplete */}
+        {/* Divider */}
         <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }}
           transition={{ duration: 0.8, delay: 1.1 }}
           className="w-12 h-px mt-10"
-          style={{ background: `${accent}30` }} />
+          style={{ background: 'rgba(212,168,67,0.2)' }} />
 
-        {/* Upsell or ask again — below divider, same pattern as DailyComplete */}
+        {/* Action section */}
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.3 }}
-          className="flex flex-col items-center gap-2 mt-10">
+          className="flex flex-col items-center gap-3 mt-10">
 
           {remaining > 0 ? (
-            <button onClick={onAskAgain}
-              className="px-10 py-3.5 rounded-full text-base tracking-widest"
-              style={{ background: 'rgba(255,248,237,0.04)', border: `1px solid ${accent}30`, color: accent, fontFamily: 'Georgia, serif' }}>
-              Ask again
-            </button>
+            <>
+              <button onClick={onAskAgain}
+                className="px-10 py-3.5 rounded-full text-base tracking-widest"
+                style={{ background: 'rgba(255,248,237,0.06)', border: `1px solid ${accent}40`, color: accent, fontFamily: 'Georgia, serif' }}>
+                Ask again
+              </button>
+              <button
+                className="text-sm tracking-widest"
+                style={{ color: 'rgba(255,248,237,0.2)', fontFamily: 'Georgia, serif' }}
+                onClick={() => {
+                  const text = `🌺 पुष्पम् — Ask the Divine\n"Seek your answer from the divine. One question. One flower. One truth."\npushpam.in`
+                  if (navigator.share) { navigator.share({ text }) } else { window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank') }
+                }}>
+                Help someone seek their answer too 🌺
+              </button>
+            </>
           ) : (
             <>
               <p className="text-base" style={{ color: 'rgba(212,168,67,0.5)', fontFamily: 'Georgia, serif' }}>
@@ -90,18 +101,6 @@ export default function AnswerScreen({ answer, onAskAgain }) {
           )}
         </motion.div>
       </div>
-
-      {/* ── Share at bottom ── */}
-      <motion.button initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1.6 }}
-        className="relative z-10 text-sm tracking-widest safe-bottom pb-2 shrink-0"
-        style={{ color: 'rgba(255,248,237,0.2)', fontFamily: 'Georgia, serif' }}
-        onClick={() => {
-          const text = `🌺 पुष्पम् — Ask the Divine\n"Seek your answer from the divine. One question. One flower. One truth."\npushpam.in`
-          if (navigator.share) { navigator.share({ text }) } else { window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank') }
-        }}>
-        Help someone seek their answer too 🌺
-      </motion.button>
     </div>
   )
 }
