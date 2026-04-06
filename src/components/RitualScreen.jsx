@@ -134,14 +134,15 @@ export default function RitualScreen({ flowerSide, onComplete }) {
         </AnimatePresence>
       </div>
 
-      {/* ── Flower ── */}
+      {/* ── Flower — outer=Y(gravity), inner=X(sway) ── */}
       {(step === 'flower' || step === 'done') && flowerSide && (
-        <div className="absolute z-10 text-4xl select-none"
-          style={{
-            top: '42%', left: '50%', marginLeft: '-18px',
-            filter: 'drop-shadow(0 0 12px rgba(212,168,67,0.7))',
-            animation: `flower-fall-${flowerSide} 3.2s cubic-bezier(0.4, 0, 0.7, 1) forwards`,
-          }}><img src={flowerIcon} alt="" className="w-14 h-14" draggable={false} /></div>
+        <div className="absolute z-10 flower-fall-y"
+          style={{ top: '42%', left: '50%', marginLeft: '-28px' }}>
+          <div className={`flower-sway-${flowerSide}`}
+            style={{ filter: 'drop-shadow(0 0 10px rgba(212,168,67,0.6))' }}>
+            <img src={flowerIcon} alt="" className="w-14 h-14 select-none" draggable={false} />
+          </div>
+        </div>
       )}
     </div>
   )

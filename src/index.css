@@ -233,17 +233,41 @@ button:active:not(:disabled) {
   100% { opacity: 0; transform: translateY(-80px) translateX(20px); }
 }
 
-/* ── Flower Fall — smooth continuous drift ── */
-@keyframes flower-fall-left {
-  0%   { opacity: 0; transform: translate(0, 0) rotate(0deg); }
+/* ── Flower Fall — split X/Y for natural motion ── */
+
+/* Y axis: gravity — starts slow, accelerates */
+@keyframes flower-fall-y {
+  0%   { transform: translateY(0); opacity: 0; }
   5%   { opacity: 1; }
-  100% { opacity: 1; transform: translate(-70px, 300px) rotate(-40deg); }
+  100% { transform: translateY(300px); opacity: 1; }
 }
 
-@keyframes flower-fall-right {
-  0%   { opacity: 0; transform: translate(0, 0) rotate(0deg); }
-  5%   { opacity: 1; }
-  100% { opacity: 1; transform: translate(70px, 300px) rotate(40deg); }
+/* X axis: gentle sway left then settle */
+@keyframes flower-sway-left {
+  0%   { transform: translateX(0) rotate(0deg); }
+  30%  { transform: translateX(15px) rotate(8deg); }
+  60%  { transform: translateX(-30px) rotate(-15deg); }
+  100% { transform: translateX(-70px) rotate(-35deg); }
+}
+
+/* X axis: gentle sway right then settle */
+@keyframes flower-sway-right {
+  0%   { transform: translateX(0) rotate(0deg); }
+  30%  { transform: translateX(-15px) rotate(-8deg); }
+  60%  { transform: translateX(30px) rotate(15deg); }
+  100% { transform: translateX(70px) rotate(35deg); }
+}
+
+.flower-fall-y {
+  animation: flower-fall-y 3.2s cubic-bezier(0.3, 0, 0.7, 1) forwards;
+}
+
+.flower-sway-left {
+  animation: flower-sway-left 3.2s ease-in-out forwards;
+}
+
+.flower-sway-right {
+  animation: flower-sway-right 3.2s ease-in-out forwards;
 }
 
 .spark {
