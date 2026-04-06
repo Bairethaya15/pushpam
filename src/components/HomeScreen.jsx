@@ -1,12 +1,28 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { haptic } from '../utils/haptic'
 
 export default function HomeScreen({ onPray }) {
   const [question, setQuestion] = useState('')
+  const [kbOpen, setKbOpen] = useState(false)
+
+  // Detect keyboard open/close via visualViewport
+  useEffect(() => {
+    const vv = window.visualViewport
+    if (!vv) return
+    const onResize = () => {
+      // If viewport height is significantly less than window height, keyboard is open
+      const isOpen = vv.height < window.innerHeight * 0.75
+      setKbOpen(isOpen)
+    }
+    vv.addEventListener('resize', onResize)
+    return () => vv.removeEventListener('resize', onResize)
+  }, [])
 
   function handleSubmit() {
     const q = question.trim()
     if (!q) return
+    haptic('medium')
     onPray(q)
   }
 
@@ -27,17 +43,20 @@ export default function HomeScreen({ onPray }) {
       ))}
 
       {/* ── Header ── */}
-      <div className="screen-header">
-        <div className="screen-header-title">पुष्पम्</div>
-        <div className="screen-header-sub">Ask the Divine</div>
-      </div>
+      {!kbOpen && (
+        <div className="screen-header">
+          <div className="screen-header-title">पुष्पम्</div>
+          <div className="screen-header-sub">Ask the Divine</div>
+        </div>
+      )}
 
-      {/* ── Deity Frame ── */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 2, ease: 'easeOut' }}
-        className="relative z-10 shrink-0 flex flex-col items-center">
+      {/* ── Deity Frame — hidden when keyboard is open ── */}
+      {!kbOpen && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 2, ease: 'easeOut' }}
+          className="relative z-10 shrink-0 flex flex-col items-center">
 
         <div className="deity-wrapper relative">
           <motion.div
@@ -63,9 +82,11 @@ export default function HomeScreen({ onPray }) {
           </div>
         </div>
       </motion.div>
+      )}
 
-      {/* Spacer — moderate, not excessive */}
-      <div className="shrink-0" style={{ height: '4svh' }} />
+      {/* Spacer */}
+      {!kbOpen && <div className="shrink-0" style={{ height: '4svh' }} />}
+      {kbOpen && <div className="flex-1" />}
 
       {/* ── Input ── */}
       <motion.div
@@ -96,7 +117,7 @@ export default function HomeScreen({ onPray }) {
         <button
           onClick={handleSubmit}
           disabled={!question.trim()}
-          className="w-full rounded-full text-base tracking-wider transition-all duration-300 disabled:opacity-30"
+          className="btn-primary w-full rounded-full text-base tracking-wider disabled:opacity-30"
           style={{
             background: question.trim() ? 'linear-gradient(135deg, #E8801A, #C4600C)' : 'rgba(232,128,26,0.2)',
             border: question.trim() ? '1px solid rgba(212,168,67,0.5)' : '1px solid transparent',

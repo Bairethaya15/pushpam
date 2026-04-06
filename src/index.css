@@ -100,6 +100,22 @@ body {
   margin-top: 2px;
 }
 
+/* ── Button press feedback ── */
+button {
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.96);
+  opacity: 0.85;
+}
+
+/* Primary CTA glow on press */
+.btn-primary:active {
+  box-shadow: 0 2px 12px rgba(232,128,26,0.5);
+}
+
 /* ── Deity Frame ── */
 .deity-frame {
   border: 2px solid #D4A843;

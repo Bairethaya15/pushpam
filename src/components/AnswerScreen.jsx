@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { getAnswerPhrase } from '../utils/answerPhrases'
+import { haptic } from '../utils/haptic'
 
 export default function AnswerScreen({ answer, onAskAgain }) {
   const phrase = useMemo(() => getAnswerPhrase(answer), [answer])
@@ -58,7 +59,7 @@ export default function AnswerScreen({ answer, onAskAgain }) {
         transition={{ duration: 0.6, delay: 1.3 }}
         className="relative z-10 flex flex-col items-center gap-4 w-full px-6 safe-bottom pb-2 shrink-0">
 
-        <button onClick={onAskAgain}
+        <button onClick={() => { haptic('light'); onAskAgain() }}
           className="w-64 py-4 rounded-full text-base tracking-wider"
           style={{ background: 'rgba(255,248,237,0.06)', border: `1px solid ${accent}25`, color: accent }}>
           Ask again
