@@ -72,7 +72,7 @@ export default function AnswerScreen({ answer, onAskAgain }) {
           {remaining > 0 ? (
             <>
               <button onClick={onAskAgain}
-                className="px-14 py-4 rounded-full text-base tracking-wider"
+                className="w-64 py-4 rounded-full text-base tracking-wider"
                 style={{ background: 'rgba(255,248,237,0.06)', border: `1px solid ${accent}25`, color: accent, fontFamily: 'Georgia, serif' }}>
                 Ask again
               </button>
