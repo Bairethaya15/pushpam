@@ -19,8 +19,8 @@ export default function App() {
       setScreen('daily-complete')
       return
     }
-    // Prashna Shastra — cosmos + moment + question vibration
-    const prashna = askPrashna(new Date(), q)
+    // Vedic astrology (order) + true randomness (mystery)
+    const prashna = askPrashna(new Date())
     const side = prashna.answer === 'yes' ? 'right' : 'left'
     setQuestion(q)
     setFlowerSide(side)

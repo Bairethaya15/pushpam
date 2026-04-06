@@ -24,7 +24,21 @@ import {
   moonLongitude, getNakshatra, getTithi, getPaksha,
   getVara, getHora
 } from './astronomy'
-import { getNumerologyScore, getQuestionRoot } from './numerology'
+
+/**
+ * True randomness from hardware entropy
+ * Uses crypto.getRandomValues() — electrical noise, timing jitter,
+ * thermal fluctuations from the device's physical circuits.
+ * The universe's unknowable will, not a predictable algorithm.
+ *
+ * Returns a value between -5 and +5
+ */
+function universeWill() {
+  const arr = new Uint32Array(1)
+  crypto.getRandomValues(arr)
+  // Map 0..4294967295 to -5..+5
+  return (arr[0] / 4294967295) * 10 - 5
+}
 
 /**
  * Nakshatra classification for Prashna
@@ -208,19 +222,13 @@ function specialCombinations(nakshatra, tithi, vara) {
  * @param {Date} date — the exact moment of the question
  * @returns {{ answer: 'yes'|'no', score: number, factors: object }}
  */
-export function askPrashna(date = new Date(), questionText = '') {
+export function askPrashna(date = new Date()) {
   const moonLong = moonLongitude(date)
   const nakshatra = getNakshatra(moonLong)
   const tithi = getTithi(date)
   const paksha = getPaksha(tithi)
   const vara = getVara(date)
   const hora = getHora(date)
-
-  // Numerology — root number of the exact moment
-  const numerology = getNumerologyScore(date)
-
-  // Question numerology — the vibration of the words themselves
-  const questionNum = getQuestionRoot(questionText)
 
   // Calculate individual scores
   const scores = {
@@ -230,8 +238,6 @@ export function askPrashna(date = new Date(), questionText = '') {
     vara: VARA_SCORE[vara] ?? 0,
     hora: HORA_SCORE[hora] ?? 0,
     special: specialCombinations(nakshatra, tithi, vara),
-    numerology: numerology.score,
-    question: questionNum.score,
   }
 
   // ── Scoring philosophy ──
@@ -258,13 +264,11 @@ export function askPrashna(date = new Date(), questionText = '') {
   // Cap astrology influence — tendency, not destiny
   const astroScore = Math.max(-4, Math.min(4, rawAstro))
 
-  // Numerology — the moment's energy (uncapped)
-  const numScore = scores.numerology * 3
+  // True randomness — the universe's unknowable will
+  // Hardware entropy from the device, range ±5
+  const chaos = universeWill()
 
-  // Question — the vibration of the words (uncapped)
-  const questionScore = scores.question * 2
-
-  const finalScore = astroScore + numScore + questionScore
+  const finalScore = astroScore + chaos
 
   // Positive = yes, negative = no
   // When exactly zero, the querent's faith tips the scale — yes
@@ -279,8 +283,7 @@ export function askPrashna(date = new Date(), questionText = '') {
       paksha,
       vara,
       hora,
-      numerology,
-      questionNumerology: questionNum,
+      chaos: Math.round(chaos * 100) / 100,
       scores,
     }
   }
