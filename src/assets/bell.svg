@@ -5,26 +5,29 @@
       <stop offset="50%" stop-color="#D4A843"/>
       <stop offset="100%" stop-color="#A67C2E"/>
     </linearGradient>
-    <linearGradient id="bh" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" stop-color="#E8C860"/>
-      <stop offset="100%" stop-color="#8B6914"/>
+    <linearGradient id="ch" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#8B6914"/>
+      <stop offset="100%" stop-color="#5A4510"/>
     </linearGradient>
   </defs>
-  <!-- Handle ring -->
-  <circle cx="40" cy="10" r="7" stroke="url(#bh)" stroke-width="2.5" fill="none"/>
-  <!-- Handle stem -->
-  <rect x="37.5" y="16" width="5" height="8" rx="1.5" fill="url(#bh)"/>
-  <!-- Bell body -->
-  <path d="M20,26 C20,24 24,22 40,22 C56,22 60,24 60,26 L62,72 C62,80 52,86 40,86 C28,86 18,80 18,72 Z" fill="url(#bg)"/>
-  <!-- Highlight -->
-  <path d="M28,28 C28,26 34,24 40,24 C42,24 44,24 46,25 L47,65 C47,68 44,70 40,70 C36,70 33,68 33,65 Z" fill="white" opacity="0.08"/>
-  <!-- Rim -->
-  <ellipse cx="40" cy="86" rx="24" ry="5" fill="#8B6914"/>
-  <ellipse cx="40" cy="85" rx="22" ry="3.5" fill="url(#bg)" opacity="0.7"/>
-  <!-- Clapper -->
-  <line x1="40" y1="60" x2="40" y2="80" stroke="#8B6914" stroke-width="2" stroke-linecap="round"/>
-  <circle cx="40" cy="82" r="4" fill="#A67C2E"/>
-  <!-- Decorative bands -->
-  <rect x="24" y="46" width="32" height="1.5" rx="0.75" fill="#FFE8A0" opacity="0.25"/>
-  <rect x="22" y="56" width="36" height="1" rx="0.5" fill="#FFE8A0" opacity="0.15"/>
+  <!-- Chain links -->
+  <ellipse cx="40" cy="6" rx="4" ry="5" stroke="#A67C2E" stroke-width="1.5" fill="none"/>
+  <ellipse cx="40" cy="14" rx="3" ry="4" stroke="#8B6914" stroke-width="1.5" fill="none"/>
+  <!-- Mount bracket -->
+  <path d="M34,18 L46,18 L44,22 L36,22 Z" fill="url(#ch)"/>
+  <!-- Bell body — wide ghanta shape, flared at bottom -->
+  <path d="M36,22 C36,22 30,26 28,36 C26,46 26,56 26,62 C26,68 24,74 20,80 L60,80 C56,74 54,68 54,62 C54,56 54,46 52,36 C50,26 44,22 44,22 Z" fill="url(#bg)"/>
+  <!-- Bell highlight -->
+  <path d="M38,24 C38,24 34,28 33,36 C32,44 32,56 32,62 C32,66 31,70 30,74 L38,74 C38,68 38,56 38,44 Z" fill="white" opacity="0.07"/>
+  <!-- Horizontal ridges — typical of Hindu temple bells -->
+  <rect x="28" y="42" width="24" height="1.2" rx="0.6" fill="#C4960C" opacity="0.3"/>
+  <rect x="27" y="52" width="26" height="1.2" rx="0.6" fill="#C4960C" opacity="0.3"/>
+  <rect x="25" y="62" width="30" height="1.2" rx="0.6" fill="#C4960C" opacity="0.3"/>
+  <!-- Wide flared rim -->
+  <path d="M20,80 C20,80 18,82 18,84 C18,86 20,88 40,88 C60,88 62,86 62,84 C62,82 60,80 60,80 Z" fill="#A67C2E"/>
+  <path d="M22,80 C22,80 21,82 21,83 C21,84 24,86 40,86 C56,86 59,84 59,83 C59,82 58,80 58,80 Z" fill="url(#bg)" opacity="0.6"/>
+  <!-- Clapper — heavy, round -->
+  <line x1="40" y1="50" x2="40" y2="78" stroke="#5A4510" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="40" cy="80" r="5" fill="#8B6914"/>
+  <circle cx="40" cy="80" r="3" fill="#A67C2E"/>
 </svg>

@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <defs>
     <radialGradient id="p" cx="50%" cy="30%" r="70%">
-      <stop offset="0%" stop-color="#FFD6E0"/>
-      <stop offset="60%" stop-color="#F4A0B0"/>
-      <stop offset="100%" stop-color="#D4707E"/>
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="40%" stop-color="#F8F0F0"/>
+      <stop offset="100%" stop-color="#E8D8D8"/>
     </radialGradient>
     <radialGradient id="c" cx="50%" cy="50%" r="50%">
       <stop offset="0%" stop-color="#FFE8A0"/>
@@ -11,26 +11,25 @@
     </radialGradient>
   </defs>
   <g transform="translate(50,50)">
-    <!-- Outer petals with clear petal shape -->
-    <path d="M0,-42 C12,-38 18,-22 14,-8 C8,2 2,4 0,4 C-2,4 -8,2 -14,-8 C-18,-22 -12,-38 0,-42Z" fill="url(#p)" transform="rotate(0)"/>
-    <path d="M0,-42 C12,-38 18,-22 14,-8 C8,2 2,4 0,4 C-2,4 -8,2 -14,-8 C-18,-22 -12,-38 0,-42Z" fill="url(#p)" transform="rotate(72)"/>
-    <path d="M0,-42 C12,-38 18,-22 14,-8 C8,2 2,4 0,4 C-2,4 -8,2 -14,-8 C-18,-22 -12,-38 0,-42Z" fill="url(#p)" transform="rotate(144)"/>
-    <path d="M0,-42 C12,-38 18,-22 14,-8 C8,2 2,4 0,4 C-2,4 -8,2 -14,-8 C-18,-22 -12,-38 0,-42Z" fill="url(#p)" transform="rotate(216)"/>
-    <path d="M0,-42 C12,-38 18,-22 14,-8 C8,2 2,4 0,4 C-2,4 -8,2 -14,-8 C-18,-22 -12,-38 0,-42Z" fill="url(#p)" transform="rotate(288)"/>
-    <!-- Petal veins — subtle lines -->
-    <line x1="0" y1="-6" x2="0" y2="-36" stroke="#D4707E" stroke-width="0.5" opacity="0.3" transform="rotate(0)"/>
-    <line x1="0" y1="-6" x2="0" y2="-36" stroke="#D4707E" stroke-width="0.5" opacity="0.3" transform="rotate(72)"/>
-    <line x1="0" y1="-6" x2="0" y2="-36" stroke="#D4707E" stroke-width="0.5" opacity="0.3" transform="rotate(144)"/>
-    <line x1="0" y1="-6" x2="0" y2="-36" stroke="#D4707E" stroke-width="0.5" opacity="0.3" transform="rotate(216)"/>
-    <line x1="0" y1="-6" x2="0" y2="-36" stroke="#D4707E" stroke-width="0.5" opacity="0.3" transform="rotate(288)"/>
-    <!-- Stamen ring -->
+    <!-- 5 white petals -->
+    <path d="M0,-42 C12,-38 18,-22 14,-8 C8,2 2,4 0,4 C-2,4 -8,2 -14,-8 C-18,-22 -12,-38 0,-42Z" fill="url(#p)" stroke="#D8C8C8" stroke-width="0.3" transform="rotate(0)"/>
+    <path d="M0,-42 C12,-38 18,-22 14,-8 C8,2 2,4 0,4 C-2,4 -8,2 -14,-8 C-18,-22 -12,-38 0,-42Z" fill="url(#p)" stroke="#D8C8C8" stroke-width="0.3" transform="rotate(72)"/>
+    <path d="M0,-42 C12,-38 18,-22 14,-8 C8,2 2,4 0,4 C-2,4 -8,2 -14,-8 C-18,-22 -12,-38 0,-42Z" fill="url(#p)" stroke="#D8C8C8" stroke-width="0.3" transform="rotate(144)"/>
+    <path d="M0,-42 C12,-38 18,-22 14,-8 C8,2 2,4 0,4 C-2,4 -8,2 -14,-8 C-18,-22 -12,-38 0,-42Z" fill="url(#p)" stroke="#D8C8C8" stroke-width="0.3" transform="rotate(216)"/>
+    <path d="M0,-42 C12,-38 18,-22 14,-8 C8,2 2,4 0,4 C-2,4 -8,2 -14,-8 C-18,-22 -12,-38 0,-42Z" fill="url(#p)" stroke="#D8C8C8" stroke-width="0.3" transform="rotate(288)"/>
+    <!-- Subtle petal veins -->
+    <line x1="0" y1="-6" x2="0" y2="-36" stroke="#D0C0C0" stroke-width="0.4" opacity="0.4" transform="rotate(0)"/>
+    <line x1="0" y1="-6" x2="0" y2="-36" stroke="#D0C0C0" stroke-width="0.4" opacity="0.4" transform="rotate(72)"/>
+    <line x1="0" y1="-6" x2="0" y2="-36" stroke="#D0C0C0" stroke-width="0.4" opacity="0.4" transform="rotate(144)"/>
+    <line x1="0" y1="-6" x2="0" y2="-36" stroke="#D0C0C0" stroke-width="0.4" opacity="0.4" transform="rotate(216)"/>
+    <line x1="0" y1="-6" x2="0" y2="-36" stroke="#D0C0C0" stroke-width="0.4" opacity="0.4" transform="rotate(288)"/>
+    <!-- Golden center -->
     <circle cx="0" cy="0" r="10" fill="url(#c)"/>
-    <circle cx="0" cy="-7" r="1.5" fill="#C4600C" opacity="0.6"/>
-    <circle cx="6.5" cy="-2" r="1.5" fill="#C4600C" opacity="0.6"/>
-    <circle cx="4" cy="5.5" r="1.5" fill="#C4600C" opacity="0.6"/>
-    <circle cx="-4" cy="5.5" r="1.5" fill="#C4600C" opacity="0.6"/>
-    <circle cx="-6.5" cy="-2" r="1.5" fill="#C4600C" opacity="0.6"/>
-    <!-- Center -->
-    <circle cx="0" cy="0" r="4" fill="#E8801A" opacity="0.7"/>
+    <circle cx="0" cy="-7" r="1.5" fill="#C4600C" opacity="0.5"/>
+    <circle cx="6.5" cy="-2" r="1.5" fill="#C4600C" opacity="0.5"/>
+    <circle cx="4" cy="5.5" r="1.5" fill="#C4600C" opacity="0.5"/>
+    <circle cx="-4" cy="5.5" r="1.5" fill="#C4600C" opacity="0.5"/>
+    <circle cx="-6.5" cy="-2" r="1.5" fill="#C4600C" opacity="0.5"/>
+    <circle cx="0" cy="0" r="4" fill="#E8801A" opacity="0.6"/>
   </g>
 </svg>
