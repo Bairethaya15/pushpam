@@ -88,12 +88,19 @@ export default function AnswerScreen({ answer, onAskAgain }) {
             </>
           ) : (
             <>
-              <p className="text-base" style={{ color: 'rgba(212,168,67,0.5)', fontFamily: 'Georgia, serif' }}>
+              <div className="flex flex-col items-center gap-1">
+                <p className="text-base" style={{ color: 'rgba(255,248,237,0.5)', fontFamily: 'Georgia, serif' }}>
+                  The divine has spoken today.</p>
+                <p className="text-sm" style={{ color: 'rgba(255,248,237,0.25)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>
+                  Return tomorrow with a still mind 🙏</p>
+              </div>
+              <div className="w-8 h-px mt-2" style={{ background: 'rgba(212,168,67,0.2)' }} />
+              <p className="text-sm mt-2" style={{ color: 'rgba(212,168,67,0.45)', fontFamily: 'Georgia, serif' }}>
                 Seek guidance whenever your heart calls.</p>
               <p className="text-base font-medium" style={{ color: '#D4A843', fontFamily: 'Georgia, serif' }}>
                 One offering, forever.</p>
               <button
-                className="mt-3 w-72 py-4 rounded-full text-base tracking-wider"
+                className="mt-2 w-72 py-4 rounded-full text-base tracking-wider"
                 style={{ background: 'linear-gradient(135deg, #E8801A, #C4600C)', border: '1px solid rgba(212,168,67,0.5)', color: '#FFF8ED', fontFamily: 'Georgia, serif', boxShadow: '0 4px 20px rgba(232,128,26,0.25)' }}>
                 Seek lifetime guidance 🪷
               </button>
