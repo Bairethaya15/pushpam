@@ -24,6 +24,7 @@ import {
   moonLongitude, getNakshatra, getTithi, getPaksha,
   getVara, getHora
 } from './astronomy'
+import { getNumerologyScore } from './numerology'
 
 /**
  * Nakshatra classification for Prashna
@@ -215,6 +216,9 @@ export function askPrashna(date = new Date()) {
   const vara = getVara(date)
   const hora = getHora(date)
 
+  // Numerology — root number of the exact moment
+  const numerology = getNumerologyScore(date)
+
   // Calculate individual scores
   const scores = {
     nakshatra: NAKSHATRA_SCORE[nakshatra] ?? 0,
@@ -223,28 +227,18 @@ export function askPrashna(date = new Date()) {
     vara: VARA_SCORE[vara] ?? 0,
     hora: HORA_SCORE[hora] ?? 0,
     special: specialCombinations(nakshatra, tithi, vara),
+    numerology: numerology.score,
   }
 
-  // Weighted total
-  const total =
-    scores.nakshatra * 3 +
-    scores.tithi * 2 +
-    scores.paksha * 1.5 +
-    scores.vara * 1 +
-    scores.hora * 1 +
-    scores.special * 2
-
-  // Tiebreaker — the exact second of prayer
-  // Only affects ambiguous readings (score between -2 and +2)
-  // Strong cosmic readings are untouched
-  let finalScore = total
-  if (Math.abs(total) < 2) {
-    const seconds = date.getSeconds()
-    const milliseconds = date.getMilliseconds()
-    // Map the precise moment to a value between -1 and +1
-    const momentSeed = Math.sin(seconds * 127 + milliseconds * 0.31)
-    finalScore = total + momentSeed
-  }
+  // Weighted total — astrology + numerology combined
+  const finalScore =
+    scores.nakshatra * 3 +     // Moon's nakshatra — paramount
+    scores.tithi * 2 +         // lunar day
+    scores.paksha * 1.5 +      // waxing/waning
+    scores.vara * 1 +          // weekday lord
+    scores.hora * 1 +          // planetary hour
+    scores.special * 2 +       // special yogas
+    scores.numerology * 1.5    // numerological root of the moment
 
   // Positive = yes, negative = no
   // When exactly zero, the querent's faith tips the scale — yes
@@ -252,13 +246,14 @@ export function askPrashna(date = new Date()) {
 
   return {
     answer,
-    score: total,
+    score: finalScore,
     factors: {
       nakshatra,
       tithi,
       paksha,
       vara,
       hora,
+      numerology,
       scores,
     }
   }
