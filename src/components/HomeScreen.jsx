@@ -15,27 +15,32 @@ export default function HomeScreen({ onPray }) {
       className="relative h-full w-full flex flex-col items-center overflow-hidden"
       style={{ background: 'radial-gradient(ellipse at 50% 30%, #6B1D2A 0%, #3D0F18 50%, #1a0a0e 100%)' }}>
 
-      {/* Ambient top glow */}
+      {/* Ambient glow */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none"
-        style={{ width: '120%', height: '35vh', background: 'radial-gradient(ellipse, rgba(232,128,26,0.1) 0%, transparent 70%)' }} />
+        style={{ width: '120%', height: '35%', background: 'radial-gradient(ellipse, rgba(232,128,26,0.1) 0%, transparent 70%)' }} />
 
-      {/* Floating sparks */}
+      {/* Sparks */}
       {[0, 1, 2, 3, 4].map(i => (
-        <div
-          key={i}
-          className="spark"
-          style={{
-            left: `${20 + i * 15}%`,
-            top: `${30 + (i % 3) * 10}%`,
-            animationDelay: `${i * 1.1}s`,
-            animationDuration: `${4 + i * 0.5}s`,
-          }}
-        />
+        <div key={i} className="spark" style={{
+          left: `${20 + i * 15}%`, top: `${30 + (i % 3) * 10}%`,
+          animationDelay: `${i * 1.1}s`, animationDuration: `${4 + i * 0.5}s`,
+        }} />
       ))}
 
-      {/* ── Top section: header clearance ── */}
-      <div className="content-top shrink-0" />
+      {/* ── Header ── */}
+      <div className="safe-top shrink-0" />
+      <div className="shrink-0 text-center">
+        <div className="text-2xl font-light tracking-wider" style={{ color: '#D4A843', fontFamily: 'Georgia, serif' }}>
+          पुष्पम्
+        </div>
+        <div className="text-[9px] tracking-[0.25em] uppercase mt-0.5" style={{ color: 'rgba(212,168,67,0.3)' }}>
+          Ask the Divine
+        </div>
+      </div>
+
+      {/* Spacing between header and arch */}
+      <div className="shrink-0" style={{ height: '2svh' }} />
 
       {/* ── Deity Frame ── */}
       <motion.div
@@ -49,52 +54,36 @@ export default function HomeScreen({ onPray }) {
             animate={{ opacity: [0.7, 1, 0.7] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
             className="deity-frame deity-frame-glow w-full h-full flex items-center justify-center">
-            <div className="deity-om select-none"
-              style={{
-                color: '#D4A843',
-                textShadow: '0 0 40px rgba(212,168,67,0.4), 0 0 80px rgba(212,168,67,0.15)',
-                fontFamily: 'serif',
-                lineHeight: 1,
-              }}>
-              ॐ
-            </div>
+            <div className="deity-om select-none" style={{
+              color: '#D4A843',
+              textShadow: '0 0 40px rgba(212,168,67,0.4), 0 0 80px rgba(212,168,67,0.15)',
+              fontFamily: 'serif', lineHeight: 1,
+            }}>ॐ</div>
             <div className="absolute bottom-[8%] left-1/2 -translate-x-1/2 pointer-events-none">
-              <div className="smoke-particle" />
-              <div className="smoke-particle" />
-              <div className="smoke-particle" />
+              <div className="smoke-particle" /><div className="smoke-particle" /><div className="smoke-particle" />
             </div>
           </motion.div>
-
-          {/* Diyas */}
-          <div className="absolute -left-5 bottom-0 diya-container">
-            <div className="diya-flame" />
-            <div className="diya-base" />
-          </div>
-          <div className="absolute -right-5 bottom-0 diya-container">
-            <div className="diya-flame diya-flame-delayed" />
-            <div className="diya-base" />
-          </div>
+          <div className="absolute -left-5 bottom-0 diya-container"><div className="diya-flame" /><div className="diya-base" /></div>
+          <div className="absolute -right-5 bottom-0 diya-container"><div className="diya-flame diya-flame-delayed" /><div className="diya-base" /></div>
         </div>
 
-        {/* नहीं / हाँ */}
-        <div className="deity-wrapper flex justify-between mt-3">
-          <span className="text-[10px] tracking-[0.15em] uppercase" style={{ color: 'rgba(232,141,141,0.35)' }}>✕ नहीं</span>
-          <span className="text-[10px] tracking-[0.15em] uppercase" style={{ color: 'rgba(126,202,156,0.35)' }}>हाँ ✓</span>
+        <div className="deity-wrapper flex justify-between mt-2">
+          <span className="text-[10px] tracking-[0.15em] uppercase" style={{ color: 'rgba(232,141,141,0.3)' }}>✕ नहीं</span>
+          <span className="text-[10px] tracking-[0.15em] uppercase" style={{ color: 'rgba(126,202,156,0.3)' }}>हाँ ✓</span>
         </div>
       </motion.div>
 
       {/* Spacer */}
-      <div className="flex-1 min-h-4" />
+      <div className="flex-1 min-h-2" />
 
-      {/* ── Question Input ── */}
+      {/* ── Input ── */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 0.8 }}
-        className="relative z-10 w-full px-6 safe-bottom flex flex-col gap-2.5 shrink-0">
+        className="relative z-10 w-full px-6 safe-bottom flex flex-col gap-2 shrink-0">
 
-        <label
-          className="text-[10px] tracking-[0.2em] uppercase text-center"
+        <label className="text-[10px] tracking-[0.2em] uppercase text-center"
           style={{ color: 'rgba(212,168,67,0.3)' }}>
           Hold your question in your heart
         </label>
@@ -107,13 +96,9 @@ export default function HomeScreen({ onPray }) {
           rows={1}
           className="w-full resize-none rounded-lg outline-none text-center"
           style={{
-            background: 'rgba(255,248,237,0.05)',
-            border: '1px solid rgba(212,168,67,0.15)',
-            color: '#FFF8ED',
-            fontFamily: 'Georgia, serif',
-            caretColor: '#D4A843',
-            fontSize: '14px',
-            padding: '10px 14px',
+            background: 'rgba(255,248,237,0.05)', border: '1px solid rgba(212,168,67,0.15)',
+            color: '#FFF8ED', fontFamily: 'Georgia, serif', caretColor: '#D4A843',
+            fontSize: '14px', padding: '10px 14px',
           }}
         />
 
@@ -122,13 +107,9 @@ export default function HomeScreen({ onPray }) {
           disabled={!question.trim()}
           className="w-full rounded-full text-base tracking-widest transition-all duration-300 disabled:opacity-30"
           style={{
-            background: question.trim()
-              ? 'linear-gradient(135deg, #E8801A, #C4600C)'
-              : 'rgba(232,128,26,0.2)',
+            background: question.trim() ? 'linear-gradient(135deg, #E8801A, #C4600C)' : 'rgba(232,128,26,0.2)',
             border: question.trim() ? '1px solid rgba(212,168,67,0.5)' : '1px solid transparent',
-            color: '#FFF8ED',
-            fontFamily: 'Georgia, serif',
-            padding: '12px 0',
+            color: '#FFF8ED', fontFamily: 'Georgia, serif', padding: '12px 0',
             boxShadow: question.trim() ? '0 4px 24px rgba(232,128,26,0.3)' : 'none',
           }}>
           🙏 प्रार्थना करें

@@ -7,128 +7,79 @@ export default function AnswerScreen({ answer, onAskAgain }) {
   const phrase = useMemo(() => getAnswerPhrase(answer), [answer])
   const remaining = getRemainingAsks()
   const isYes = answer === 'yes'
-
-  const accentColor = isYes ? '#7ECA9C' : '#E88D8D'
-  const glowColor = isYes ? 'rgba(126,202,156,0.12)' : 'rgba(232,141,141,0.12)'
+  const accent = isYes ? '#7ECA9C' : '#E88D8D'
 
   return (
     <div className="relative h-full w-full flex flex-col items-center overflow-hidden"
       style={{ background: 'radial-gradient(ellipse at 50% 40%, #3D0F18 0%, #1a0a0e 100%)' }}>
 
       {/* Glow */}
-      <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full pointer-events-none"
-        style={{ top: '42%', background: `radial-gradient(circle, ${glowColor}, transparent 70%)` }} />
+      <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full pointer-events-none"
+        style={{ top: '40%', background: `radial-gradient(circle, ${isYes ? 'rgba(126,202,156,0.1)' : 'rgba(232,141,141,0.1)'}, transparent 70%)` }} />
 
-      {/* Burst */}
-      <div
-        className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full answer-burst"
-        style={{ top: '42%', background: `radial-gradient(circle, ${isYes ? 'rgba(126,202,156,0.25)' : 'rgba(232,141,141,0.25)'}, transparent 70%)` }} />
+      {/* ── Header ── */}
+      <div className="safe-top shrink-0" />
+      <div className="shrink-0 text-center">
+        <div className="text-2xl font-light tracking-wider" style={{ color: '#D4A843', fontFamily: 'Georgia, serif' }}>
+          पुष्पम्
+        </div>
+        <div className="text-[9px] tracking-[0.25em] uppercase mt-0.5" style={{ color: 'rgba(212,168,67,0.3)' }}>
+          Ask the Divine
+        </div>
+      </div>
 
-      {/* Header clearance */}
-      <div className="content-top shrink-0" />
-
-      {/* ── Centered answer content ── */}
+      {/* ── Centered answer ── */}
       <div className="relative z-10 flex flex-col items-center flex-1 justify-center px-8 text-center">
 
-        {/* Flower */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}>
-          <div className="text-4xl select-none" style={{ filter: `drop-shadow(0 0 14px ${accentColor})` }}>
-            🌸
-          </div>
+        <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}>
+          <div className="text-4xl select-none" style={{ filter: `drop-shadow(0 0 14px ${accent})` }}>🌸</div>
         </motion.div>
 
-        {/* Direction */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex items-center gap-2 text-[10px] tracking-[0.2em] mt-5"
-          style={{ color: `${accentColor}70` }}>
-          {isYes ? (
-            <>
-              <span>—</span>
-              <span className="uppercase">The flower fell right</span>
-              <span>→</span>
-            </>
-          ) : (
-            <>
-              <span>←</span>
-              <span className="uppercase">The flower fell left</span>
-              <span>—</span>
-            </>
-          )}
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.3 }}
+          className="flex items-center gap-2 text-[10px] tracking-[0.15em] mt-4" style={{ color: `${accent}70` }}>
+          {isYes
+            ? <><span>—</span><span className="uppercase">The flower fell right</span><span>→</span></>
+            : <><span>←</span><span className="uppercase">The flower fell left</span><span>—</span></>}
         </motion.div>
 
-        {/* Main answer */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-2xl font-light mt-6"
-          style={{ color: accentColor, fontFamily: 'Georgia, serif', textShadow: `0 0 20px ${accentColor}40` }}>
+          className="text-2xl font-light mt-5"
+          style={{ color: accent, fontFamily: 'Georgia, serif', textShadow: `0 0 20px ${accent}40` }}>
           {phrase.main}
         </motion.div>
 
-        {/* Sub message */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.9 }}
-          className="text-sm tracking-wide mt-3"
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.9 }}
+          className="text-sm tracking-wide mt-2"
           style={{ color: 'rgba(255,248,237,0.3)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>
           {phrase.sub}
         </motion.div>
       </div>
 
-      {/* ── Buttons at bottom ── */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
+      {/* ── Buttons ── */}
+      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 1.4 }}
-        className="relative z-10 flex flex-col items-center gap-2.5 w-full px-6 safe-bottom pb-2 shrink-0">
+        className="relative z-10 flex flex-col items-center gap-2 w-full px-6 safe-bottom shrink-0">
 
         {remaining > 0 ? (
-          <button
-            onClick={onAskAgain}
-            className="w-full py-3 rounded-full text-sm tracking-widest transition-all duration-300"
-            style={{
-              background: 'rgba(255,248,237,0.04)',
-              border: `1px solid ${accentColor}25`,
-              color: accentColor,
-              fontFamily: 'Georgia, serif',
-            }}>
+          <button onClick={onAskAgain}
+            className="w-full py-3 rounded-full text-sm tracking-widest"
+            style={{ background: 'rgba(255,248,237,0.04)', border: `1px solid ${accent}25`, color: accent, fontFamily: 'Georgia, serif' }}>
             Ask again
           </button>
         ) : (
-          <div className="flex flex-col items-center gap-1 py-2">
-            <p className="text-sm" style={{ color: 'rgba(255,248,237,0.4)', fontFamily: 'Georgia, serif' }}>
-              The divine has spoken today.
-            </p>
-            <p className="text-xs" style={{ color: 'rgba(255,248,237,0.2)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>
-              Return tomorrow with a still mind 🙏
-            </p>
+          <div className="flex flex-col items-center gap-0.5 py-2">
+            <p className="text-sm" style={{ color: 'rgba(255,248,237,0.4)', fontFamily: 'Georgia, serif' }}>The divine has spoken today.</p>
+            <p className="text-xs" style={{ color: 'rgba(255,248,237,0.2)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>Return tomorrow with a still mind 🙏</p>
           </div>
         )}
 
-        <button
-          className="w-full py-3 rounded-full text-xs tracking-widest"
-          style={{
-            background: 'transparent',
-            border: '1px solid rgba(255,248,237,0.06)',
-            color: 'rgba(255,248,237,0.2)',
-            fontFamily: 'Georgia, serif',
-          }}
+        <button className="w-full py-3 rounded-full text-xs tracking-widest"
+          style={{ background: 'transparent', border: '1px solid rgba(255,248,237,0.06)', color: 'rgba(255,248,237,0.2)', fontFamily: 'Georgia, serif' }}
           onClick={() => {
             const text = `🌺 पुष्पम् — Ask the Divine\n"Seek your answer from the divine. One question. One flower. One truth."\npushpam.in`
-            if (navigator.share) {
-              navigator.share({ text })
-            } else {
-              const url = `https://wa.me/?text=${encodeURIComponent(text)}`
-              window.open(url, '_blank')
-            }
+            if (navigator.share) { navigator.share({ text }) } else { window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank') }
           }}>
           Help someone seek their answer too 🌺
         </button>

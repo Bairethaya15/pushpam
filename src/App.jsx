@@ -49,24 +49,10 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      {/* Persistent header — always visible across all screens */}
-      <div className="app-header">
-        <div className="app-header-title">पुष्पम्</div>
-        <div className="app-header-sub">Ask the Divine</div>
-      </div>
-
-      {screen === 'home' && (
-        <HomeScreen onPray={handlePray} />
-      )}
-      {screen === 'ritual' && (
-        <RitualScreen flowerSide={flowerSide} onComplete={handleRitualComplete} />
-      )}
-      {screen === 'answer' && (
-        <AnswerScreen answer={answer} onAskAgain={handleAskAgain} />
-      )}
-      {screen === 'daily-complete' && (
-        <DailyComplete onGoHome={handleGoHome} />
-      )}
+      {screen === 'home' && <HomeScreen onPray={handlePray} />}
+      {screen === 'ritual' && <RitualScreen flowerSide={flowerSide} onComplete={handleRitualComplete} />}
+      {screen === 'answer' && <AnswerScreen answer={answer} onAskAgain={handleAskAgain} />}
+      {screen === 'daily-complete' && <DailyComplete onGoHome={handleGoHome} />}
     </div>
   )
 }
