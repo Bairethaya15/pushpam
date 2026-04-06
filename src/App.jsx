@@ -5,6 +5,7 @@ import RitualScreen from './components/RitualScreen'
 import AnswerScreen from './components/AnswerScreen'
 import DailyComplete from './components/DailyComplete'
 import { canAsk, recordAsk } from './utils/askLimit'
+import { askPrashna } from './utils/prashna'
 
 
 export default function App() {
@@ -18,7 +19,9 @@ export default function App() {
       setScreen('daily-complete')
       return
     }
-    const side = Math.random() < 0.5 ? 'left' : 'right'
+    // Prashna Shastra — the celestial position at this exact moment decides
+    const prashna = askPrashna(new Date())
+    const side = prashna.answer === 'yes' ? 'right' : 'left'
     setQuestion(q)
     setFlowerSide(side)
     setScreen('ritual')
