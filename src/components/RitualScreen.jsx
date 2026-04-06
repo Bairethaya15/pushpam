@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { playBell } from '../utils/audio'
 
 const mantras = ['ॐ गं गणपतये नमः', 'ॐ नमः शिवाय', 'ॐ श्री लक्ष्म्यै नमः']
 
 export default function RitualScreen({ flowerSide, onComplete }) {
   const [step, setStep] = useState('bell')
   const [mantra] = useState(() => mantras[Math.floor(Math.random() * mantras.length)])
+
+  // Play bell sound when bell step starts
+  useEffect(() => {
+    if (step === 'bell') playBell()
+  }, [step])
 
   useEffect(() => {
     const side = flowerSide
