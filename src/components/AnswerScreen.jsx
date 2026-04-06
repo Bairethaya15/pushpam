@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { getAnswerPhrase } from '../utils/answerPhrases'
 import { getRemainingAsks } from '../utils/askLimit'
 
-export default function AnswerScreen({ answer, onAskAgain }) {
+export default function AnswerScreen({ answer, onAskAgain, onDailyComplete }) {
   const phrase = useMemo(() => getAnswerPhrase(answer), [answer])
   const remaining = getRemainingAsks()
   const isYes = answer === 'yes'
@@ -23,33 +23,38 @@ export default function AnswerScreen({ answer, onAskAgain }) {
         <div className="screen-header-sub">Ask the Divine</div>
       </div>
 
-      {/* ── Centered answer ── */}
-      <div className="relative z-10 flex flex-col items-center flex-1 justify-center px-8 text-center">
+      {/* ── Answer content — spaced out vertically ── */}
+      <div className="relative z-10 flex flex-col items-center flex-1 justify-center px-8 text-center"
+        style={{ gap: '3svh' }}>
 
+        {/* Flower */}
         <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}>
           <div className="text-5xl select-none" style={{ filter: `drop-shadow(0 0 14px ${accent})` }}>🌸</div>
         </motion.div>
 
+        {/* Direction */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex items-center gap-2 text-sm tracking-[0.15em] mt-6"
+          className="flex items-center gap-2 text-sm tracking-[0.15em]"
           style={{ color: `${accent}70` }}>
           {isYes
             ? <><span>—</span><span className="uppercase">The flower fell right</span><span>→</span></>
             : <><span>←</span><span className="uppercase">The flower fell left</span><span>—</span></>}
         </motion.div>
 
+        {/* Main answer */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-3xl font-light mt-8"
+          className="text-3xl font-light"
           style={{ color: accent, fontFamily: 'Georgia, serif', textShadow: `0 0 20px ${accent}40` }}>
           {phrase.main}
         </motion.div>
 
+        {/* Sub message */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.9 }}
-          className="text-base tracking-wide mt-4"
+          className="text-base tracking-wide"
           style={{ color: 'rgba(255,248,237,0.35)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>
           {phrase.sub}
         </motion.div>
@@ -67,13 +72,20 @@ export default function AnswerScreen({ answer, onAskAgain }) {
             Ask again
           </button>
         ) : (
-          <div className="flex flex-col items-center gap-1 py-2">
-            <p className="text-base" style={{ color: 'rgba(255,248,237,0.4)', fontFamily: 'Georgia, serif' }}>The divine has spoken today.</p>
-            <p className="text-sm" style={{ color: 'rgba(255,248,237,0.25)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>Return tomorrow with a still mind 🙏</p>
-          </div>
+          <>
+            <div className="flex flex-col items-center gap-1 py-1">
+              <p className="text-base" style={{ color: 'rgba(255,248,237,0.4)', fontFamily: 'Georgia, serif' }}>The divine has spoken today.</p>
+              <p className="text-sm" style={{ color: 'rgba(255,248,237,0.25)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>Return tomorrow with a still mind 🙏</p>
+            </div>
+            <button onClick={onDailyComplete}
+              className="w-full py-3.5 rounded-full text-sm tracking-widest"
+              style={{ background: 'linear-gradient(135deg, #E8801A, #C4600C)', border: '1px solid rgba(212,168,67,0.5)', color: '#FFF8ED', fontFamily: 'Georgia, serif', boxShadow: '0 4px 20px rgba(232,128,26,0.25)' }}>
+              Seek lifetime guidance 🪷
+            </button>
+          </>
         )}
 
-        <button className="w-full py-3.5 rounded-full text-sm tracking-widest"
+        <button className="w-full py-3 rounded-full text-sm tracking-widest"
           style={{ background: 'transparent', border: '1px solid rgba(255,248,237,0.08)', color: 'rgba(255,248,237,0.25)', fontFamily: 'Georgia, serif' }}
           onClick={() => {
             const text = `🌺 पुष्पम् — Ask the Divine\n"Seek your answer from the divine. One question. One flower. One truth."\npushpam.in`

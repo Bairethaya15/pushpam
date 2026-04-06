@@ -51,7 +51,7 @@ export default function App() {
     <div className="app-shell">
       {screen === 'home' && <HomeScreen onPray={handlePray} />}
       {screen === 'ritual' && <RitualScreen flowerSide={flowerSide} onComplete={handleRitualComplete} />}
-      {screen === 'answer' && <AnswerScreen answer={answer} onAskAgain={handleAskAgain} />}
+      {screen === 'answer' && <AnswerScreen answer={answer} onAskAgain={handleAskAgain} onDailyComplete={() => setScreen('daily-complete')} />}
       {screen === 'daily-complete' && <DailyComplete onGoHome={handleGoHome} />}
     </div>
   )
