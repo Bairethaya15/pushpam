@@ -22,33 +22,36 @@ export function playBell() {
     const ctx = getCtx()
     const now = ctx.currentTime
 
-    // Main bell tone
+    // Deep temple bell fundamental
     const osc1 = ctx.createOscillator()
     osc1.type = 'sine'
-    osc1.frequency.value = 830 // High temple bell
+    osc1.frequency.value = 280 // Low brass bell
 
-    // Slightly detuned harmonic for richness
+    // Warm overtone
     const osc2 = ctx.createOscillator()
     osc2.type = 'sine'
-    osc2.frequency.value = 1245 // ~1.5x fundamental
+    osc2.frequency.value = 560 // Octave above
 
-    // Third harmonic — soft, high shimmer
+    // Metallic shimmer — high, quiet
     const osc3 = ctx.createOscillator()
     osc3.type = 'sine'
-    osc3.frequency.value = 2490
+    osc3.frequency.value = 1120
 
-    // Gain envelopes — sharp attack, long decay
+    // Soft attack, long decay — not sudden
     const gain1 = ctx.createGain()
-    gain1.gain.setValueAtTime(0.3, now)
-    gain1.gain.exponentialRampToValueAtTime(0.001, now + 2.5)
+    gain1.gain.setValueAtTime(0, now)
+    gain1.gain.linearRampToValueAtTime(0.12, now + 0.05) // gentle attack
+    gain1.gain.exponentialRampToValueAtTime(0.001, now + 3.5) // long ring
 
     const gain2 = ctx.createGain()
-    gain2.gain.setValueAtTime(0.15, now)
-    gain2.gain.exponentialRampToValueAtTime(0.001, now + 2.0)
+    gain2.gain.setValueAtTime(0, now)
+    gain2.gain.linearRampToValueAtTime(0.06, now + 0.04)
+    gain2.gain.exponentialRampToValueAtTime(0.001, now + 2.5)
 
     const gain3 = ctx.createGain()
-    gain3.gain.setValueAtTime(0.05, now)
-    gain3.gain.exponentialRampToValueAtTime(0.001, now + 1.5)
+    gain3.gain.setValueAtTime(0, now)
+    gain3.gain.linearRampToValueAtTime(0.02, now + 0.03)
+    gain3.gain.exponentialRampToValueAtTime(0.001, now + 1.8)
 
     osc1.connect(gain1).connect(ctx.destination)
     osc2.connect(gain2).connect(ctx.destination)
