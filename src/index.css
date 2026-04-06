@@ -79,7 +79,7 @@ body {
   flex-shrink: 0;
   text-align: center;
   padding-top: max(36px, env(safe-area-inset-top, 0px) + 8px);
-  padding-bottom: 0.5svh;
+  padding-bottom: 2svh;
 }
 
 .screen-header-title {
