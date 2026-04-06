@@ -117,17 +117,21 @@ export default function HomeScreen({ onPray }) {
           }}
         />
 
-        {/* Silent prayer — visible, tappable, with explanation */}
+        {/* Silent prayer — OR divider + clear button */}
         {!question.trim() && (
-          <button
-            onClick={() => setQuestion('🙏')}
-            className="flex items-center justify-center gap-2 py-2"
-            style={{ color: 'rgba(212,168,67,0.5)' }}>
-            <span className="text-lg">🙏</span>
-            <span className="text-sm" style={{ fontStyle: 'italic' }}>
-              The divine hears what words cannot say
-            </span>
-          </button>
+          <div className="flex flex-col items-center gap-2">
+            <span className="text-xs" style={{ color: 'rgba(255,248,237,0.2)' }}>or</span>
+            <button
+              onClick={(e) => { setQuestion('🙏'); setTimeout(() => handleSubmit(e), 100) }}
+              className="w-full rounded-full py-3 text-sm tracking-wider"
+              style={{
+                background: 'transparent',
+                border: '1px solid rgba(212,168,67,0.15)',
+                color: 'rgba(212,168,67,0.5)',
+              }}>
+              Pray in silence 🙏
+            </button>
+          </div>
         )}
 
         <button
@@ -140,7 +144,7 @@ export default function HomeScreen({ onPray }) {
             color: '#FFF8ED', padding: '14px 24px',
             boxShadow: question.trim() ? '0 4px 24px rgba(232,128,26,0.3)' : 'none',
           }}>
-          🙏 प्रार्थना करें
+          Seek your answer
         </button>
       </motion.div>
     </div>
