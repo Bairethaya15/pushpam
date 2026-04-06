@@ -90,7 +90,7 @@ body {
 
 /* Content top clearance — use on first child of each screen */
 .content-top {
-  padding-top: max(100px, env(safe-area-inset-top, 0px) + 76px);
+  padding-top: max(116px, env(safe-area-inset-top, 0px) + 92px);
 }
 
 /* ── Deity Frame ── */
