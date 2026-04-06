@@ -33,7 +33,7 @@ export default function AnswerScreen({ answer, onAskAgain }) {
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex items-center gap-2 text-xs tracking-[0.15em] mt-6"
+          className="flex items-center gap-2 text-sm tracking-[0.15em] mt-6"
           style={{ color: `${accent}70` }}>
           {isYes
             ? <><span>—</span><span className="uppercase">The flower fell right</span><span>→</span></>
@@ -50,7 +50,7 @@ export default function AnswerScreen({ answer, onAskAgain }) {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.9 }}
           className="text-base tracking-wide mt-4"
-          style={{ color: 'rgba(255,248,237,0.3)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>
+          style={{ color: 'rgba(255,248,237,0.35)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>
           {phrase.sub}
         </motion.div>
       </div>
@@ -58,23 +58,23 @@ export default function AnswerScreen({ answer, onAskAgain }) {
       {/* ── Buttons ── */}
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 1.4 }}
-        className="relative z-10 flex flex-col items-center gap-2 w-full px-6 safe-bottom shrink-0">
+        className="relative z-10 flex flex-col items-center gap-2.5 w-full px-6 safe-bottom shrink-0">
 
         {remaining > 0 ? (
           <button onClick={onAskAgain}
-            className="w-full py-3 rounded-full text-sm tracking-widest"
+            className="w-full py-3.5 rounded-full text-base tracking-widest"
             style={{ background: 'rgba(255,248,237,0.04)', border: `1px solid ${accent}25`, color: accent, fontFamily: 'Georgia, serif' }}>
             Ask again
           </button>
         ) : (
-          <div className="flex flex-col items-center gap-0.5 py-2">
-            <p className="text-sm" style={{ color: 'rgba(255,248,237,0.4)', fontFamily: 'Georgia, serif' }}>The divine has spoken today.</p>
-            <p className="text-xs" style={{ color: 'rgba(255,248,237,0.2)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>Return tomorrow with a still mind 🙏</p>
+          <div className="flex flex-col items-center gap-1 py-2">
+            <p className="text-base" style={{ color: 'rgba(255,248,237,0.4)', fontFamily: 'Georgia, serif' }}>The divine has spoken today.</p>
+            <p className="text-sm" style={{ color: 'rgba(255,248,237,0.25)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>Return tomorrow with a still mind 🙏</p>
           </div>
         )}
 
-        <button className="w-full py-3 rounded-full text-xs tracking-widest"
-          style={{ background: 'transparent', border: '1px solid rgba(255,248,237,0.06)', color: 'rgba(255,248,237,0.2)', fontFamily: 'Georgia, serif' }}
+        <button className="w-full py-3.5 rounded-full text-sm tracking-widest"
+          style={{ background: 'transparent', border: '1px solid rgba(255,248,237,0.08)', color: 'rgba(255,248,237,0.25)', fontFamily: 'Georgia, serif' }}
           onClick={() => {
             const text = `🌺 पुष्पम् — Ask the Divine\n"Seek your answer from the divine. One question. One flower. One truth."\npushpam.in`
             if (navigator.share) { navigator.share({ text }) } else { window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank') }
