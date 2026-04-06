@@ -11,13 +11,11 @@ export default function HomeScreen({ onPray }) {
   }
 
   return (
-    <div
-      className="relative h-full w-full flex flex-col items-center overflow-hidden"
+    <div className="relative h-full w-full flex flex-col items-center overflow-hidden"
       style={{ background: 'radial-gradient(ellipse at 50% 30%, #6B1D2A 0%, #3D0F18 50%, #1a0a0e 100%)' }}>
 
       {/* Ambient glow */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none"
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none"
         style={{ width: '120%', height: '35%', background: 'radial-gradient(ellipse, rgba(232,128,26,0.1) 0%, transparent 70%)' }} />
 
       {/* Sparks */}
@@ -29,18 +27,10 @@ export default function HomeScreen({ onPray }) {
       ))}
 
       {/* ── Header ── */}
-      <div className="safe-top shrink-0" />
-      <div className="shrink-0 text-center">
-        <div className="text-2xl font-light tracking-wider" style={{ color: '#D4A843', fontFamily: 'Georgia, serif' }}>
-          पुष्पम्
-        </div>
-        <div className="text-[9px] tracking-[0.25em] uppercase mt-0.5" style={{ color: 'rgba(212,168,67,0.3)' }}>
-          Ask the Divine
-        </div>
+      <div className="screen-header">
+        <div className="screen-header-title">पुष्पम्</div>
+        <div className="screen-header-sub">Ask the Divine</div>
       </div>
-
-      {/* Spacing between header and arch */}
-      <div className="shrink-0" style={{ height: '2svh' }} />
 
       {/* ── Deity Frame ── */}
       <motion.div
@@ -84,7 +74,7 @@ export default function HomeScreen({ onPray }) {
         className="relative z-10 w-full px-6 safe-bottom flex flex-col gap-2 shrink-0">
 
         <label className="text-[10px] tracking-[0.2em] uppercase text-center"
-          style={{ color: 'rgba(212,168,67,0.3)' }}>
+          style={{ color: 'rgba(212,168,67,0.25)' }}>
           Hold your question in your heart
         </label>
 

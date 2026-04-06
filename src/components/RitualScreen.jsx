@@ -14,17 +14,13 @@ export default function RitualScreen({ flowerSide, onComplete }) {
     let current = 'bell'
     const sequence = ['bell', 'mantra', 'stillness', 'flower', 'done']
     const timeouts = []
-
     const next = () => {
       const idx = sequence.indexOf(current)
       if (idx < sequence.length - 1) {
         current = sequence[idx + 1]
         setStep(current)
-        if (current !== 'done') {
-          timeouts.push(setTimeout(next, timings[current] || 1000))
-        } else {
-          timeouts.push(setTimeout(() => done(side), 400))
-        }
+        if (current !== 'done') timeouts.push(setTimeout(next, timings[current] || 1000))
+        else timeouts.push(setTimeout(() => done(side), 400))
       }
     }
     timeouts.push(setTimeout(next, timings.bell))
@@ -48,17 +44,10 @@ export default function RitualScreen({ flowerSide, onComplete }) {
       ))}
 
       {/* ── Header ── */}
-      <div className="safe-top shrink-0" />
-      <div className="shrink-0 text-center">
-        <div className="text-2xl font-light tracking-wider" style={{ color: '#D4A843', fontFamily: 'Georgia, serif' }}>
-          पुष्पम्
-        </div>
-        <div className="text-[9px] tracking-[0.25em] uppercase mt-0.5" style={{ color: 'rgba(212,168,67,0.3)' }}>
-          Ask the Divine
-        </div>
+      <div className="screen-header">
+        <div className="screen-header-title">पुष्पम्</div>
+        <div className="screen-header-sub">Ask the Divine</div>
       </div>
-
-      <div className="shrink-0" style={{ height: '2svh' }} />
 
       {/* ── Deity Frame ── */}
       <div className="relative z-10 shrink-0 flex flex-col items-center">
@@ -79,7 +68,6 @@ export default function RitualScreen({ flowerSide, onComplete }) {
           <div className="absolute -left-5 bottom-0 diya-container"><div className="diya-flame" /><div className="diya-base" /></div>
           <div className="absolute -right-5 bottom-0 diya-container"><div className="diya-flame diya-flame-delayed" /><div className="diya-base" /></div>
 
-          {/* Side labels during flower */}
           <AnimatePresence>
             {(step === 'flower' || step === 'done') && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
@@ -100,14 +88,14 @@ export default function RitualScreen({ flowerSide, onComplete }) {
             <motion.div key="bell" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }} transition={{ duration: 0.5 }}
               className="absolute flex flex-col items-center gap-3">
-              <motion.div animate={{ rotate: [-12, 12, -12] }} transition={{ duration: 0.5, repeat: 3, ease: 'easeInOut' }}
+              <motion.div animate={{ rotate: [-12, 12, -12] }}
+                transition={{ duration: 0.5, repeat: 3, ease: 'easeInOut' }}
                 className="text-5xl select-none">🔔</motion.div>
               <p className="text-[10px] tracking-[0.25em] uppercase" style={{ color: 'rgba(212,168,67,0.3)' }}>
                 The divine is called</p>
             </motion.div>
           )}
         </AnimatePresence>
-
         <AnimatePresence>
           {step === 'mantra' && (
             <motion.div key="mantra" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
@@ -120,7 +108,6 @@ export default function RitualScreen({ flowerSide, onComplete }) {
             </motion.div>
           )}
         </AnimatePresence>
-
         <AnimatePresence>
           {step === 'stillness' && (
             <motion.div key="stillness" initial={{ opacity: 0 }} animate={{ opacity: 1 }}
@@ -136,7 +123,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
       {(step === 'flower' || step === 'done') && flowerSide && (
         <div className="absolute z-10 text-4xl select-none"
           style={{
-            top: '32%', left: '50%', marginLeft: '-18px',
+            top: '35%', left: '50%', marginLeft: '-18px',
             filter: 'drop-shadow(0 0 12px rgba(212,168,67,0.7))',
             animation: `flower-fall-${flowerSide} 3s ease-in forwards`,
           }}>🌸</div>

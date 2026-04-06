@@ -64,14 +64,38 @@ body {
   padding-bottom: max(12px, env(safe-area-inset-bottom, 0px) + 4px);
 }
 
-/* Responsive deity wrapper — scales with screen height */
+/* Responsive deity wrapper — aspect-ratio locked so arch never distorts */
 .deity-wrapper {
-  width: min(50vw, 200px);
-  height: min(30svh, 230px);
+  width: min(55vw, 220px);
+  aspect-ratio: 13 / 15; /* always taller than wide, like a temple arch */
 }
 
 .deity-om {
   font-size: min(18vw, 4.5rem);
+}
+
+/* Shared header block used on every screen */
+.screen-header {
+  flex-shrink: 0;
+  text-align: center;
+  padding-top: max(44px, env(safe-area-inset-top, 0px) + 16px);
+  padding-bottom: 2.5svh;
+}
+
+.screen-header-title {
+  font-family: Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: #D4A843;
+}
+
+.screen-header-sub {
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(212,168,67,0.25);
+  margin-top: 2px;
 }
 
 /* ── Deity Frame ── */

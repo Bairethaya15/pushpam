@@ -15,17 +15,12 @@ export default function AnswerScreen({ answer, onAskAgain }) {
 
       {/* Glow */}
       <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full pointer-events-none"
-        style={{ top: '40%', background: `radial-gradient(circle, ${isYes ? 'rgba(126,202,156,0.1)' : 'rgba(232,141,141,0.1)'}, transparent 70%)` }} />
+        style={{ top: '45%', background: `radial-gradient(circle, ${isYes ? 'rgba(126,202,156,0.1)' : 'rgba(232,141,141,0.1)'}, transparent 70%)` }} />
 
       {/* ── Header ── */}
-      <div className="safe-top shrink-0" />
-      <div className="shrink-0 text-center">
-        <div className="text-2xl font-light tracking-wider" style={{ color: '#D4A843', fontFamily: 'Georgia, serif' }}>
-          पुष्पम्
-        </div>
-        <div className="text-[9px] tracking-[0.25em] uppercase mt-0.5" style={{ color: 'rgba(212,168,67,0.3)' }}>
-          Ask the Divine
-        </div>
+      <div className="screen-header">
+        <div className="screen-header-title">पुष्पम्</div>
+        <div className="screen-header-sub">Ask the Divine</div>
       </div>
 
       {/* ── Centered answer ── */}
@@ -36,8 +31,10 @@ export default function AnswerScreen({ answer, onAskAgain }) {
           <div className="text-4xl select-none" style={{ filter: `drop-shadow(0 0 14px ${accent})` }}>🌸</div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex items-center gap-2 text-[10px] tracking-[0.15em] mt-4" style={{ color: `${accent}70` }}>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="flex items-center gap-2 text-[10px] tracking-[0.15em] mt-4"
+          style={{ color: `${accent}70` }}>
           {isYes
             ? <><span>—</span><span className="uppercase">The flower fell right</span><span>→</span></>
             : <><span>←</span><span className="uppercase">The flower fell left</span><span>—</span></>}
@@ -50,7 +47,8 @@ export default function AnswerScreen({ answer, onAskAgain }) {
           {phrase.main}
         </motion.div>
 
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.9 }}
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.9 }}
           className="text-sm tracking-wide mt-2"
           style={{ color: 'rgba(255,248,237,0.3)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>
           {phrase.sub}

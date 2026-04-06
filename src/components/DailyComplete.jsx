@@ -6,14 +6,9 @@ export default function DailyComplete({ onGoHome }) {
       style={{ background: 'radial-gradient(ellipse at 50% 40%, #3D0F18 0%, #1a0a0e 100%)' }}>
 
       {/* ── Header ── */}
-      <div className="safe-top shrink-0" />
-      <div className="shrink-0 text-center">
-        <div className="text-2xl font-light tracking-wider" style={{ color: '#D4A843', fontFamily: 'Georgia, serif' }}>
-          पुष्पम्
-        </div>
-        <div className="text-[9px] tracking-[0.25em] uppercase mt-0.5" style={{ color: 'rgba(212,168,67,0.3)' }}>
-          Ask the Divine
-        </div>
+      <div className="screen-header">
+        <div className="screen-header-title">पुष्पम्</div>
+        <div className="screen-header-sub">Ask the Divine</div>
       </div>
 
       {/* ── Centered content ── */}
@@ -47,7 +42,6 @@ export default function DailyComplete({ onGoHome }) {
         </motion.div>
       </div>
 
-      {/* Bottom */}
       <motion.button initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 1.2 }}
         onClick={onGoHome} className="relative z-10 text-xs tracking-widest uppercase safe-bottom shrink-0"
         style={{ color: 'rgba(255,248,237,0.15)' }}>
