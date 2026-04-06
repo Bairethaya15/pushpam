@@ -72,7 +72,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
             {(step === 'flower' || step === 'done') && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
-                className="deity-wrapper absolute -bottom-6 left-0 right-0 flex justify-between px-1">
+                className="absolute -bottom-6 left-0 right-0 flex justify-between px-1">
                 <span className="text-[10px] tracking-[0.15em] uppercase" style={{ color: 'rgba(232,141,141,0.4)' }}>✕ नहीं</span>
                 <span className="text-[10px] tracking-[0.15em] uppercase" style={{ color: 'rgba(126,202,156,0.4)' }}>हाँ ✓</span>
               </motion.div>

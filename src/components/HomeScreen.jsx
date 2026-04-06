@@ -55,11 +55,12 @@ export default function HomeScreen({ onPray }) {
           </motion.div>
           <div className="absolute -left-5 bottom-0 diya-container"><div className="diya-flame" /><div className="diya-base" /></div>
           <div className="absolute -right-5 bottom-0 diya-container"><div className="diya-flame diya-flame-delayed" /><div className="diya-base" /></div>
-        </div>
 
-        <div className="deity-wrapper flex justify-between mt-2">
-          <span className="text-[10px] tracking-[0.15em] uppercase" style={{ color: 'rgba(232,141,141,0.3)' }}>✕ नहीं</span>
-          <span className="text-[10px] tracking-[0.15em] uppercase" style={{ color: 'rgba(126,202,156,0.3)' }}>हाँ ✓</span>
+          {/* Labels below diyas */}
+          <div className="absolute -bottom-5 left-0 right-0 flex justify-between px-1">
+            <span className="text-[10px] tracking-[0.15em] uppercase" style={{ color: 'rgba(232,141,141,0.3)' }}>✕ नहीं</span>
+            <span className="text-[10px] tracking-[0.15em] uppercase" style={{ color: 'rgba(126,202,156,0.3)' }}>हाँ ✓</span>
+          </div>
         </div>
       </motion.div>
 
