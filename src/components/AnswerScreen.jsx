@@ -28,12 +28,12 @@ export default function AnswerScreen({ answer, onAskAgain }) {
 
         <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}>
-          <div className="text-4xl select-none" style={{ filter: `drop-shadow(0 0 14px ${accent})` }}>🌸</div>
+          <div className="text-5xl select-none" style={{ filter: `drop-shadow(0 0 14px ${accent})` }}>🌸</div>
         </motion.div>
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex items-center gap-2 text-[10px] tracking-[0.15em] mt-6"
+          className="flex items-center gap-2 text-xs tracking-[0.15em] mt-6"
           style={{ color: `${accent}70` }}>
           {isYes
             ? <><span>—</span><span className="uppercase">The flower fell right</span><span>→</span></>
@@ -42,14 +42,14 @@ export default function AnswerScreen({ answer, onAskAgain }) {
 
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-2xl font-light mt-8"
+          className="text-3xl font-light mt-8"
           style={{ color: accent, fontFamily: 'Georgia, serif', textShadow: `0 0 20px ${accent}40` }}>
           {phrase.main}
         </motion.div>
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.9 }}
-          className="text-sm tracking-wide mt-4"
+          className="text-base tracking-wide mt-4"
           style={{ color: 'rgba(255,248,237,0.3)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>
           {phrase.sub}
         </motion.div>
