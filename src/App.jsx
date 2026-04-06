@@ -21,14 +21,16 @@ export default function App() {
     }
     // Vedic astrology (order) + true randomness (mystery)
     const prashna = askPrashna(new Date())
-    const side = prashna.answer === 'yes' ? 'right' : 'left'
+    // Deity's right (screen left) = yes, Deity's left (screen right) = no
+    const side = prashna.answer === 'yes' ? 'left' : 'right'
     setQuestion(q)
     setFlowerSide(side)
     setScreen('ritual')
   }
 
   const handleRitualComplete = useCallback((side) => {
-    const result = side === 'right' ? 'yes' : 'no'
+    // Deity's right (screen left) = yes
+    const result = side === 'left' ? 'yes' : 'no'
     recordAsk()
     setAnswer(result)
     setScreen('answer')
