@@ -35,7 +35,7 @@ export default function DailyComplete({ onGoHome }) {
             Seek guidance whenever your heart calls.</p>
           <p className="text-base font-medium" style={{ color: '#D4A843', fontFamily: 'Georgia, serif' }}>
             One offering, forever.</p>
-          <button className="mt-4 px-12 py-4 rounded-full text-base tracking-wider"
+          <button className="mt-4 w-72 py-4 rounded-full text-base tracking-wider"
             style={{ background: 'linear-gradient(135deg, #E8801A, #C4600C)', color: '#FFF8ED', fontFamily: 'Georgia, serif', boxShadow: '0 4px 20px rgba(232,128,26,0.25)' }}>
             Unlock lifetime guidance
           </button>

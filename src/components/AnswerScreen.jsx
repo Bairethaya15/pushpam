@@ -93,7 +93,7 @@ export default function AnswerScreen({ answer, onAskAgain }) {
               <p className="text-base font-medium" style={{ color: '#D4A843', fontFamily: 'Georgia, serif' }}>
                 One offering, forever.</p>
               <button
-                className="mt-3 px-12 py-4 rounded-full text-base tracking-wider"
+                className="mt-3 w-72 py-4 rounded-full text-base tracking-wider"
                 style={{ background: 'linear-gradient(135deg, #E8801A, #C4600C)', border: '1px solid rgba(212,168,67,0.5)', color: '#FFF8ED', fontFamily: 'Georgia, serif', boxShadow: '0 4px 20px rgba(232,128,26,0.25)' }}>
                 Seek lifetime guidance 🪷
               </button>
