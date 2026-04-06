@@ -65,7 +65,7 @@ export default function HomeScreen({ onPray }) {
       </motion.div>
 
       {/* Spacer */}
-      <div className="flex-1 min-h-2" />
+      <div className="flex-1" />
 
       {/* ── Input ── */}
       <motion.div
