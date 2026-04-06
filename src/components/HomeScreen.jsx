@@ -1,18 +1,10 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { haptic } from '../utils/haptic'
-import { startAmbient } from '../utils/audio'
 
 export default function HomeScreen({ onPray }) {
   const [question, setQuestion] = useState('')
   const [kbOpen, setKbOpen] = useState(false)
-
-  // Start ambient on first interaction (satisfies browser autoplay policy)
-  useEffect(() => {
-    const handler = () => { startAmbient(); document.removeEventListener('touchstart', handler) }
-    document.addEventListener('touchstart', handler, { once: true })
-    return () => document.removeEventListener('touchstart', handler)
-  }, [])
 
   // Detect keyboard open/close via visualViewport
   useEffect(() => {
