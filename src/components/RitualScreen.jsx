@@ -141,7 +141,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
             top: '42%', left: '50%', marginLeft: '-18px',
             filter: 'drop-shadow(0 0 12px rgba(212,168,67,0.7))',
             animation: `flower-fall-${flowerSide} 3s ease-in forwards`,
-          }}><img src={flowerIcon} alt="" className="w-12 h-12" draggable={false} /></div>
+          }}><img src={flowerIcon} alt="" className="w-14 h-14" draggable={false} /></div>
       )}
     </div>
   )

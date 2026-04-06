@@ -28,8 +28,8 @@ export default function AnswerScreen({ answer, onAskAgain }) {
 
         <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}>
-          <img src={flowerIcon} alt="" className="w-16 h-16 select-none" draggable={false}
-            style={{ filter: `drop-shadow(0 0 14px ${accent})` }} />
+          <img src={flowerIcon} alt="" className="w-20 h-20 select-none" draggable={false}
+            style={{ filter: `drop-shadow(0 0 10px ${accent}80)` }} />
         </motion.div>
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
