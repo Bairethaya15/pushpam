@@ -73,8 +73,8 @@ export default function RitualScreen({ flowerSide, onComplete }) {
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
                 className="absolute -bottom-6 left-0 right-0 flex justify-between px-1">
-                <span className="text-[10px] tracking-[0.15em] uppercase" style={{ color: 'rgba(232,141,141,0.4)' }}>✕ नहीं</span>
-                <span className="text-[10px] tracking-[0.15em] uppercase" style={{ color: 'rgba(126,202,156,0.4)' }}>हाँ ✓</span>
+                <span className="text-[11px] tracking-[0.15em] uppercase" style={{ color: 'rgba(232,141,141,0.4)' }}>✕ नहीं</span>
+                <span className="text-[11px] tracking-[0.15em] uppercase" style={{ color: 'rgba(126,202,156,0.4)' }}>हाँ ✓</span>
               </motion.div>
             )}
           </AnimatePresence>
@@ -91,7 +91,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
               <motion.div animate={{ rotate: [-12, 12, -12] }}
                 transition={{ duration: 0.5, repeat: 3, ease: 'easeInOut' }}
                 className="text-5xl select-none">🔔</motion.div>
-              <p className="text-[10px] tracking-[0.25em] uppercase" style={{ color: 'rgba(212,168,67,0.3)' }}>
+              <p className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(212,168,67,0.3)' }}>
                 The divine is called</p>
             </motion.div>
           )}
@@ -101,7 +101,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
             <motion.div key="mantra" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.6 }}
               className="absolute px-8 text-center">
-              <div className="text-xl" style={{
+              <div className="text-2xl" style={{
                 color: '#D4A843', fontFamily: 'serif',
                 textShadow: '0 0 20px rgba(212,168,67,0.5), 0 0 40px rgba(212,168,67,0.2)',
               }}>{mantra}</div>
@@ -112,7 +112,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
           {step === 'stillness' && (
             <motion.div key="stillness" initial={{ opacity: 0 }} animate={{ opacity: 1 }}
               exit={{ opacity: 0 }} transition={{ duration: 0.8 }} className="absolute">
-              <p className="text-[10px] tracking-[0.25em] uppercase" style={{ color: 'rgba(212,168,67,0.25)' }}>
+              <p className="text-xs tracking-[0.2em] uppercase" style={{ color: 'rgba(212,168,67,0.25)' }}>
                 The divine listens...</p>
             </motion.div>
           )}

@@ -58,8 +58,8 @@ export default function HomeScreen({ onPray }) {
 
           {/* Labels below diyas */}
           <div className="absolute -bottom-5 left-0 right-0 flex justify-between px-1">
-            <span className="text-[10px] tracking-[0.15em] uppercase" style={{ color: 'rgba(232,141,141,0.3)' }}>✕ नहीं</span>
-            <span className="text-[10px] tracking-[0.15em] uppercase" style={{ color: 'rgba(126,202,156,0.3)' }}>हाँ ✓</span>
+            <span className="text-[11px] tracking-[0.15em] uppercase" style={{ color: 'rgba(232,141,141,0.3)' }}>✕ नहीं</span>
+            <span className="text-[11px] tracking-[0.15em] uppercase" style={{ color: 'rgba(126,202,156,0.3)' }}>हाँ ✓</span>
           </div>
         </div>
       </motion.div>
@@ -74,7 +74,7 @@ export default function HomeScreen({ onPray }) {
         transition={{ duration: 1.2, delay: 0.8 }}
         className="relative z-10 w-full px-6 safe-bottom flex flex-col gap-2 shrink-0">
 
-        <label className="text-[10px] tracking-[0.2em] uppercase text-center"
+        <label className="text-xs tracking-[0.2em] uppercase text-center"
           style={{ color: 'rgba(212,168,67,0.25)' }}>
           Hold your question in your heart
         </label>
@@ -89,7 +89,7 @@ export default function HomeScreen({ onPray }) {
           style={{
             background: 'rgba(255,248,237,0.05)', border: '1px solid rgba(212,168,67,0.15)',
             color: '#FFF8ED', fontFamily: 'Georgia, serif', caretColor: '#D4A843',
-            fontSize: '14px', padding: '10px 14px',
+            fontSize: '16px', padding: '12px 14px',
           }}
         />
 

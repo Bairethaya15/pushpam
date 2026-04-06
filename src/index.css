@@ -84,17 +84,17 @@ body {
 
 .screen-header-title {
   font-family: Georgia, serif;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 300;
   letter-spacing: 0.1em;
   color: #D4A843;
 }
 
 .screen-header-sub {
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: rgba(212,168,67,0.25);
+  color: rgba(212,168,67,0.3);
   margin-top: 2px;
 }
 

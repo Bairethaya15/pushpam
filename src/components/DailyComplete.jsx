@@ -19,9 +19,9 @@ export default function DailyComplete({ onGoHome }) {
 
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }} className="flex flex-col items-center gap-1.5 mt-6">
-          <p className="text-lg font-light" style={{ color: '#FFF8ED', fontFamily: 'Georgia, serif' }}>
+          <p className="text-xl font-light" style={{ color: '#FFF8ED', fontFamily: 'Georgia, serif' }}>
             The divine has spoken today.</p>
-          <p className="text-sm" style={{ color: 'rgba(255,248,237,0.4)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>
+          <p className="text-base" style={{ color: 'rgba(255,248,237,0.4)', fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>
             Return tomorrow with a still mind 🙏</p>
         </motion.div>
 
@@ -31,11 +31,11 @@ export default function DailyComplete({ onGoHome }) {
 
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.9 }} className="flex flex-col items-center gap-1.5 mt-8">
-          <p className="text-sm" style={{ color: 'rgba(212,168,67,0.45)', fontFamily: 'Georgia, serif' }}>
+          <p className="text-base" style={{ color: 'rgba(212,168,67,0.45)', fontFamily: 'Georgia, serif' }}>
             Seek guidance whenever your heart calls.</p>
-          <p className="text-sm" style={{ color: '#D4A843', fontFamily: 'Georgia, serif' }}>
+          <p className="text-base" style={{ color: '#D4A843', fontFamily: 'Georgia, serif' }}>
             One offering, forever.</p>
-          <button className="mt-3 px-8 py-3 rounded-full text-sm tracking-widest"
+          <button className="mt-3 px-8 py-3 rounded-full text-base tracking-widest"
             style={{ background: 'linear-gradient(135deg, #E8801A, #C4600C)', color: '#FFF8ED', fontFamily: 'Georgia, serif', boxShadow: '0 4px 20px rgba(232,128,26,0.25)' }}>
             Unlock lifetime guidance
           </button>
