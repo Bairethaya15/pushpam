@@ -13,14 +13,14 @@ export default function App() {
   const [answer, setAnswer] = useState(null)
   const [flowerSide, setFlowerSide] = useState(null)
 
-  function handlePray(q, tapMs) {
+  function handlePray(q, moonMas) {
     if (!canAsk()) {
       setScreen('daily-complete')
       return
     }
-    // The exact millisecond your finger touched the screen
-    // Odd = yes (deity's right), even = no (deity's left)
-    const side = (tapMs & 1) === 1 ? 'left' : 'right'
+    // Moon's ecliptic longitude in milli-arcseconds at the moment of asking.
+    // Odd = yes (deity's right), even = no (deity's left).
+    const side = (moonMas & 1) === 1 ? 'left' : 'right'
     setQuestion(q)
     setFlowerSide(side)
     setScreen('ritual')

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { haptic } from '../utils/haptic'
+import { moonLongitudeMas } from '../utils/moonPosition'
 
 export default function HomeScreen({ onPray }) {
   const [question, setQuestion] = useState('')
@@ -22,11 +23,12 @@ export default function HomeScreen({ onPray }) {
   function handleSubmit(e) {
     const q = question.trim()
     if (!q) return
-    // Mix three independent sources so no single clock quantization can bias parity
-    const rand = crypto.getRandomValues(new Uint32Array(1))[0]
-    const tapMs = Math.floor(e.timeStamp) ^ Math.floor(performance.now() * 1000) ^ rand
+    // Read the Moon's actual ecliptic longitude at the instant of asking,
+    // expressed as an integer in milli-arcseconds. The divine speaks
+    // through her place in the sky — odd → आम्, even → नैव.
+    const moonMas = moonLongitudeMas(new Date())
     haptic('medium')
-    onPray(q, tapMs)
+    onPray(q, moonMas)
   }
 
   return (
