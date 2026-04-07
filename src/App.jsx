@@ -20,7 +20,7 @@ export default function App() {
     }
     // The exact millisecond your finger touched the screen
     // Odd = yes (deity's right), even = no (deity's left)
-    const side = tapMs % 2 === 1 ? 'left' : 'right'
+    const side = (tapMs & 1) === 1 ? 'left' : 'right'
     setQuestion(q)
     setFlowerSide(side)
     setScreen('ritual')
