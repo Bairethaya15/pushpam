@@ -136,7 +136,7 @@ export default function RitualScreen({ flowerSide, onComplete }) {
       {/* ── Flower — outer=Y(gravity), inner=X(sway) ── */}
       {(step === 'flower' || step === 'done') && flowerSide && (
         <div className="absolute z-10 flower-fall-y"
-          style={{ top: '52%', left: '50%', marginLeft: '-28px' }}>
+          style={{ top: '42%', left: '50%', marginLeft: '-28px' }}>
           <div className={`flower-sway-${flowerSide}`}
             style={{ filter: 'drop-shadow(0 0 10px rgba(212,168,67,0.6))' }}>
             <img src={flowerIcon} alt="" className="w-14 h-14 select-none" draggable={false} />
