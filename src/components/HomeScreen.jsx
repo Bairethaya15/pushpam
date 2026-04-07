@@ -22,9 +22,9 @@ export default function HomeScreen({ onPray }) {
   function handleSubmit(e) {
     const q = question.trim()
     if (!q) return
-    // Capture the exact moment the finger touched the button
-    // e.timeStamp is set by the browser at the instant of the touch
-    const tapMs = Math.round(e.timeStamp + performance.timeOrigin)
+    // Mix three independent sources so no single clock quantization can bias parity
+    const rand = crypto.getRandomValues(new Uint32Array(1))[0]
+    const tapMs = Math.floor(e.timeStamp) ^ Math.floor(performance.now() * 1000) ^ rand
     haptic('medium')
     onPray(q, tapMs)
   }
